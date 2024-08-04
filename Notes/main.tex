@@ -1,0 +1,357 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[bottom=20mm,top=20mm,left=20mm,right=40mm]{geometry}
+%-----------------------package---------------------------
+\usepackage{verbatim}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red, linktocpage=true,breaklinks=true]{hyperref} 
+\usepackage{amsmath,amsthm,amsfonts,amssymb,graphics,graphicx,epsfig,color,times,braket,tikz,enumerate,bm,subcaption}
+\usepackage{epstopdf}
+\usepackage{enumerate}
+\hypersetup{linktocpage = true}
+\usepackage{cancel}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[perpage]{footmisc}
+\allowdisplaybreaks[3]
+\usepackage{titlesec}
+\usepackage{qcircuit,tikz}
+\usepackage[colorinlistoftodos]{todonotes}
+\newtheorem{theorem}{Theorem}[subsection]
+%\usetikzlibrary{quantikz2}
+
+% Ensure proper formatting of section titles
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+%by Zhongwei Jiang
+\numberwithin{equation}{subsection}
+
+\title{Notes on quantum search algorithm}
+\author{Zhongwei Jiang, Linfeng Zhao}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Quantum Computation}
+
+\subsection{Quantum Gate}
+
+\subsubsection{Single-qubit gate}
+
+The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the quantum state can be mapped to the Bloch sphere with two parameters:
+\begin{equation}
+    \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \sin \frac{\theta}{2}\mathrm{e}^{\mathrm{i}\varphi }\ket{1}
+\end{equation}
+
+Operations on a qubit must preserve the norm, and thus are described by $2\times2$ unitary matrices.By $\det|U|=e^{2i\alpha}$ Then
+\begin{equation}
+    e^{-i\alpha}U\in SU(2)
+\end{equation}
+They're only off by one global phase, so we usually ignore the global phase and only consider $SU(2)$.
+
+The Lie group $SU(2)$ has three generators $i\sigma_j$, $\sigma_j$ called Pauli matrices:
+\begin{equation}
+    \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+    \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
+    \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.
+\end{equation}
+
+
+From Lie group elements, any single-qubit unitary can be written as a product of exponentials of Pauli matrices by a global phase:
+\begin{equation}
+    U = e^{i\alpha}\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)
+\end{equation}
+$\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
+There is a homomorphism:
+\begin{equation}
+    \begin{split}
+        SU(2)               & \to SO(3)
+        \\
+        R_{\vec{n}}(\theta) & \mapsto \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)
+    \end{split}
+\end{equation}
+
+The former refers to the transformation on the Bloch sphere, and the latter for a single-qubit gate. Since we often need transformations on the Bloch sphere to visualize quantum gates, we will use $R_{\vec{n}}(\theta)$ to refer to $\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$ directly in the following. So $R_{\vec{n}}(\theta) = \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$.
+
+According to the theorem:
+\begin{theorem}
+    The real number $x$ and the matrix $A$ such that $A^2=I$ give us
+    \begin{equation}
+        e^{iAx}=\cos (x)I+i\sin (x)A
+    \end{equation}
+\end{theorem}
+
+we know that:
+\begin{equation}
+    R_{\vec{n}}(\theta)=\cos \left(\frac{\theta}{2}\right)I-i\sin \left(\frac{\theta}{2}\right)(\vec{n}\cdot\vec{\sigma})
+\end{equation}
+
+
+There is another form about $V\in SU(2)$:
+\begin{equation}
+    V=R_{\vec{n}}(\beta)R_{\vec{m}}(\gamma)R_{\vec{n}}(\delta)
+\end{equation}
+where $\vec{n}\neq k\vec{m}$,so we have:
+\begin{equation}\label{EulerAngle}
+    U=e^{i\alpha}R_{\vec{n}}(\beta)R_{\vec{m}}(\gamma)R_{\vec{n}}(\delta)
+\end{equation}
+
+In the following, we use $XYZ$ instead of $\sigma_x\sigma_y\sigma_z$, here are some other single-qubit gate, which are frequently used listed here:
+\begin{equation}
+    H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad
+    S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}, \quad
+    T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}.
+\end{equation}
+
+
+
+\subsubsection{Controlled operation}
+
+Analogous to the if statement of a classical circuit, we can use controlled-NOT gate to control target qubit with control qubit, its matrix form and circuit are shown as follows:
+\begin{equation}
+    CNOT = \begin{pmatrix} I & 0 \\ 0 & X \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \Qcircuit @C=1.5em @R=1.5em {
+    & \ctrl{1} & \qw \\
+    & \targ & \qw
+    }
+\end{equation}
+CNOT gate makes the state of the target qubit be flipped when the control qubit is 1 and remain unchanged when the control qubit is 0. That is $\ket{c}\ket{t}\rightarrow\ket{c}X^{c}\ket{t}$. Considering a different basis then the control qubit does change and the control qubit could be flipped depending on the state of the ‘target’qubit, show that:
+\begin{equation}
+    \Qcircuit @C=1.5em @R=1.8em {
+    & \targ & \qw \\
+    & \ctrl{-1} & \qw
+    }
+    \quad \raisebox{-1em}{=} \quad
+    \Qcircuit @C=1em @R=1em {
+    & \gate{H} & \ctrl{1} & \gate{H} & \qw \\
+    & \gate{H} & \targ & \gate{H} & \qw
+    }
+\end{equation}
+
+We expect to extend this control from $X$ to an arbitrary single-qubit gate $U$. That is, $\ket{c}\ket{t}\rightarrow\ket{c}U^{c}\ket{t}$ which is known as a controlled-U gate. Show that:
+\begin{equation}
+    \Qcircuit @C=1.5em @R=1.5em {
+    & \ctrl{1} & \qw \\
+    & \gate{U} & \qw
+    }
+\end{equation}
+We wish to decompose this into a combination of single quantum bit gates and CNOT gates by introducing the theorem:
+\begin{theorem}
+    If $U$ is a single quantum bit gate, then there exists $A,B,C \in SU(2)$, $ABC=I$, and then there is
+    \begin{equation}
+        U = e^{i\alpha}AXBXC
+    \end{equation}
+\end{theorem}
+With this theorem, we can divide the controlled-U gate into several parts, looking first at the global phase part, which obviously has:
+\begin{equation}
+    \Qcircuit @C=1.5em @R=1.5em {
+    & \ctrl{1} & \qw \\
+    & \gate{e^{i\alpha}I} & \qw
+    }
+    \quad \raisebox{-1em}{=} \quad
+    \Qcircuit @C=1em @R=1.5em {
+    & \gate{phase} & \qw \\
+    & \qw & \qw
+    }
+\end{equation}
+where $phase = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\alpha} \end{pmatrix}$.
+
+Looking at the $AXBXC$ part again, we have the expectation that if the control qubit is $\ket{0}$, then we do nothing, and adding a CNOT gate anywhere doesn't change that, so we have.
+\begin{equation}
+    \Qcircuit @C=1em @R=1.5em {
+    \lstick{\ket{0}} & \qw & \qw \\
+    \lstick{} & \gate{I} & \qw
+    }
+    \quad \raisebox{-1em}{=} \quad
+    \Qcircuit @C=1em @R=1.5em {
+    & \qw & \qw & \qw & \qw \\
+    & \gate{A} & \gate{B} & \gate{C} & \qw
+    }
+    \quad \raisebox{-1em}{=} \quad
+    \Qcircuit @C=1em @R=1.5em {
+    & \qw & \ctrl{1} & \qw & \ctrl{1} & \qw & \qw \\
+    & \gate{A} & \targ & \gate{B} & \targ & \gate{C} & \qw
+    }
+\end{equation}
+This construction also satisfies:if the control qubit is $\ket{1}$, then we apply $AXBXC$ to the target qubit.
+
+So we have the controlled-U gate decomposition in this form:
+\begin{equation}
+    \Qcircuit @C=1em @R=1.8em {
+    & \ctrl{1} & \qw \\
+    & \gate{U} & \qw
+    }
+    \quad \raisebox{-1.25em}{=} \quad
+    \Qcircuit @C=0.8em @R=1.2em {
+    & \qw & \ctrl{1} & \qw & \ctrl{1} & \gate{phase} & \qw \\
+    & \gate{A} & \targ & \gate{B} & \targ & \gate{C} & \qw
+    }
+\end{equation}
+
+Considering the case of multiple control Qubits, first look at the case of two control Qubits, you can construct: if $V$ is a single qubit gate satisfying $V^2=U$, we have:
+\begin{equation}
+    \Qcircuit @C=1em @R=1.25em {
+    & \ctrl{1} & \qw \\
+    & \ctrl{1} & \qw \\
+    & \gate{U} & \qw
+    }
+    \quad \raisebox{-1.5em}{=} \quad
+    \Qcircuit @C=0.8em @R=1em {
+    & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
+    & \ctrl{1} & \targ & \ctrl{1} & \targ & \qw & \qw \\
+    & \gate{V} & \qw & \gate{V^\dagger} & \qw & \gate{V} & \qw
+    }
+\end{equation}
+
+Then we can extend this to the case of $n$ control qubits, there are many kinds of construction methods, here we use recursive method to construct:
+\begin{equation}
+    \Qcircuit @C=1em @R=1em {
+    & \ctrl{1} & \qw \\
+    & \ctrl{1} & \qw \\
+    & \ctrl{1} & \qw \\
+    & \gate{U} & \qw
+    }
+    \quad \raisebox{-2em}{=} \quad
+    \Qcircuit @C=0.8em @R=0.85em {
+    & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
+    & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
+    & \ctrl{1} & \targ & \ctrl{1} & \targ & \qw & \qw \\
+    & \gate{V} & \qw & \gate{V^\dagger} & \qw & \gate{V} & \qw
+    }
+\end{equation}
+
+Ultimately we will show that any unitary operation can be composed to an arbitrarily good approximation from just H, S, T, CNOT gates. Here is the construction of the Toffoli gate:
+\begin{equation}
+    \Qcircuit @C=.75em @R=1.5em {
+    & \ctrl{1} & \qw \\
+    & \ctrl{1} & \qw \\
+    & \targ & \qw
+    }
+    \quad \raisebox{-1.75em}{=} \quad
+    \Qcircuit @C=.5em @R=.5em {
+    & \qw & \qw & \qw & \ctrl{2} & \qw & \qw & \qw & \qw & \ctrl{2} & \qw & \ctrl{1} & \qw & \ctrl{1} & \gate{T} & \qw \\
+    & \qw & \ctrl{1} & \qw & \qw & \qw & \qw & \ctrl{1} & \qw & \qw & \gate{T^\dagger} & \targ & \gate{T^\dagger} & \targ & \gate{S} & \qw \\
+    & \gate{H} & \targ & \gate{T^\dagger} & \targ & \gate{T} & \qw & \targ & \gate{T^\dagger} & \targ & \gate{T} & \gate{H} & \qw & \qw & \qw & \qw
+    }
+\end{equation}
+
+
+
+\subsection{Universal Gate Set}
+
+\subsubsection{Single-qubit and CNOT gates are universal}
+
+In the previous subsection, we showed that $C^{n}(U)$ gate can be decomposed into a combination of single-qubit gates and CNOT gates. In this section, we will show that any unitary gate can be combined from $C^{n}(U)$ gate.
+
+First, we introduce the theorem:
+\begin{theorem}
+    Any D-dimensional unitary transformation U can always be decomposed into the product of $d(d-1)/2$ two-level unitary transformations under natural basis.
+\end{theorem}
+So exists two-level unitary transformations $ V_{j} $ made $U = \prod\limits_{j=1}^{d(d-1)/2}V_{j}$\footnote{Unless otherwise specified, the conjunction sign in this document is calculated according to the composite order of the map, that is $\prod\limits_{j=1}^{n}a_{j} = a_{n}a_{n-1}\cdots a_{1}$. }. Two-level unitary transformations are unitary matrices which act non-trivially only on two-or-fewer vector components.The proof idea of this theorem is simple\footnote{Each single-qubit gates has $d(d-1)/2$ degrees of freedom and each two-level unitary transformations turn one of single-qubit gates elements into zero in order. So exists two-level unitary transformations $ V_{j} $ made $\left( \prod\limits_{j=1}^{d(d-1)/2}V_{j} \right) U = I $. },  let's focus on the two-level unitary transformations $V$.
+
+Consider the binary expansion of the two bases $\ket{s}$ and $\ket{t}$ on which $V$ operates, where $s=s_{1}\ldots s_{n}$ and $t=t_{1}\ldots t_{n}$. We can use Toffoli gate to turn $s_{j}$ into $t_{j}$, after $n-1$ steps $\ket{s_{1}\ldots s_{k-1} s_{k} s_{k+1} \ldots s_{n}}$ into $\ket{t_{1}\ldots t_{k-1} s_{k} t_{k+1} \ldots t_{n}}$. It puts $\ket{s}$ and $\ket{t}$in the same qubit and makes $V$ into a $C^{n}(\widetilde{V})$ gate which $\widetilde{V}$ is the non-trivial $2\times 2$ unitary submatrix of $V$.
+
+Let's take an example to illustrate this theorem, consider the $U$ gate:
+\begin{equation}
+    V = \begin{pmatrix} a & 0 & 0 & c \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ b & 0 & 0 & d \end{pmatrix}
+    \quad and \quad
+    \widetilde{V} = \begin{pmatrix} a & c \\ b & d \end{pmatrix}
+\end{equation}
+Notice that $V$ acts non-trivially only on the states $\ket{00}$ and $\ket{11}$, so we can use the CNOT gate to turn $\ket{00}$ into $\ket{01}$, then we can get the $C(\widetilde{V})$ gate. Here is the circuit of $V$:
+\begin{equation}
+    \Qcircuit @C=1em @R=1.5em {
+    & \multigate{1}{V} & \qw \\
+    & \ghost{V} & \qw
+    }
+    \quad \raisebox{-1.5em}{=} \quad
+    \Qcircuit @C=0.8em @R=1.3em {
+    & \gate{X} & \ctrl{1} & \gate{X} & \gate{\widetilde{V}} & \gate{X} & \ctrl{1} & \gate{X} & \qw \\
+    & \qw & \targ & \qw & \ctrl{-1} & \qw & \targ & \qw & \qw
+    }
+\end{equation}
+
+So we have:
+\begin{theorem}
+    Any unitary gate can be combined from single-qubit gates and CNOT gates.
+\end{theorem}
+
+
+
+\subsubsection{Approximate universal operators with a discrete set}
+
+It is hard to implement all single-qubit, so we consider to approximate it with a discrete set which we can implement. We introduce the induced norm of operators to measure the degree of approximation:
+\begin{equation}
+    E(U,V) = \left\| U-V \right\| = \sup\limits_{\ket{\psi} \in \mathbb{C}^{n} \atop \left\| \ket{\psi} \right\| = 1} \left\| (U-V)\ket{\psi} \right\|
+\end{equation}
+Where $U$ is the target unitary operator
+that we wish to implement, $V$ is the unitary operator that is actually implemented in practice, and $E(U,V)$ is the error when $V$ is implemented instead of $U$. It is natural that:
+\begin{theorem}
+    in the approximation of $m$ gates, the error add at most linearly:
+    \begin{equation}
+        E\left(\prod\limits_{j=1}^{m}U_{j},\prod\limits_{j=1}^{m}V_{j}\right) \leq \sum_{j=1}^{m} E(U_{j},V_{j})
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    Considering $\ket{\psi_{0}}$ which maximizes $\left\|\left(\prod\limits_{i=1}^{m}U_{i} -  \prod\limits_{i=1}^{m}V_{i}\right)\ket{\psi}\right\|$ and definition $\ket{\psi_{i}} = V_{i}\ket{\psi_{i-1}}$ , $\ket{\Delta_{i}} = U_{i}\ket{\psi_{i-1}} - \ket{\psi_{i}}$ , we can see that
+    \begin{equation}
+        E\left(\prod\limits_{j=1}^{m}U_{j},\prod\limits_{j=1}^{m}V_{j}\right) = \left\|\ket{\Delta_{m}} + \sum\limits_{j=1}^{m-1} \left(\prod_{k=j+1}^{m}U_{k}\right)\ket{\Delta_{j}}\right\| \leq \sum\limits_{j=1}^{m} \left\|\ket{\Delta_{j}}\right\| \leq \sum_{j=1}^{m} E(U_{j},V_{j})
+    \end{equation}
+\end{proof}
+
+
+We are more concerned with the error of the approximation in the measurement. considering $M$ is a POVM element in an arbitrary measurement POVM, and $P_{U}$(or $P_{V}$) is the probability of obtaining this outcome if $U$(or $V$) were performed with the state $\ket{\psi}$, We can prove\footnote{Let $\ket{\Delta} = (U-V)\ket{\psi}$, notice that $\bra{\psi}U^{\dagger}MU\ket{\psi} - \bra{\psi}V^{\dagger}MV\ket{\psi} = \bra{\psi}U^{\dagger}M\ket{\Delta} + \bra{\Delta}MV\ket{\psi}$. } that:
+\begin{equation}
+    \left| P_{U} - P_{V} \right| \leq 2E(U,V)
+\end{equation}
+This makes it possible that if we want the probability difference between the approximate line and the ideal line on a certain outcome to be within a tolerance $\Delta > 0$, we only need to ensure that $E(U_{j},V_{j}) \leq \Delta/(2m)$.
+
+From the decomposition given by \ref{EulerAngle}, we can further care about the degree of approximation of $R_{\vec{n}}(\theta)$. Let's start by introducing a neat theorem:
+\begin{theorem}\label{AngleCoverR}
+    Considering $\alpha$, $\theta \in \mathbb{R} /2\pi\mathbb{Z}$, if $\theta/\pi \in \mathbb{R} \backslash \mathbb{Q}$ , we can find a subsequences $\{x_n\}$ of sequences $\{n\}$ makes $\lim\limits_{n\to\infty}x_n\theta = \alpha$.
+\end{theorem}
+\begin{proof}
+    $\forall \epsilon>0$, $\exists N=\frac{2\pi}{\epsilon}$, when $n>N$, we can find $|j\theta-k\theta|\leq\frac{2\pi}{n}$ which $j,k \in \{n\},j>k$, let $x_{n} = (j-k)\left\lfloor\frac{\alpha}{|j\theta-k\theta|}\right\rfloor$, so we have $|x_{n}\theta-\alpha|<|j\theta-k\theta|\leq\frac{2\pi}{n}<\epsilon$.
+\end{proof}
+Further we have\footnote{The construction of $x_{n}$ in this part is only to prove the existence, without considering the complexity. There are actually far less complex constructs.}:
+\begin{equation}
+    \begin{split}
+          & \ E(R_{\vec{n}}(\alpha),R_{\vec{n}}(\theta)^{x_{n}})              \\
+        = & \ E(R_{\vec{n}}(\alpha),R_{\vec{n}}(\alpha+(x_{n}\theta-\alpha))) \\
+        = & \ |1-\exp((x_{n}\theta-\alpha)/2)|\leq\ \epsilon/2
+    \end{split}
+\end{equation}
+According the proof, we just need to find the gate that has the Angle that the theorem requires. Fortunately, $THTH$ gate has the angel we need. It is a rotation of the Bloch sphere about an axis along $\vec{n} = (\cos\frac{\pi}{8},\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and through an angle $\theta$ defined by $\cos\frac{\theta}{2} = \cos^{2}\frac{\pi}{8}$, so we just let $R_{\vec{n}}(\theta) = THTH$. To construct unitary operator $U$, we still need to approximate the rotation of the other axis, but even more fortunate is that $HR_{\vec{n}}(\theta)H$ is exactly what we need, has axis $\vec{m} = (\cos\frac{\pi}{8},-\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and the Angle, like $R_{\vec{n}}(\theta)$, is an irrational multiple of $\pi$. After layers and layers of preparation, let's list the final approximation with suitable positive integers $x_{n}$, $y_{n}$, $z_{n}$ to U:
+\begin{equation}\label{FinalApproximation}
+    E(U,R_{\vec{n}}(\theta)^{x_{n}}HR_{\vec{n}}(\theta)^{y_{n}}HR_{\vec{n}}(\theta)^{z_{n}}) \leq \frac{3}{2}\epsilon
+\end{equation}
+\begin{theorem}
+    Given any single qubit unitary operator $U$ and any $\epsilon > 0$, it is possible to approximate $U$ to within $\epsilon$ \footnote{The difference between Equation \ref{FinalApproximation} and here by one coefficient can be solved by the setting of $\epsilon$ in the proof of Theorem \ref{AngleCoverR}, but it does not matter. }using a circuit composed of $H$ gates and $T$ gates alone.
+\end{theorem}
+
+
+
+\subsubsection{talking about complexity}
+
+
+
+
+\subsection{Quantum Circuit Model}
+
+Read Section 4.6 of
+
+
+
+\section{Quantum Search Algorithm}
+
+Read Section 6.1 of \cite{nielsen2010}.
+
+
+\bibliographystyle{plain}
+\bibliography{ref}
+
+
+\end{document}
