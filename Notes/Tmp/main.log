@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.17)  2 AUG 2024 16:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.17)  10 AUG 2024 02:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -570,82 +570,7 @@ Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \titlewidth=\dimen295
 \titlewidthlast=\dimen296
 \titlewidthfirst=\dimen297
-) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/qcircuit/qcircuit.sty
-Package: qcircuit 2018/08/14
- (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xy.sty (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing: catcodes, docmode, (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xyrecat.tex) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xyidioms.tex)
-
- Xy-pic version 3.8.9 <2013/10/06>
- Copyright (c) 1991-2013 by Kristoffer H. Rose <krisrose@tug.org> and others
- Xy-pic is free software: see the User's Guide for details.
-
-Loading kernel: messages; fonts; allocations: state,
-\X@c=\dimen298
-\Y@c=\dimen299
-\U@c=\dimen300
-\D@c=\dimen301
-\L@c=\dimen302
-\R@c=\dimen303
-\Edge@c=\toks47
-\X@p=\dimen304
-\Y@p=\dimen305
-\U@p=\dimen306
-\D@p=\dimen307
-\L@p=\dimen308
-\R@p=\dimen309
-\Edge@p=\toks48
-\X@origin=\dimen310
-\Y@origin=\dimen311
-\X@xbase=\dimen312
-\Y@xbase=\dimen313
-\X@ybase=\dimen314
-\Y@ybase=\dimen315
-\X@min=\dimen316
-\Y@min=\dimen317
-\X@max=\dimen318
-\Y@max=\dimen319
-\lastobjectbox@=\box67
-\zerodotbox@=\box68
-\almostz@=\dimen320
- direction,
-\d@X=\dimen321
-\d@Y=\dimen322
-\K@=\count326
-\KK@=\count327
-\Direction=\count328
-\K@dXdY=\dimen323
-\K@dYdX=\dimen324
-\xyread@=\read4
-\xywrite@=\write4
-\csp@=\count329
-\quotPTK@=\dimen325
- utility macros; pictures: \xy, positions,
-\swaptoks@@=\toks49
-\connectobjectbox@@=\box69
- objects,
-\styletoks@=\toks50
- decorations; kernel objects: directionals, circles, text; options; algorithms: directions, edges, connections;  Xy-pic loaded) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/iftex/ifpdf.sty
-Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
-)
-Package: xy 2013/10/06 Xy-pic version 3.8.9
- (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xypdf.tex  Xy-pic option: PDF driver v.1.7 loaded)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xymatrix.tex  Xy-pic option: Matrix feature v.3.14
-\Row=\count330
-\Col=\count331
-\queue@=\toks51
-\queue@@=\toks52
-\qcount@=\count332
-\qcount@@=\count333
-\matrixsize@=\count334
- loaded) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xyframe.tex  Xy-pic option: Frame and Bracket extension v.3.14 loaded) Xy-pic pdf driver: `frame' extension support (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xypdf-fr.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xycurve.tex  Xy-pic option: Curve and Spline extension v.3.12 curve,
-\crv@cnt@=\count335
-\crvpts@=\toks53
-\splinebox@=\box70
-\splineval@=\dimen326
-\splinedepth@=\dimen327
-\splinetol@=\dimen328
-\splinelength@=\dimen329
- circles,
-\L@=\dimen330
- loaded) Xy-pic pdf driver: `curve' extension support (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xypdf-cu.tex loaded) loaded) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xyarrow.tex  Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xypic/xyarc.tex  Xy-pic option: Circle, Ellipse, Arc feature v.3.8 circles, ellipses, elliptical arcs, loaded)) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/todonotes/todonotes.sty
+) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/todonotes/todonotes.sty
 Package: todonotes 2024/01/05 v1.1.7 Todonotes source and documentation.
 Package: todonotes 2024/01/05
  (c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
@@ -653,45 +578,121 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
  (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks54
-\XKV@tempa@toks=\toks55
+\XKV@toks=\toks47
+\XKV@tempa@toks=\toks48
 )
-\XKV@depth=\count336
+\XKV@depth=\count326
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-\c@@todonotes@numberoftodonotes=\count337
+\c@@todonotes@numberoftodonotes=\count327
+) (./tikzlibraryquantikz2.code.tex (c:/Program Files/texlive/2024/texmf-dist/tex/latex/xargs/xargs.sty
+Package: xargs 2008/03/22 v1.1  extended macro definitions  (mpg)
+\xargs@max=\count328
+\xargs@toksa=\toks49
+\xargs@toksb=\toks50
+) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xstring/xstring.sty (c:/Program Files/texlive/2024/texmf-dist/tex/generic/xstring/xstring.tex
+\xs_counta=\count329
+\xs_countb=\count330
 )
-\c@theorem=\count338
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 33.
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (c:/Program Files/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-05-27 L3 programming layer (loader) 
+ (c:/Program Files/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count331
+\l__pdf_internal_box=\box67
+))
+Package: xparse 2024-05-08 L3 Experimental document command parser
+) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+ (c:/Program Files/texlive/2024/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowinset=\dimen298
+\pgfarrowlength=\dimen299
+\pgfarrowwidth=\dimen300
+\pgfarrowlinewidth=\dimen301
+)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen302
+\pgfdecoratedremainingdistance=\dimen303
+\pgfdecoratedinputsegmentcompleteddistance=\dimen304
+\pgfdecoratedinputsegmentremainingdistance=\dimen305
+\pgf@decorate@distancetomove=\dimen306
+\pgf@decorate@repeatstate=\count332
+\pgfdecorationsegmentamplitude=\dimen307
+\pgfdecorationsegmentlength=\dimen308
+)
+\tikz@lib@dec@box=\box68
+) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
+File: tikzlibraryfit.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.symbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.markings.code.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.markings.code.tex)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymath.code.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex))
+\tikz@math@for@depth=\count333
+\tikz@math@dimen=\dimen309
+\tikz@math@toks=\toks51
+)
+\pgf@layerbox@background=\box69
+\pgf@layerboxsaved@background=\box70
+\pgf@layerbox@quantback=\box71
+\pgf@layerboxsaved@quantback=\box72
+\c@dummy=\count334
+\myl=\skip64
+\myh=\skip65
+\myd=\skip66
+\c@aaa=\count335
+LaTeX Font Info:    Trying to load font information for U+msa on input line 1044.
+ (c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 1044.
+ (c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+\c@wirenumberpermute=\count336
+)
+\c@theorem=\count337
+\c@lemma=\count338
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 35.
  (c:/Program Files/texlive/2024/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count339
-\l__pdf_internal_box=\box71
 ) (./Tmp/main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -727,79 +728,66 @@ LaTeX Font Info:    ... okay on input line 33.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 33.
+Package hyperref Info: Link coloring ON on input line 35.
 (./Tmp/main.out) (./Tmp/main.out)
-\@outlinefile=\write5
-\openout5 = `main.out'.
+\@outlinefile=\write4
+\openout4 = `main.out'.
 
  (c:/Program Files/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count340
-\scratchdimen=\dimen331
-\scratchbox=\box72
-\nofMPsegments=\count341
-\nofMParguments=\count342
-\everyMPshowfont=\toks56
-\MPscratchCnt=\count343
-\MPscratchDim=\dimen332
-\MPnumerator=\count344
-\makeMPintoPDFobject=\count345
-\everyMPtoPDFconversion=\toks57
+\scratchcounter=\count339
+\scratchdimen=\dimen310
+\scratchbox=\box73
+\nofMPsegments=\count340
+\nofMParguments=\count341
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count342
+\MPscratchDim=\dimen311
+\MPnumerator=\count343
+\makeMPintoPDFobject=\count344
+\everyMPtoPDFconversion=\toks53
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
- (c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
- (c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Package xypdf Info: Line width: 0.39998pt on input line 33.
 
 
 [1
 
-{c:/Program Files/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}] <xymatrix 3x2 196> <xymatrix 3x2 196> <xymatrix 5x2 592> <xymatrix 3x2 257> <xymatrix 3x2 257> <xymatrix 3x2 223> <xymatrix 3x2 223> <xymatrix 5x2 497> <xymatrix 7x2 717> <xymatrix 3x2 257> <xymatrix 7x2 778> <xymatrix 3x3 371> <xymatrix 7x3 1051> <xymatrix 3x4 485> <xymatrix 7x4 1385>
+{c:/Program Files/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}]
 
-[2] <xymatrix 3x3 310> <xymatrix 16x3 2538> <xymatrix 3x2 242> <xymatrix 9x2 1025>
-
-Package amsmath Warning: Foreign command \atop;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 288.
-
-
+[2]
 
 [3]
 
-[4] (./Tmp/main.bbl)
+[4]
 
-[5] (./Tmp/main.aux)
+[5]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 386.
+ (c:/Program Files/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+) (./Tmp/main.bbl)
+
+[6] (./Tmp/main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 26C6AB559C52B2DD1A8697BDE35AC1CC;1897.
+(rerunfilecheck)             Checksum: 89D65C56F2B8556E1DDD4E58DE084FFE;1930.
  ) 
 Here is how much of TeX's memory you used:
- 26916 strings out of 473584
- 482455 string characters out of 5725287
- 1988908 words of memory out of 5000000
- 49258 multiletter control sequences out of 15000+600000
- 587391 words of font info for 106 fonts, out of 8000000 for 9000
+ 32070 strings out of 473584
+ 651830 string characters out of 5725287
+ 2149908 words of memory out of 5000000
+ 54346 multiletter control sequences out of 15000+600000
+ 587339 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,23n,93p,1437b,807s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm5.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ./Tmp/main.pdf (5 pages, 251354 bytes).
+ 84i,19n,94p,1925b,1451s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ./Tmp/main.pdf (6 pages, 265416 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
- 195 compressed objects within 2 object streams
- 58 named destinations out of 1000 (max. 500000)
+ 266 PDF objects out of 1000 (max. 8388607)
+ 213 compressed objects within 3 object streams
+ 72 named destinations out of 1000 (max. 500000)
  93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

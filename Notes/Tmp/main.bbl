@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{kay2018tutorial}
+Alastair Kay.
+\newblock Tutorial on the quantikz package.
+\newblock {\em arXiv preprint arXiv:1809.03842}, 2018.
+
 \bibitem{nielsen2010}
 Michael~A. Nielsen and Isaac~L. Chuang.
 \newblock {\em Quantum Computation and Quantum Information: 10th Anniversary Edition}.

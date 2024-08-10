@@ -1,0 +1,7 @@
+  \DeclareExpandableDocumentCommand{\mygate}{O{}{m}}{%
+  |[trimeter,#1]| {#2}}
+
+  \begin{quantikz}[classical gap=0.05cm]
+    \lstick{\ket{0}} & \mygate{1} & \setwiretype{c} \\
+    &\gate{U}\wire[u]{c} &
+  \end{quantikz}
