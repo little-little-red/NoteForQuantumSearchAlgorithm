@@ -3,7 +3,7 @@
 %-----------------------package---------------------------
 \usepackage{verbatim}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=red, linktocpage=true,breaklinks=true]{hyperref} 
-\usepackage{amsmath,amsthm,amsfonts,amssymb,graphics,graphicx,epsfig,color,times,braket,tikz,enumerate,bm,subcaption}
+\usepackage{amsmath,amsfonts,amssymb,graphics,graphicx,epsfig,color,times,braket,enumerate,bm,subcaption}
 \usepackage{epstopdf}
 \usepackage{enumerate}
 \hypersetup{linktocpage = true}
@@ -19,14 +19,13 @@
 \usetikzlibrary{quantikz2}
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}{Lemma}[subsection]
+\numberwithin{equation}{subsection}
 
 
 % Ensure proper formatting of section titles
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
 
-%by Zhongwei Jiang
-\numberwithin{equation}{subsection}
 
 \title{Notes on quantum search algorithm}
 \author{Zhongwei Jiang, Linfeng Zhao}
@@ -255,7 +254,7 @@ Consider the binary expansion of the two bases $\ket{s}$ and $\ket{t}$ on which 
 Let's take an example to illustrate this theorem, consider the $U$ gate:
 \begin{equation}
     V = \begin{pmatrix} a & 0 & 0 & c \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ b & 0 & 0 & d \end{pmatrix}
-    \quad and \quad
+    \quad \text{and} \quad
     \widetilde{V} = \begin{pmatrix} a & c \\ b & d \end{pmatrix}
 \end{equation}
 Notice that $V$ acts non-trivially only on the states $\ket{00}$ and $\ket{11}$, so we can use the CNOT gate to turn $\ket{00}$ into $\ket{01}$, then we can get the $C(\widetilde{V})$ gate. Here is the circuit of $V$:
@@ -381,7 +380,7 @@ This is exponential in $n$, so it is hard to approximate arbitrary unitary gates
 
 \subsection{Quantum Circuit Model}
 
-Before discussing the algorithm, let's make some basic assumptions about quantum computers (quantum circuit model) clear\footnote{This part is completely taken from the book. }:
+Before discussing the algorithm, let's make some basic assumptions about quantum computers (quantum circuit model) clear\footnote{This part is completely taken from the book\cite{nielsen2010}.}:
 \begin{itemize}
     \item A quantum computer consists of a classical part and a quantum part: The classical part is unnecessary but can simplify many tasks.
     \item A quantum circuit operates on $n$ qubits, so the state space is $2^{n}$-dimensional complex Hilbert space.
@@ -394,7 +393,154 @@ Before discussing the algorithm, let's make some basic assumptions about quantum
 
 \section{Quantum Search Algorithm}
 
-Read Section 6.1 of \cite{nielsen2010}.
+\subsection{Principles}
+
+In the search algorithm, we have the $N=2^{n}$ elements in the search space $S=\{0,1\}^{n}$ and the target element $T\subseteq S$ which has $M$ elements. The output of the algorithm should be the state containing all the target elements, so we let
+\begin{equation}
+    \ket{\beta}\coloneqq\frac{1}{\sqrt{M}}\sum_{x\in T}\ket{x}
+    \quad\text{and}\quad
+    \ket{\alpha}\coloneqq\frac{1}{\sqrt{N-M}}\sum_{x\notin T}\ket{x}.
+\end{equation}
+And the input of the algorithm should be a trivial state, may as well let\footnote{$\ket{\psi}$ is a commonly used state, called the equal superposition state.}
+\begin{equation}
+    \ket{\psi}\coloneqq H^{\otimes n}\ket{0}
+\end{equation}
+which use $\ket{0}$ to refer to $\ket{0}^{\otimes n}$ for convenience. There is
+\begin{equation}
+    \braket{\alpha|\beta}=0
+    \quad\text{and}\quad
+    \ket{\psi}=\sqrt{\frac{N-M}{N}}\ket{\alpha}+\sqrt{\frac{M}{N}}\ket{\beta}.
+\end{equation}
+We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operation of turning some non-trivial Angle is hard, so we consider the operation reflecting across some axis. Define two operations here, $O$ is a reflection about $\ket{\alpha}$ and $GO^{-1}$ is a reflection about $\ket{\psi}$.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        % 绘制箭头
+        \draw[->, thick] (0,0) -- (0,3) node[anchor=south] {$\ket{\beta}$};
+        \draw[->, thick] (0,0) -- (2.1,2.1) node[anchor=west] {$G\ket{\psi}$};
+        \draw[->, thick] (0,0) -- (2.8,0.75) node[anchor=west] {$\ket{\psi}$};
+        \draw[->, thick] (0,0) -- (3,0) node[anchor=west] {$\ket{\alpha}$};
+        \draw[->, gray, thick] (0,0) -- (2.8,-0.75) node[anchor=west,black] {$O\ket{\psi}$};
+        % 绘制虚线
+        \draw[dashed] (2.8,0.75) -- (2.8,-0.75);
+        \draw[dashed] (2.1,2.1) -- (2.8,-0.75);
+        % 绘制角度标记
+        \draw (1.5,0) arc[start angle=0,end angle=15,radius=1.5];
+        \draw (1.5,0) arc[start angle=0,end angle=-15,radius=1.5];
+        \draw (1,0.27) arc[start angle=15,end angle=45,radius=1];
+        % 标记角度
+        \node at (1.8,0.25) {$\theta/2$};
+        \node at (1.8,-0.25) {$\theta/2$};
+        \node at (1.2,0.7) {$\theta$};
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:grover}
+\end{figure}
+
+Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in the Figure \ref{fig:grover},  operation $G$ gives us a rotation of $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
+\begin{equation}
+    G^{k}\ket{\psi}=\cos(\frac{2R+1}{2}\theta)\ket{\alpha}+\sin(\frac{2R+1}{2}\theta)\ket{\beta}\approx\ket{\beta}.
+\end{equation}
+The angular error is at most $\theta/2\approx\sqrt{M/N}$.
+
+
+
+
+\subsection{Oracle}
+
+Let's construct the reflection about $\ket{\alpha}$, we call it oracle. We know that states in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$ can be decomposed into
+\begin{equation}
+    \ket{x}=\ket{\beta}\braket{\beta|x}+\ket{\alpha}\braket{\alpha|x}
+\end{equation}
+and we wish
+\begin{equation}
+    O\ket{x}=\ket{\beta}\braket{\beta|x}-\ket{\alpha}\braket{\alpha|x}.
+\end{equation}
+But we don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$. To construct this, we need a special gate\footnote{Note that the mapping $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$ holds only if the controlled qubit is $\ket{-}$.}
+\begin{equation}
+    \begin{quantikz}
+        \lstick{$\ket{x}$} & \qwbundle{n} & \gate[2][1.7cm]{U_{f}}\gateinput{$x$}\gateoutput{$x$} & \rstick{$(-1)^{f(x)}\ket{x}$} \\
+        \lstick{$\ket{-}$} & & \gateinput{$y$}\gateoutput{$y\oplus f(x)$} & \rstick{$\ket{-}$}
+    \end{quantikz}
+\end{equation}
+which gives us a operation $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$. Then we just need to construct the mapping
+\begin{equation}
+    \omega(x)=
+    \begin{cases}
+        1 & x\in T    \\
+        0 & x\notin T
+    \end{cases}
+\end{equation}
+such that $U_{\omega}$ satisfies the properties we need:
+\begin{equation}
+    \begin{split}
+        U_{\omega}\ket{\beta}  & =\ket{\beta}    \\
+        U_{\omega}\ket{\alpha} & =-\ket{\alpha}.
+    \end{split}
+\end{equation}
+So the $U_{\omega}$ is the Oracle.
+
+
+
+\subsection{Grover iteration}
+
+Then, let's construct the reflection about $\ket{\psi}$. Same as the oracle, we decompose states into
+\begin{equation}
+    \ket{x}=\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}+\ket{\psi}\braket{\psi|x}
+\end{equation}
+which $\ket{\psi_{\perp}}=\sqrt{\frac{N-M}{N}}\ket{\alpha}-\sqrt{\frac{M}{N}}\ket{\beta}$, and we wish
+\begin{equation}
+    GO^{-1}\ket{x}=\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}-\ket{\psi}\braket{\psi|x}.
+\end{equation}
+But this time, we know $\ket{\psi}$ specifically. Operation $2\ket{\psi}\bra{\psi}-I$ is what we need which satisfies the properties:
+\begin{equation}
+    \begin{split}
+        (2\ket{\psi}\bra{\psi}-I)\ket{\psi}         & =-\ket{\psi}         \\
+        (2\ket{\psi}\bra{\psi}-I)\ket{\psi_{\perp}} & =\ket{\psi_{\perp}}.
+    \end{split}
+\end{equation}
+So we get the construction of the Grover iteration:
+\begin{equation}
+    G=(2\ket{\psi}\bra{\psi}-I)O.
+\end{equation}
+After constructing each sub-operation, the circuit of the algorithm is given here\footnote{The oracle workspace are omitted here.}:
+\begin{equation}
+    \begin{quantikz}[column sep=0.4cm]
+        \lstick{$\ket{0}$} & \qwbundle{n} & \gate{H^{\otimes n}} & \gate[2]{oracle}\gategroup[wires=2,steps=4]{Grover iteration} & \gate{H^{\otimes n}} & \gate{2\ket{0}\bra{0}-I} & \gate{H^{\otimes n}} & \gate[2]{G} & \midstick[2,brackets=none]{$\cdots$} & \gate[2]{G} & \\
+        \lstick{$\ket{1}$} & & \gate{H} & & & & & & & &
+    \end{quantikz}
+\end{equation}
+The ellipsis indicates that it is repeated $R$ times.
+
+
+
+\subsection{Performance}
+
+Each of the operations in the Grover iteration may be efficiently implemented on a quantum computer. So we just need to focus on the number of Grover iteration.
+
+We already know, in order to rotate $\ket{\psi}$ near $\ket{\beta}$, we need to repeat the Grover iteration
+\begin{equation}
+    R=\left\lfloor\frac{2\arccos\sqrt{M/N}}{\arcsin\sqrt{M/N}}\right\rceil
+\end{equation}
+times. This is not intuitive enough, so let's sacrifice some precision to find a simpler expression. We know that $R\leq\left\lceil\pi/2\theta\right\rceil$, and if $M\leq N/2$ we have
+\begin{equation}
+    \frac{\theta}{2}\geq\sin\frac{\theta}{2}=\sqrt{\frac{N}{M}},
+\end{equation}
+from which we obtain an elegant upper bound on the number of iterations required,
+\begin{equation}
+    R\leq\left\lceil\frac{\pi}{4}\sqrt{\frac{N}{M}}\right\rceil
+\end{equation}
+That is, $R=O(\sqrt{N/M})$ Grover iterations must be performed in order to obtain a solution to the search problem with high probability.\footnote{The classical algorithm requires $O(N/M)$ calls to the oracle.}
+
+If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly pick an item from the search space, and then check that it is a solution using the oracle. This approach has a success probability at least one-half, and only requires one consultation with the oracle.
+
+
+
+\section{Bounds for Grover's algorithm}
+
+Show the proof of Theorem 8 and 9 in \cite{2009Exact}.
+
+
 
 
 \bibliographystyle{plain}
