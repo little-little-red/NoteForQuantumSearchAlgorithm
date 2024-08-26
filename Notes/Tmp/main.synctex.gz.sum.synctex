@@ -1,189 +1,189 @@
 SyncTeX Version:1
-Input:1:d:/QuantumSearchAlgorithm/Notes/./main.tex
-Input:2:c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/article.cls
-Input:3:c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/size10.clo
-Input:4:c:/Program Files/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
-Input:5:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
-Input:6:c:/Program Files/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
-Input:7:c:/Program Files/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
-Input:8:c:/Program Files/texlive/2024/texmf-dist/tex/latex/tools/verbatim.sty
-Input:9:c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/hyperref.sty
-Input:10:c:/Program Files/texlive/2024/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
-Input:11:c:/Program Files/texlive/2024/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
-Input:12:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pdfescape/pdfescape.sty
-Input:13:c:/Program Files/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Input:14:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Input:15:c:/Program Files/texlive/2024/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Input:16:c:/Program Files/texlive/2024/texmf-dist/tex/latex/hycolor/hycolor.sty
-Input:17:c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/nameref.sty
-Input:18:c:/Program Files/texlive/2024/texmf-dist/tex/latex/refcount/refcount.sty
-Input:19:c:/Program Files/texlive/2024/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
-Input:20:c:/Program Files/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Input:21:c:/Program Files/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Input:22:c:/Program Files/texlive/2024/texmf-dist/tex/generic/stringenc/stringenc.sty
-Input:23:c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
-Input:24:c:/Program Files/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
-Input:25:c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
-Input:26:c:/Program Files/texlive/2024/texmf-dist/tex/latex/url/url.sty
-Input:27:c:/Program Files/texlive/2024/texmf-dist/tex/generic/bitset/bitset.sty
-Input:28:c:/Program Files/texlive/2024/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
-Input:29:c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/atbegshi-ltx.sty
-Input:30:c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
-Input:31:c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/atveryend-ltx.sty
-Input:32:c:/Program Files/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-Input:33:c:/Program Files/texlive/2024/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
-Input:34:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsmath/amsmath.sty
-Input:35:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsmath/amstext.sty
-Input:36:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsmath/amsgen.sty
-Input:37:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Input:38:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsmath/amsopn.sty
-Input:39:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Input:40:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Input:41:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/graphics.sty
-Input:42:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/trig.sty
-Input:43:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-Input:44:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics-def/pdftex.def
-Input:45:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/graphicx.sty
-Input:46:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/epsfig.sty
-Input:47:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/color.sty
-Input:48:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
-Input:49:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx
-Input:50:c:/Program Files/texlive/2024/texmf-dist/tex/latex/psnfss/times.sty
-Input:51:c:/Program Files/texlive/2024/texmf-dist/tex/latex/braket/braket.sty
-Input:52:c:/Program Files/texlive/2024/texmf-dist/tex/latex/tools/enumerate.sty
-Input:53:c:/Program Files/texlive/2024/texmf-dist/tex/latex/tools/bm.sty
-Input:54:c:/Program Files/texlive/2024/texmf-dist/tex/latex/caption/subcaption.sty
-Input:55:c:/Program Files/texlive/2024/texmf-dist/tex/latex/caption/caption.sty
-Input:56:c:/Program Files/texlive/2024/texmf-dist/tex/latex/caption/caption3.sty
-Input:57:c:/Program Files/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf.sty
-Input:58:c:/Program Files/texlive/2024/texmf-dist/tex/latex/grfext/grfext.sty
-Input:59:c:/Program Files/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Input:60:c:/Program Files/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-Input:61:c:/Program Files/texlive/2024/texmf-dist/tex/latex/cancel/cancel.sty
-Input:62:c:/Program Files/texlive/2024/texmf-dist/tex/latex/xcolor/xcolor.sty
-Input:63:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
-Input:64:c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx
-Input:65:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amscls/amsthm.sty
-Input:66:c:/Program Files/texlive/2024/texmf-dist/tex/latex/mathtools/mathtools.sty
-Input:67:c:/Program Files/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
-Input:68:c:/Program Files/texlive/2024/texmf-dist/tex/latex/mathtools/mhsetup.sty
-Input:69:c:/Program Files/texlive/2024/texmf-dist/tex/latex/footmisc/footmisc.sty
-Input:70:c:/Program Files/texlive/2024/texmf-dist/tex/latex/bigfoot/perpage.sty
-Input:71:c:/Program Files/texlive/2024/texmf-dist/tex/latex/titlesec/titlesec.sty
-Input:72:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-Input:73:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-Input:74:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-Input:75:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-Input:76:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-Input:77:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-Input:78:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/pgf.revision.tex
-Input:79:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-Input:80:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-Input:81:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-Input:82:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-Input:83:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
-Input:84:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-Input:85:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-Input:86:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
-Input:87:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
-Input:88:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
-Input:89:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-Input:90:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-Input:91:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
-Input:92:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-Input:93:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-Input:94:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex
-Input:95:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex
-Input:96:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex
-Input:97:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex
-Input:98:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
-Input:99:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex
-Input:100:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
-Input:101:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex
-Input:102:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-Input:103:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-Input:104:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfint.code.tex
-Input:105:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
-Input:106:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
-Input:107:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
-Input:108:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
-Input:109:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
-Input:110:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
-Input:111:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
-Input:112:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
-Input:113:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
-Input:114:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
-Input:115:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-Input:116:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-Input:117:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
-Input:118:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
-Input:119:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
-Input:120:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
-Input:121:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
-Input:122:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-Input:123:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-Input:124:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
-Input:125:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
-Input:126:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-Input:127:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-Input:128:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-Input:129:c:/Program Files/texlive/2024/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-Input:130:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-Input:131:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-Input:132:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-Input:133:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
-Input:134:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-Input:135:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
-Input:136:c:/Program Files/texlive/2024/texmf-dist/tex/latex/todonotes/todonotes.sty
-Input:137:c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
-Input:138:c:/Program Files/texlive/2024/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-Input:139:c:/Program Files/texlive/2024/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-Input:140:c:/Program Files/texlive/2024/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-Input:141:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
-Input:142:d:/QuantumSearchAlgorithm/Notes/./tikzlibraryquantikz2.code.tex
-Input:143:c:/Program Files/texlive/2024/texmf-dist/tex/latex/xargs/xargs.sty
-Input:144:c:/Program Files/texlive/2024/texmf-dist/tex/generic/xstring/xstring.sty
-Input:145:c:/Program Files/texlive/2024/texmf-dist/tex/generic/xstring/xstring.tex
-Input:146:c:/Program Files/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Input:147:c:/Program Files/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
-Input:148:c:/Program Files/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-Input:149:c:/Program Files/texlive/2024/texmf-dist/tex/latex/environ/environ.sty
-Input:150:c:/Program Files/texlive/2024/texmf-dist/tex/latex/trimspaces/trimspaces.sty
-Input:151:c:/Program Files/texlive/2024/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex
-Input:152:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
-Input:153:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
-Input:154:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
-Input:155:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
-Input:156:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
-Input:157:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
-Input:158:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
-Input:159:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
-Input:160:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
-Input:161:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.symbols.code.tex
-Input:162:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.symbols.code.tex
-Input:163:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex
-Input:164:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex
-Input:165:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
-Input:166:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
-Input:167:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.markings.code.tex
-Input:168:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.markings.code.tex
-Input:169:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymath.code.tex
-Input:170:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex
-Input:171:c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
-Input:172:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
-Input:173:c:/Program Files/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
-Input:174:c:/Program Files/texlive/2024/texmf-dist/tex/latex/psnfss/ot1ptm.fd
-Input:175:d:/QuantumSearchAlgorithm/Notes/./Tmp/main.aux
-Input:176:d:/QuantumSearchAlgorithm/Notes/./Tmp/main.out
-Input:177:d:/QuantumSearchAlgorithm/Notes/./Tmp/main.out
-Input:178:c:/Program Files/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+Input:1:/mnt/d/QuantumSearchAlgorithm/Notes/./main.tex
+Input:2:/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
+Input:3:/usr/local/texlive/2024/texmf-dist/tex/latex/base/size10.clo
+Input:4:/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
+Input:5:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
+Input:6:/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
+Input:7:/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
+Input:8:/usr/local/texlive/2024/texmf-dist/tex/latex/tools/verbatim.sty
+Input:9:/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hyperref.sty
+Input:10:/usr/local/texlive/2024/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Input:11:/usr/local/texlive/2024/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Input:12:/usr/local/texlive/2024/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Input:13:/usr/local/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Input:14:/usr/local/texlive/2024/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Input:15:/usr/local/texlive/2024/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Input:16:/usr/local/texlive/2024/texmf-dist/tex/latex/hycolor/hycolor.sty
+Input:17:/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/nameref.sty
+Input:18:/usr/local/texlive/2024/texmf-dist/tex/latex/refcount/refcount.sty
+Input:19:/usr/local/texlive/2024/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Input:20:/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Input:21:/usr/local/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Input:22:/usr/local/texlive/2024/texmf-dist/tex/generic/stringenc/stringenc.sty
+Input:23:/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
+Input:24:/usr/local/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
+Input:25:/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
+Input:26:/usr/local/texlive/2024/texmf-dist/tex/latex/url/url.sty
+Input:27:/usr/local/texlive/2024/texmf-dist/tex/generic/bitset/bitset.sty
+Input:28:/usr/local/texlive/2024/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Input:29:/usr/local/texlive/2024/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Input:30:/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
+Input:31:/usr/local/texlive/2024/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Input:32:/usr/local/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Input:33:/usr/local/texlive/2024/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Input:34:/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsmath.sty
+Input:35:/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amstext.sty
+Input:36:/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsgen.sty
+Input:37:/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Input:38:/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsopn.sty
+Input:39:/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Input:40:/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Input:41:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/graphics.sty
+Input:42:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/trig.sty
+Input:43:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+Input:44:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-def/pdftex.def
+Input:45:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/graphicx.sty
+Input:46:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/epsfig.sty
+Input:47:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/color.sty
+Input:48:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
+Input:49:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx
+Input:50:/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/times.sty
+Input:51:/usr/local/texlive/2024/texmf-dist/tex/latex/braket/braket.sty
+Input:52:/usr/local/texlive/2024/texmf-dist/tex/latex/tools/enumerate.sty
+Input:53:/usr/local/texlive/2024/texmf-dist/tex/latex/tools/bm.sty
+Input:54:/usr/local/texlive/2024/texmf-dist/tex/latex/caption/subcaption.sty
+Input:55:/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption.sty
+Input:56:/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption3.sty
+Input:57:/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf.sty
+Input:58:/usr/local/texlive/2024/texmf-dist/tex/latex/grfext/grfext.sty
+Input:59:/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Input:60:/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+Input:61:/usr/local/texlive/2024/texmf-dist/tex/latex/cancel/cancel.sty
+Input:62:/usr/local/texlive/2024/texmf-dist/tex/latex/xcolor/xcolor.sty
+Input:63:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
+Input:64:/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx
+Input:65:/usr/local/texlive/2024/texmf-dist/tex/latex/amscls/amsthm.sty
+Input:66:/usr/local/texlive/2024/texmf-dist/tex/latex/mathtools/mathtools.sty
+Input:67:/usr/local/texlive/2024/texmf-dist/tex/latex/tools/calc.sty
+Input:68:/usr/local/texlive/2024/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Input:69:/usr/local/texlive/2024/texmf-dist/tex/latex/footmisc/footmisc.sty
+Input:70:/usr/local/texlive/2024/texmf-dist/tex/latex/bigfoot/perpage.sty
+Input:71:/usr/local/texlive/2024/texmf-dist/tex/latex/titlesec/titlesec.sty
+Input:72:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+Input:73:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+Input:74:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+Input:75:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+Input:76:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+Input:77:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Input:78:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/pgf.revision.tex
+Input:79:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+Input:80:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+Input:81:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Input:82:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+Input:83:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+Input:84:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+Input:85:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+Input:86:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+Input:87:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+Input:88:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+Input:89:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Input:90:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+Input:91:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
+Input:92:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+Input:93:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+Input:94:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex
+Input:95:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex
+Input:96:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex
+Input:97:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex
+Input:98:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+Input:99:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex
+Input:100:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+Input:101:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex
+Input:102:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+Input:103:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+Input:104:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfint.code.tex
+Input:105:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+Input:106:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+Input:107:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+Input:108:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+Input:109:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+Input:110:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+Input:111:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+Input:112:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+Input:113:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+Input:114:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+Input:115:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+Input:116:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+Input:117:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+Input:118:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+Input:119:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+Input:120:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+Input:121:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+Input:122:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+Input:123:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+Input:124:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Input:125:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Input:126:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+Input:127:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+Input:128:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+Input:129:/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+Input:130:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+Input:131:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Input:132:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Input:133:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+Input:134:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+Input:135:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+Input:136:/usr/local/texlive/2024/texmf-dist/tex/latex/todonotes/todonotes.sty
+Input:137:/usr/local/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+Input:138:/usr/local/texlive/2024/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Input:139:/usr/local/texlive/2024/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+Input:140:/usr/local/texlive/2024/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+Input:141:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+Input:142:/mnt/d/QuantumSearchAlgorithm/Notes/./tikzlibraryquantikz2.code.tex
+Input:143:/usr/local/texlive/2024/texmf-dist/tex/latex/xargs/xargs.sty
+Input:144:/usr/local/texlive/2024/texmf-dist/tex/generic/xstring/xstring.sty
+Input:145:/usr/local/texlive/2024/texmf-dist/tex/generic/xstring/xstring.tex
+Input:146:/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Input:147:/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
+Input:148:/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+Input:149:/usr/local/texlive/2024/texmf-dist/tex/latex/environ/environ.sty
+Input:150:/usr/local/texlive/2024/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Input:151:/usr/local/texlive/2024/texmf-dist/tex/generic/tikz-cd/tikzlibrarycd.code.tex
+Input:152:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
+Input:153:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
+Input:154:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+Input:155:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
+Input:156:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
+Input:157:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+Input:158:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
+Input:159:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+Input:160:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
+Input:161:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.symbols.code.tex
+Input:162:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.symbols.code.tex
+Input:163:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex
+Input:164:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex
+Input:165:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
+Input:166:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
+Input:167:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.markings.code.tex
+Input:168:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.markings.code.tex
+Input:169:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymath.code.tex
+Input:170:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex
+Input:171:/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+Input:172:/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+Input:173:/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
+Input:174:/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+Input:175:/mnt/d/QuantumSearchAlgorithm/Notes/./Tmp/main.aux
+Input:176:/mnt/d/QuantumSearchAlgorithm/Notes/./Tmp/main.out
+Input:177:/mnt/d/QuantumSearchAlgorithm/Notes/./Tmp/main.out
+Input:178:/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 Output:pdf
 Magnification:1000
 Unit:1
 X Offset:0
 Y Offset:0
 Content:
-!16502
+!15484
 {1
 [1,116:4736286,53617711:26963271,48881425,0
 h1,116:4736286,4736286:0,0,0
@@ -40743,8 +40743,8 @@ k1,385:31699557,53617711:13821259
 ]
 !77979
 }5
-Input:179:c:/Program Files/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-!88
+Input:179:/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+!82
 {6
 [1,454:4736286,53617711:26963271,48881425,9168
 (1,454:4736286,4736286:0,0,0
@@ -42184,182 +42184,171 @@ g1,436:31699557,42942240
 (1,441:3729359,44502850:27970198,612762,199890
 h1,440:3729359,44502850:983040,0,0
 x1,440:5585982,44502850
-k1,440:5755647,44502850:169665
-$1,440:5755647,44502850
-(1,440:5755647,44502850:804638,437688,0
-x1,440:6560285,44502850
+k1,440:5786495,44502850:200513
+$1,440:5786495,44502850
+(1,440:5786495,44502850:804638,437688,0
+x1,440:6591133,44502850
 )
-x1,440:7122803,44502850
-x1,440:8051233,44502850
-k1,440:8244059,44502850:192826
-x1,440:8753785,44502850
-k1,440:8946611,44502850:192826
-(1,440:8946611,44502850:2215480,612762,199890
-(1,440:8946611,43942514:655361,26213,760226
-x1,440:9601972,43942514
+x1,440:7153651,44502850
+x1,440:8082081,44502850
+k1,440:8332032,44502850:249951
+x1,440:8841758,44502850
+k1,440:9091710,44502850:249952
+(1,440:9091710,44502850:2215480,612762,199890
+(1,440:9091710,43942514:655361,26213,760226
+x1,440:9747071,43942514
 )
-[1,440:9601972,44502850:1560119,612762,163840
-(1,440:9601972,44502850:1560119,491520,163840
-x1,440:10237763,44502850
-x1,440:10600486,44502850
-x1,440:11090640,44502850
+[1,440:9747071,44502850:1560119,612762,163840
+(1,440:9747071,44502850:1560119,491520,163840
+x1,440:10382862,44502850
+x1,440:10745585,44502850
+x1,440:11235739,44502850
 )
 ]
 )
-$1,440:11162091,44502850
-x1,440:11325931,44502850
-k1,440:11497052,44502850:171121
-x1,440:12297891,44502850
-k1,440:12467555,44502850:169664
-x1,440:13887050,44502850
-k1,440:14056715,44502850:169665
-x1,440:16240354,44502850
-k1,440:16410018,44502850:169664
-$1,440:16410018,44502850
-(1,440:16410018,44502850:887317,491520,163840
-x1,440:17018959,44502850
-x1,440:17297335,44502850
+$1,440:11307190,44502850
+x1,440:11471030,44502850
+k1,440:11680710,44502850:209680
+x1,440:12481549,44502850
+k1,440:12682062,44502850:200513
+x1,440:14101557,44502850
+k1,440:14302070,44502850:200513
+x1,440:16485709,44502850
+k1,440:16686222,44502850:200513
+$1,440:16686222,44502850
+(1,440:16686222,44502850:887317,491520,163840
+x1,440:17295163,44502850
+x1,440:17573539,44502850
 )
-$1,440:17297335,44502850
-k1,440:17467000,44502850:169665
-x1,440:18413336,44502850
-k1,440:18583001,44502850:169665
-$1,440:18583001,44502850
-(1,440:18583001,44502850:858569,491520,163840
-x1,440:19184281,44502850
-x1,440:19441570,44502850
+$1,440:17573539,44502850
+k1,440:17774051,44502850:200512
+x1,440:18720387,44502850
+k1,440:18920900,44502850:200513
+$1,440:18920900,44502850
+(1,440:18920900,44502850:858569,491520,163840
+x1,440:19522180,44502850
+x1,440:19779469,44502850
 )
-$1,440:19441570,44502850
-k1,440:19611234,44502850:169664
-x1,440:20048345,44502850
-k1,440:20218010,44502850:169665
-$1,440:20218010,44502850
-x1,440:20525665,44502850
-x1,440:21199232,44502850
-$1,440:21199232,44502850
-x1,440:21363072,44502850
-k1,440:21583706,44502850:220634
-x1,440:22311802,44502850
-k1,440:22481466,44502850:169664
-x1,440:23391754,44502850
-x1,440:24176218,44502850
-k1,440:24345883,44502850:169665
-x1,440:24855746,44502850
-k1,440:25025410,44502850:169664
-x1,440:25826249,44502850
-k1,440:25995914,44502850:169665
-x1,440:27707041,44502850
-k1,440:27876706,44502850:169665
-x1,440:28204386,44502850
-x1,440:28368226,44502850
-k1,440:28539346,44502850:171120
-x1,440:31014616,44502850
-k1,440:31184281,44502850:169665
-$1,440:31184281,44502850
+$1,440:19779469,44502850
+k1,440:19979982,44502850:200513
+x1,440:20417093,44502850
+k1,440:20617606,44502850:200513
+$1,440:20617606,44502850
+x1,440:20925261,44502850
+x1,440:21598828,44502850
+$1,440:21598828,44502850
+x1,440:21762668,44502850
+k1,440:22075846,44502850:313178
+x1,440:22803942,44502850
+k1,440:23004454,44502850:200512
+x1,440:23914742,44502850
+x1,440:24699206,44502850
+k1,440:24899719,44502850:200513
+x1,440:25409582,44502850
+k1,440:25610095,44502850:200513
+x1,440:26410934,44502850
+k1,440:26611447,44502850:200513
+x1,440:28322574,44502850
+k1,440:28523086,44502850:200512
+x1,440:28850766,44502850
+x1,440:29014606,44502850
+k1,440:29224287,44502850:209681
 x1,440:31699557,44502850
-$1,440:31699557,44502850
-k1,441:31699557,44502850:0
+k1,440:31699557,44502850:0
 )
 (1,441:3729359,45289282:27970198,576613,229380
-x1,441:4239222,45289282
-x1,440:4550518,45289282
-x1,440:5086598,45289282
-k1,440:5257875,45289282:171277
-x1,440:5840483,45289282
-k1,440:6011759,45289282:171276
-x1,440:6302735,45289282
-k1,440:6474012,45289282:171277
-x1,440:8512809,45289282
-k1,440:8684086,45289282:171277
-x1,440:9229998,45289282
-k1,440:9401274,45289282:171276
-$1,440:9401274,45289282
-x1,440:9708929,45289282
-$1,440:9727134,45289282
-x1,440:9890974,45289282
-k1,440:10064110,45289282:173136
-x1,440:10828254,45289282
-k1,440:10999531,45289282:171277
-x1,440:11945849,45289282
-k1,440:12117126,45289282:171277
-$1,440:12117126,45289282
-x1,440:12632402,45289282
-$1,440:12632402,45289282
-k1,440:12803678,45289282:171276
-x1,440:13604517,45289282
-k1,440:13775794,45289282:171277
-x1,440:14794874,45289282
-x1,440:15112730,45289282
-x1,440:15612114,45289282
-k1,440:15783391,45289282:171277
-x1,440:18131507,45289282
-k1,440:18356977,45289282:225470
-x1,440:19049033,45289282
-k1,440:19220310,45289282:171277
-x1,440:19984454,45289282
-k1,440:20155730,45289282:171276
-x1,440:21102704,45289282
-k1,440:21273981,45289282:171277
-x1,440:22511293,45289282
-k1,440:22682570,45289282:171277
-x1,440:24976312,45289282
-k1,440:25147588,45289282:171276
-$1,440:25147588,45289282
-x1,440:25645196,45289282
-k1,440:25846071,45289282:195812
-(1,440:25846071,45289282:182045,304924,0
-(1,440:25846071,45266526:182045,282168,0
-x1,440:26028116,45266526
+x1,441:4244635,45289282
+$1,440:4244635,45289282
+k1,440:4443843,45289282:199208
+x1,440:4953706,45289282
+x1,440:5265002,45289282
+x1,440:5801082,45289282
+k1,440:6000290,45289282:199208
+x1,440:6582898,45289282
+k1,440:6782106,45289282:199208
+x1,440:7073082,45289282
+k1,440:7272290,45289282:199208
+x1,440:9311087,45289282
+k1,440:9510295,45289282:199208
+x1,440:10056207,45289282
+k1,440:10255414,45289282:199207
+$1,440:10255414,45289282
+x1,440:10563069,45289282
+$1,440:10581274,45289282
+x1,440:10745114,45289282
+k1,440:10953164,45289282:208050
+x1,440:11717308,45289282
+k1,440:11916516,45289282:199208
+x1,440:12862834,45289282
+k1,440:13062042,45289282:199208
+$1,440:13062042,45289282
+x1,440:13577318,45289282
+$1,440:13577318,45289282
+k1,440:13776526,45289282:199208
+x1,440:14577365,45289282
+k1,440:14776573,45289282:199208
+x1,440:15795653,45289282
+x1,440:16113509,45289282
+x1,440:16612893,45289282
+k1,440:16812101,45289282:199208
+x1,440:19160217,45289282
+k1,440:19469480,45289282:309263
+x1,440:20161536,45289282
+k1,440:20360744,45289282:199208
+x1,440:21124888,45289282
+k1,440:21324096,45289282:199208
+x1,440:22271070,45289282
+k1,440:22470278,45289282:199208
+x1,440:23707590,45289282
+k1,440:23906798,45289282:199208
+x1,440:26200540,45289282
+k1,440:26399748,45289282:199208
+$1,440:26399748,45289282
+x1,440:26897356,45289282
+k1,440:27149954,45289282:247535
+(1,440:27149954,45289282:182045,304924,0
+(1,440:27149954,45266526:182045,282168,0
+x1,440:27331999,45266526
 )
 )
-(1,440:26028116,45289282:-43689,0,0
+(1,440:27331999,45289282:-43689,0,0
 )
-x1,440:26494153,45289282
-k1,440:26689964,45289282:195811
-(1,440:26689964,45289282:3156039,576613,229380
-(1,440:26689964,44758436:309476,26213,760226
-x1,440:26999440,44758436
+x1,440:27798036,45289282
+k1,440:28045571,45289282:247535
+(1,440:28045571,45289282:1772501,576613,229380
+(1,440:28045571,44758436:309476,26213,760226
+x1,440:28355047,44758436
 )
-(1,440:26999440,45289282:1772501,576613,229380
-(1,440:26999440,44758436:309476,26213,760226
-x1,440:27308916,44758436
+(1,440:28355047,45289282:1153549,576613,225995
+(1,440:28355047,45289282:1153549,576613,225995
+h1,440:28355047,45289282:78643,0,0
+[1,440:28433690,45289282:996263,576613,225995
+(1,440:28433690,45031246:996263,318577,54614
+x1,440:28740157,45031246
+x1,440:29415845,45031246
 )
-(1,440:27308916,45289282:1153549,576613,225995
-(1,440:27308916,45289282:1153549,576613,225995
-h1,440:27308916,45289282:78643,0,0
-[1,440:27387559,45289282:996263,576613,225995
-(1,440:27387559,45031246:996263,318577,54614
-x1,440:27694026,45031246
-x1,440:28369714,45031246
-)
-(1,440:27387559,45515276:996263,318577,0
-k1,440:27753823,45515276:366264
-x1,440:28003450,45515276
-k1,440:28383822,45515276:366264
+(1,440:28433690,45515276:996263,318577,0
+k1,440:28669337,45515276:235647
+x1,440:29180199,45515276
+k1,440:29429953,45515276:235646
 )
 ]
-h1,440:28383822,45289282:78643,0,0
+h1,440:29429953,45289282:78643,0,0
 )
 )
-(1,440:28462465,44758436:309476,26213,760226
-x1,440:28771941,44758436
+(1,440:29508596,44758436:309476,26213,760226
+x1,440:29818072,44758436
 )
 )
-g1,440:28881165,45289282
-x1,440:29536527,45289282
-(1,440:29536527,44758436:309476,26213,760226
-x1,440:29846003,44758436
+$1,440:29818072,45289282
+(1,440:29818072,45289282:262144,550688,0
+$1,440:29818072,45289282
+(1,440:29818072,45051457:262144,312863,6418
+x1,440:30047448,45051457
 )
+$1,440:30080216,45289282
 )
-$1,440:29846003,45289282
-(1,440:29846003,45289282:262144,550688,0
-$1,440:29846003,45289282
-(1,440:29846003,45051457:262144,312863,6418
-x1,440:30075379,45051457
-)
-$1,440:30108147,45289282
-)
-k1,440:30279424,45289282:171277
+k1,440:30279424,45289282:199208
 x1,440:31699557,45289282
 k1,440:31699557,45289282:0
 )
@@ -42582,9 +42571,13 @@ x1,383:12140960,50371677
 g1,383:12272032,50371677
 x1,383:12912704,50371677
 g1,383:13043776,50371677
-x1,383:14223424,50371677
-r1,454:14223424,50371677:0,186779,186779
-k1,383:31699557,50371677:17476133
+x1,383:14266938,50371677
+(1,383:14266938,50371677:262144,357558,0
+x1,383:14529082,50371677
+)
+x1,383:14834740,50371677
+r1,454:14834740,50371677:0,186779,186779
+k1,383:31699557,50371677:16864817
 g1,383:31699557,50371677
 )
 (1,404:3729359,51011654:27970198,453198,186779
@@ -42662,54 +42655,44 @@ g1,440:9116908,51651631
 x1,440:10281868,51651631
 g1,440:10412940,51651631
 $1,440:10412940,51651631
-(1,440:10412940,51651631:2232351,393216,131072
+(1,440:10412940,51651631:808743,393216,131072
 (1,440:10412940,51651631:247584,393216,131072
 x1,440:10660524,51651631
 )
-(1,440:10660524,51651631:1087275,393216,131072
-(1,440:10660524,51651631:247584,393216,131072
-x1,440:10908108,51651631
-)
-x1,440:11500215,51651631
-(1,440:11500215,51651631:247584,393216,131072
-x1,440:11747799,51651631
+x1,440:10974099,51651631
+(1,440:10974099,51651631:247584,393216,131072
+x1,440:11221683,51651631
 )
 )
-g1,440:11840643,51651631
-x1,440:12397707,51651631
-(1,440:12397707,51651631:247584,393216,131072
-x1,440:12645291,51651631
-)
-)
-$1,440:12645291,51651631
-g1,440:12776363,51651631
-x1,440:13126053,51651631
-g1,440:13257125,51651631
-x1,440:13665016,51651631
-g1,440:13796088,51651631
-x1,440:15193829,51651631
-g1,440:15324901,51651631
-x1,440:15965573,51651631
-g1,440:16096645,51651631
-x1,440:16883064,51651631
-x1,440:17544716,51651631
-g1,440:17675788,51651631
-x1,440:19102874,51651631
-g1,440:19233946,51651631
-x1,440:19641837,51651631
-g1,440:19772909,51651631
-x1,440:20413581,51651631
-g1,440:20544653,51651631
-x1,440:21330548,51651631
-g1,440:21461620,51651631
-x1,440:23063310,51651631
-g1,440:23194382,51651631
-$1,440:23194382,51651631
-x1,440:23507957,51651631
-$1,440:23507957,51651631
-x1,440:23639029,51651631
-r1,454:23639029,51651631:0,186779,186779
-k1,440:31699557,51651631:8060528
+$1,440:11221683,51651631
+g1,440:11352755,51651631
+x1,440:11702445,51651631
+g1,440:11833517,51651631
+x1,440:12241408,51651631
+g1,440:12372480,51651631
+x1,440:13770221,51651631
+g1,440:13901293,51651631
+x1,440:14541965,51651631
+g1,440:14673037,51651631
+x1,440:15459456,51651631
+x1,440:16121108,51651631
+g1,440:16252180,51651631
+x1,440:17679266,51651631
+g1,440:17810338,51651631
+x1,440:18218229,51651631
+g1,440:18349301,51651631
+x1,440:18989973,51651631
+g1,440:19121045,51651631
+x1,440:19906940,51651631
+g1,440:20038012,51651631
+x1,440:21639702,51651631
+g1,440:21770774,51651631
+$1,440:21770774,51651631
+x1,440:22084349,51651631
+$1,440:22084349,51651631
+x1,440:22215421,51651631
+r1,454:22215421,51651631:0,186779,186779
+k1,440:31699557,51651631:9484136
 g1,440:31699557,51651631
 )
 ]
@@ -42723,7 +42706,7 @@ k1,454:31699557,53617711:13821259
 ]
 ]
 ]
-!49127
+!48709
 }6
 !10
 {7
@@ -49217,44 +49200,44 @@ k1,526:31699557,53617711:13821259
 ]
 !151930
 }7
-Input:180:d:/QuantumSearchAlgorithm/Notes/./Tmp/main.bbl
-!68
+Input:180:/mnt/d/QuantumSearchAlgorithm/Notes/./Tmp/main.bbl
+!72
 {8
-[1,543:4736286,53617711:26963271,48881425,9168
-(1,543:4736286,4736286:0,0,0
-[1,543:0,4736286:0,0,0
-(1,543:0,0:0,0,0
-(1,543:0,4736286:0,0,0
-k1,543:0,4736286:4736286
+[1,549:4736286,53617711:26963271,48881425,9168
+(1,549:4736286,4736286:0,0,0
+[1,549:0,4736286:0,0,0
+(1,549:0,0:0,0,0
+(1,549:0,4736286:0,0,0
+k1,549:0,4736286:4736286
 )
-g1,543:0,0
-)
-]
-)
-[1,543:4736286,4736286:0,0,0
-(1,543:4736286,1238746:0,0,0
-k1,543:4736286,1238746:1072708
+g1,549:0,0
 )
 ]
-[1,543:4736286,53617711:26963271,48881425,9168
-[1,543:3729359,53617711:27970198,52313184,9168
-[1,543:3729359,2090959:27970198,786432,0
-(1,543:3729359,2090959:27970198,0,0
-h1,543:3729359,2090959:27970198,0,0
+)
+[1,549:4736286,4736286:0,0,0
+(1,549:4736286,1238746:0,0,0
+k1,549:4736286,1238746:1072708
 )
 ]
-[1,543:3729359,51651631:27970198,47922272,0
+[1,549:4736286,53617711:26963271,48881425,9168
+[1,549:3729359,53617711:27970198,52313184,9168
+[1,549:3729359,2090959:27970198,786432,0
+(1,549:3729359,2090959:27970198,0,0
+h1,549:3729359,2090959:27970198,0,0
+)
+]
+[1,549:3729359,51651631:27970198,47922272,0
 (1,517:3729359,4384719:27970198,642250,275254
-r1,543:3729359,4384719:0,917504,275254
+r1,549:3729359,4384719:0,917504,275254
 (1,517:3729359,4384719:1769472,642250,275254
 x1,517:4712399,4384719
-r1,543:4712399,4384719:0,917504,275254
+r1,549:4712399,4384719:0,917504,275254
 g1,517:5498831,4384719
 )
 x1,517:5979340,4384719
 x1,517:6923836,4384719
 x1,517:9830466,4384719
-r1,543:9830466,4384719:0,917504,275254
+r1,549:9830466,4384719:0,917504,275254
 k1,517:31699557,4384719:21869091
 g1,517:31699557,4384719
 )
@@ -49379,82 +49362,74 @@ x1,521:27530559,7167267
 k1,522:31699557,7167267:4168998
 g1,522:31699557,7167267
 )
-(1,524:13688981,9198892:18010576,1146889,819210
-(1,524:13688981,9198892:8050955,1146889,819210
-h1,524:13688981,9198892:0,0,0
-(1,522:13688981,9198892:0,0,0
-$1,522:13688981,9198892
-(1,522:13688981,8412460:0,0,0
+(1,524:14271524,9198892:17428033,1146889,819210
+(1,524:14271524,9198892:6885868,1146889,819210
+h1,524:14271524,9198892:0,0,0
+(1,522:14271524,9198892:0,0,0
+$1,522:14271524,9198892
+(1,522:14271524,8412460:0,0,0
 )
-$1,522:13688981,9198892
+$1,522:14271524,9198892
 )
-h1,524:13688981,9198892:0,0,0
-x1,524:14186589,9198892
-g1,524:14373692,9198892
-x1,524:14883418,9198892
-g1,524:15065458,9198892
-(1,524:15065458,9198892:6674478,1146889,819210
-(1,524:15065458,8078216:418703,26213,1939886
-x1,524:15484161,8078216
+h1,524:14271524,9198892:0,0,0
+x1,524:14769132,9198892
+g1,524:14956235,9198892
+x1,524:15465961,9198892
+g1,524:15648001,9198892
+(1,524:15648001,9198892:5509391,1146889,819210
+(1,524:15648001,8078216:418703,26213,1939886
+x1,524:16066704,8078216
 )
-(1,524:15484161,9198892:5072486,1146889,819210
-(1,524:15484161,8078216:418703,26213,1939886
-x1,524:15902864,8078216
+(1,524:16066704,9198892:4671985,1068238,740558
+(1,524:16066704,9198892:4671985,1068238,740558
+h1,524:16066704,9198892:78643,0,0
+[1,524:16145347,9198892:4514699,1068238,740558
+(1,524:16145347,8743416:4514699,612762,199890
+x1,524:16473028,8743416
+g1,524:16582252,8743416
+(1,524:16582252,8743416:1753090,282168,0
+x1,523:18335342,8743416
 )
-(1,524:15902864,9198892:4235080,1068238,740558
-(1,524:15902864,9198892:4235080,1068238,740558
-h1,524:15902864,9198892:78643,0,0
-[1,524:15981507,9198892:4077794,1068238,740558
-(1,524:15981507,8743416:4077794,612762,199890
-(1,524:15981507,8743416:1753090,282168,0
-x1,523:17734597,8743416
+g1,524:18444566,8743416
+(1,524:18444566,8743416:2215480,612762,199890
+(1,524:18444566,8183080:655361,26213,760226
+x1,524:19099927,8183080
 )
-g1,524:17843821,8743416
-(1,524:17843821,8743416:2215480,612762,199890
-(1,524:17843821,8183080:655361,26213,760226
-x1,524:18499182,8183080
-)
-[1,524:18499182,8743416:1560119,612762,163840
-(1,524:18499182,8743416:1560119,491520,163840
-x1,524:19134973,8743416
-x1,524:19497696,8743416
-x1,524:19987850,8743416
+[1,524:19099927,8743416:1560119,612762,163840
+(1,524:19099927,8743416:1560119,491520,163840
+x1,524:19735718,8743416
+x1,524:20098441,8743416
+x1,524:20588595,8743416
 )
 ]
 )
 )
-(1,524:15981507,9739559:4077794,612762,199890
-k1,524:16017916,9739559:36409
-(1,524:16017916,9739559:1680273,437688,0
-x1,523:17698189,9739559
+(1,524:16145347,9739559:4514699,612762,199890
+k1,524:16400208,9739559:254861
+(1,524:16400208,9739559:1680273,437688,0
+x1,523:18080481,9739559
 )
-g1,524:17807413,9739559
-(1,524:17807413,9739559:2215480,612762,199890
-(1,524:17807413,9179223:655361,26213,760226
-x1,524:18462774,9179223
+g1,524:18189705,9739559
+(1,524:18189705,9739559:2215480,612762,199890
+(1,524:18189705,9179223:655361,26213,760226
+x1,524:18845066,9179223
 )
-[1,524:18462774,9739559:1560119,612762,163840
-(1,524:18462774,9739559:1560119,491520,163840
-x1,524:19098565,9739559
-x1,524:19461288,9739559
-x1,524:19951442,9739559
-)
-]
-)
-k1,524:20059301,9739559:36408
+[1,524:18845066,9739559:1560119,612762,163840
+(1,524:18845066,9739559:1560119,491520,163840
+x1,524:19480857,9739559
+x1,524:19843580,9739559
+x1,524:20333734,9739559
 )
 ]
-h1,524:20059301,9198892:78643,0,0
+)
+k1,524:20660046,9739559:254861
+)
+]
+h1,524:20660046,9198892:78643,0,0
 )
 )
-(1,524:20137944,8078216:418703,26213,1939886
-x1,524:20556647,8078216
-)
-)
-g1,524:20665871,9198892
-x1,524:21321233,9198892
-(1,524:21321233,8078216:418703,26213,1939886
-x1,524:21739936,8078216
+(1,524:20738689,8078216:418703,26213,1939886
+x1,524:21157392,8078216
 )
 )
 )
@@ -49814,327 +49789,376 @@ g1,534:31699557,20573015
 (1,536:3729359,21359447:27970198,491520,163840
 h1,535:3729359,21359447:983040,0,0
 x1,535:5148863,21359447
-k1,535:5338021,21359447:189158
-$1,535:5338021,21359447
-x1,535:5973812,21359447
-k1,535:6274189,21359447:228926
-x1,535:6783915,21359447
-k1,535:7012840,21359447:228925
-x1,535:7539403,21359447
-x1,535:8211602,21359447
-$1,535:8211602,21359447
-x1,535:8375442,21359447
-k1,535:8570930,21359447:195488
-x1,535:9371769,21359447
-k1,535:9560927,21359447:189158
-x1,535:11563038,21359447
-k1,535:11752196,21359447:189158
-x1,535:12298108,21359447
-k1,535:12487267,21359447:189159
-x1,535:14926471,21359447
-k1,535:15115629,21359447:189158
-x1,535:16135346,21359447
-k1,535:16324504,21359447:189158
-x1,535:18726359,21359447
-k1,535:18915518,21359447:189159
-x1,535:19461422,21359447
-k1,535:19650580,21359447:189158
-$1,535:19650580,21359447
-x1,535:20286371,21359447
-$1,535:20357822,21359447
-k1,535:20546981,21359447:189159
-x1,535:23112676,21359447
-k1,535:23391791,21359447:279115
-x1,535:24338774,21359447
-k1,535:24527932,21359447:189158
-x1,535:25474906,21359447
-k1,535:25664064,21359447:189158
-x1,535:26101175,21359447
-k1,535:26290334,21359447:189159
-x1,535:27091173,21359447
-k1,535:27280331,21359447:189158
-x1,535:29501321,21359447
-k1,535:29690480,21359447:189159
-x1,535:30236392,21359447
-k1,535:30425550,21359447:189158
+k1,535:5394393,21359447:245530
+$1,535:5394393,21359447
+x1,535:6030184,21359447
+k1,535:6434949,21359447:333314
+x1,535:6944675,21359447
+k1,535:7277990,21359447:333315
+x1,535:7804553,21359447
+x1,535:8476752,21359447
+$1,535:8476752,21359447
+x1,535:8640592,21359447
+k1,535:8906544,21359447:265952
+x1,535:9707383,21359447
+k1,535:9952912,21359447:245529
+x1,535:12246654,21359447
+k1,535:12492184,21359447:245530
+x1,535:14165952,21359447
+k1,535:14411481,21359447:245529
+x1,535:16960141,21359447
+k1,535:17205671,21359447:245530
+x1,535:17642782,21359447
+k1,535:17888311,21359447:245529
+x1,535:18725854,21359447
+k1,535:18971384,21359447:245530
+x1,535:21518736,21359447
+x1,535:21639984,21359447
+k1,535:22088213,21359447:448229
+x1,535:22706869,21359447
+x1,535:22945420,21359447
+k1,535:23190949,21359447:245529
+x1,535:24100581,21359447
+k1,535:24346111,21359447:245530
+x1,535:25293085,21359447
+k1,535:25538614,21359447:245529
+x1,535:28050588,21359447
+k1,535:28296118,21359447:245530
+x1,535:29424637,21359447
+k1,535:29670166,21359447:245529
+x1,535:30288822,21359447
+k1,535:30534352,21359447:245530
 x1,535:31699557,21359447
 k1,535:31699557,21359447:0
 )
-(1,536:3729359,22145879:27970198,447828,141880
-x1,536:4493503,22145879
-k1,535:4659489,22145879:165986
-x1,535:5132657,22145879
-x1,535:6090783,22145879
-k1,535:6300381,22145879:209598
-x1,535:6919037,22145879
-x1,535:7157588,22145879
-k1,535:7323574,22145879:165986
-x1,535:8233206,22145879
-k1,535:8399191,22145879:165985
-x1,535:10183070,22145879
-k1,535:10349056,22145879:165986
-x1,535:11149895,22145879
-k1,535:11315881,22145879:165986
-x1,535:13317992,22145879
-k1,535:13483978,22145879:165986
-x1,535:14029890,22145879
-k1,535:14195876,22145879:165986
-x1,535:16525641,22145879
-k1,535:16691627,22145879:165986
-x1,535:17201490,22145879
-k1,535:17367476,22145879:165986
-x1,535:18168315,22145879
-k1,535:18334301,22145879:165986
-x1,535:20008069,22145879
-k1,535:20174055,22145879:165986
-x1,535:21629591,22145879
-k1,535:21795577,22145879:165986
-x1,535:22450937,22145879
-k1,535:22616923,22145879:165986
-x1,535:24400802,22145879
-k1,535:24566787,22145879:165985
-$1,535:24566787,22145879
-x1,535:25093350,22145879
-$1,535:25164801,22145879
-k1,535:25330787,22145879:165986
-x1,535:25621763,22145879
-x1,535:26631010,22145879
-k1,535:26796996,22145879:165986
-x1,535:28217129,22145879
-k1,535:28383115,22145879:165986
-x1,535:28892978,22145879
-k1,535:29058964,22145879:165986
-x1,535:29859803,22145879
-k1,535:30025789,22145879:165986
+(1,536:3729359,22145879:27970198,446948,141880
+x1,536:5003366,22145879
+k1,535:5213145,22145879:209779
+x1,535:6013984,22145879
+k1,535:6223764,22145879:209780
+x1,535:7897532,22145879
+k1,535:8107311,22145879:209779
+x1,535:9726687,22145879
+k1,535:9947951,22145879:221264
+x1,535:10894287,22145879
+k1,535:11104067,22145879:209780
+x1,535:12232586,22145879
+k1,535:12442365,22145879:209779
+x1,535:13970653,22145879
+k1,535:14180433,22145879:209780
+x1,535:15163455,22145879
+k1,535:15373234,22145879:209779
+x1,535:15737600,22145879
+k1,535:15947380,22145879:209780
+x1,535:16384491,22145879
+k1,535:16594270,22145879:209779
+x1,535:16885246,22145879
+k1,535:17095025,22145879:209779
+x1,535:19207222,22145879
+k1,535:19417002,22145879:209780
+x1,535:20837153,22145879
+k1,535:21046932,22145879:209779
+x1,535:21847771,22145879
+k1,535:22057551,22145879:209780
+x1,535:23822414,22145879
+k1,535:24163392,22145879:340978
+x1,535:25328607,22145879
+k1,535:25538387,22145879:209780
+x1,535:27940267,22145879
+k1,535:28150046,22145879:209779
+x1,535:29023630,22145879
+k1,535:29233410,22145879:209780
+x1,535:29524386,22145879
+k1,535:29734165,22145879:209779
 x1,535:31699557,22145879
 k1,535:31699557,22145879:0
 )
 (1,536:3729359,22932311:27970198,446948,141880
-x1,536:5348735,22932311
-k1,535:5526962,22932311:178227
-x1,535:6800978,22932311
-k1,535:6976327,22932311:175349
-x1,535:7522239,22932311
-k1,535:7697588,22932311:175349
-x1,535:9299275,22932311
-k1,535:9474625,22932311:175350
-x1,535:10274809,22932311
-k1,535:10450158,22932311:175349
-x1,535:12981123,22932311
-k1,535:13218811,22932311:237688
-x1,535:13946907,22932311
-k1,535:14122256,22932311:175349
-x1,535:14413232,22932311
-k1,535:14588582,22932311:175350
-x1,535:18100630,22932311
-k1,535:18278856,22932311:178226
-x1,535:19261871,22932311
-k1,535:19437221,22932311:175350
-x1,535:20565740,22932311
-k1,535:20741089,22932311:175349
-x1,535:21760160,22932311
-k1,535:21935510,22932311:175350
-x1,535:22736349,22932311
-k1,535:22911698,22932311:175349
-x1,535:24331831,22932311
-k1,535:24507180,22932311:175349
-x1,535:25017043,22932311
-k1,535:25192393,22932311:175350
-x1,535:25993232,22932311
-k1,535:26168581,22932311:175349
-x1,535:26787237,22932311
-x1,535:27244021,22932311
-k1,535:27419370,22932311:175349
-x1,535:29093138,22932311
-k1,535:29268488,22932311:175350
-x1,535:30724024,22932311
-k1,535:30899373,22932311:175349
-x1,535:31699557,22932311
-k1,535:31699557,22932311:0
+x1,536:6605699,22932311
+g1,535:6769539,22932311
+x1,535:7242698,22932311
+g1,535:7406538,22932311
+x1,535:8607784,22932311
+g1,535:8771624,22932311
+x1,535:9936192,22932311
+x1,535:11119103,22932311
+g1,535:11282943,22932311
+x1,535:12229279,22932311
+g1,535:12393119,22932311
+x1,535:13558342,22932311
+g1,535:13722182,22932311
+x1,535:15833069,22932311
+g1,535:15996909,22932311
+x1,535:16943245,22932311
+g1,535:17107085,22932311
+x1,535:20311097,22932311
+g1,535:20474937,22932311
+x1,535:21640151,22932311
+g1,535:21803991,22932311
+x1,535:22604830,22932311
+g1,535:22768670,22932311
+x1,535:24533533,22932311
+k1,536:31699557,22932311:7166024
+g1,536:31699557,22932311
 )
-(1,536:3729359,23718743:27970198,612762,199890
-x1,536:6260324,23718743
-g1,535:6463484,23718743
-x1,535:7082131,23718743
-x1,535:7301019,23718743
-g1,535:7464859,23718743
-x1,535:8556674,23718743
-g1,535:8720514,23718743
-x1,535:9703536,23718743
-g1,535:9867376,23718743
-x1,535:10231742,23718743
-g1,535:10395582,23718743
-x1,535:11379242,23718743
-g1,535:11543082,23718743
-x1,535:12343921,23718743
-x1,535:12883272,23718743
-g1,535:13047112,23718743
-$1,535:13047112,23718743
-x1,535:13547005,23718743
-x1,535:13820073,23718743
-(1,535:13820073,23718743:2197275,612762,199890
-(1,535:13820073,23158407:655361,26213,760226
-x1,535:14475434,23158407
+(1,539:3729359,25099547:27970198,825750,353898
+r1,549:3729359,25099547:0,1179648,353898
+(1,539:3729359,25099547:1415577,825750,353898
+x1,539:4201218,25099547
+r1,549:4201218,25099547:0,1179648,353898
+g1,539:5144936,25099547
 )
-[1,535:14475434,23718743:1541914,612762,163840
-(1,535:14475434,23718743:1541914,491520,163840
-x1,535:15001997,23718743
-x1,535:15346515,23718743
-x1,535:15945897,23718743
+x1,539:8187447,25099547
+g1,539:8423376,25099547
+x1,539:8737630,25099547
+x1,539:9604901,25099547
+g1,539:9840830,25099547
+x1,539:10994038,25099547
+x1,539:11448916,25099547
+x1,539:11911339,25099547
+x1,539:13054167,25099547
+x1,539:13386346,25099547
+g1,539:13622275,25099547
+x1,539:17606613,25099547
+r1,549:17606613,25099547:0,1179648,353898
+k1,539:31699557,25099547:14092944
+g1,539:31699557,25099547
+)
+(1,542:3729359,26614916:27970198,446948,141880
+x1,542:4749095,26614916
+x1,541:5205879,26614916
+g1,541:5369719,26614916
+x1,541:6170558,26614916
+g1,541:6334398,26614916
+x1,541:7753902,26614916
+g1,541:7917742,26614916
+x1,541:8463654,26614916
+g1,541:8627494,26614916
+x1,541:10993325,26614916
+g1,541:11157165,26614916
+x1,541:11484845,26614916
+g1,541:11648685,26614916
+x1,541:12595021,26614916
+g1,541:12758861,26614916
+x1,541:13086541,26614916
+g1,541:13250381,26614916
+x1,541:13760244,26614916
+g1,541:13924084,26614916
+x1,541:14142316,26614916
+(1,541:14142316,26614916:327680,446948,0
+x1,541:14469996,26614916
+)
+x1,541:14852068,26614916
+k1,542:31699557,26614916:16847489
+g1,542:31699557,26614916
+)
+(180,1:3729359,28782152:27970198,825750,353898
+r1,549:3729359,28782152:0,1179648,353898
+x1,549:5981989,28782152
+k180,1:3729359,28782152:-16981
+x180,1:8113821,28782152
+r1,549:8113821,28782152:0,1179648,353898
+k180,1:31699557,28782152:23585736
+g180,1:31699557,28782152
+)
+(180,7:4821183,30299160:26878374,448587,141880
+(180,3:4821183,30299160:0,446948,102232
+g180,3:4821183,30299160
+g180,3:4057039,30299160
+g180,3:3729359,30299160
+(180,3:3729359,30299160:764144,446948,102232
+g180,3:3729359,30299160
+x180,3:4493503,30299160
+)
+g180,3:4821183,30299160
+)
+x180,3:6714484,30299160
+k180,4:6883387,30299160:168903
+x180,4:7684235,30299160
+x180,4:8339595,30299160
+x180,4:9358666,30299160
+k180,4:9527569,30299160:168903
+x180,4:10473905,30299160
+k180,4:10642808,30299160:168903
+x180,4:11298160,30299160
+x180,4:11989551,30299160
+k180,4:12158454,30299160:168903
+x180,4:12959302,30299160
+x180,4:13789637,30299160
+x180,4:13917437,30299160
+k180,4:14086340,30299160:168903
+k180,5:14169569,30299160:83229
+x180,5:14897673,30299160
+x180,5:15661808,30299160
+k180,5:15830711,30299160:168903
+x180,5:17104727,30299160
+x180,5:18124453,30299160
+k180,5:18293355,30299160:168902
+x180,5:18803218,30299160
+x180,5:19769210,30299160
+k180,5:19938113,30299160:168903
+x180,5:21576513,30299160
+k180,5:21745416,30299160:168903
+x180,5:22509560,30299160
+k180,5:22678463,30299160:168903
+x180,5:23552055,30299160
+x180,5:23869911,30299160
+x180,5:24587527,30299160
+x180,5:24806415,30299160
+k180,5:24975318,30299160:168903
+x180,5:26176590,30299160
+x180,5:27323452,30299160
+k180,5:27492355,30299160:168903
+k180,6:27575584,30299160:83229
+x180,6:29031792,30299160
+x180,6:30014823,30299160
+k180,6:30183726,30299160:168903
+x180,6:30729638,30299160
+x180,6:31239501,30299160
+x180,6:31494429,30299160
+x180,6:31699557,30299160
+k180,7:31699557,30299160:0
+)
+(180,7:4821183,31085592:26878374,446948,135328
+x180,7:5622031,31085592
+x180,7:6641757,31085592
+g180,6:6805597,31085592
+x180,6:7315460,31085592
+g180,6:7479300,31085592
+x180,6:8717268,31085592
+x180,6:9372628,31085592
+x180,6:9882491,31085592
+x180,6:11066057,31085592
+g180,6:11229897,31085592
+x180,6:13486944,31085592
+x180,6:13814624,31085592
+x180,6:14961504,31085592
+g180,6:15125344,31085592
+x180,6:16599904,31085592
+k180,7:31699557,31085592:15099653
+g180,7:31699557,31085592
+)
+(180,12:4821183,32396312:26878374,448587,141880
+(180,8:4821183,32396312:0,446948,102232
+g180,8:4821183,32396312
+g180,8:4057039,32396312
+g180,8:3729359,32396312
+(180,8:3729359,32396312:764144,446948,102232
+g180,8:3729359,32396312
+x180,8:4493503,32396312
+)
+g180,8:4821183,32396312
+)
+x180,8:6968765,32396312
+k180,9:7208637,32396312:239872
+x180,9:7845645,32396312
+k180,9:8085517,32396312:239872
+x180,9:10087611,32396312
+k180,9:10327483,32396312:239872
+x180,9:11273819,32396312
+k180,9:11513691,32396312:239872
+x180,9:12859779,32396312
+k180,9:13099651,32396312:239872
+x180,9:13663915,32396312
+k180,9:13903787,32396312:239872
+x180,9:16106443,32396312
+k180,9:16346315,32396312:239872
+k180,10:16585678,32396312:239363
+x180,10:19024917,32396312
+k180,10:19264789,32396312:239872
+x180,10:22687706,32396312
+k180,10:22927578,32396312:239872
+x180,10:23910618,32396312
+k180,10:24150490,32396312:239872
+x180,10:26589729,32396312
+k180,10:26829601,32396312:239872
+x180,10:30179110,32396312
+k180,10:30534334,32396312:355224
+x180,10:31699557,32396312
+k180,10:31699557,32396312:0
+)
+(180,12:4821183,33182744:26878374,448587,141880
+x180,12:6896030,33182744
+x180,10:8017989,33182744
+g180,10:8181829,33182744
+x180,10:10275682,33182744
+g180,10:10439522,33182744
+g180,11:10511612,33182744
+x180,11:13424002,33182744
+g180,11:13587842,33182744
+x180,11:14570873,33182744
+x180,11:14882169,33182744
+x180,11:16328527,33182744
+g180,11:16492367,33182744
+x180,11:18039647,33182744
+g180,11:18203487,33182744
+x180,11:20896334,33182744
+g180,11:21060174,33182744
+x180,11:22534734,33182744
+k180,12:31699557,33182744:9164823
+g180,12:31699557,33182744
+)
+(1,533:3729359,51649840:27970198,453198,186779
+(1,533:3729359,51649840:1179651,453198,0
+k1,533:4679634,51649840:950275
+(1,533:4679634,51649840:229376,453198,0
+$1,533:4679634,51649840
+(1,533:4679634,51464810:229376,268168,0
+x1,533:4876242,51464810
+)
+$1,533:4909010,51649840
+)
+)
+(1,533:4909010,51649840:0,435814,0
+r1,549:4909010,51649840:0,435814,0
+)
+(1,533:4909010,51649840:0,0,0
+(1,533:4909010,51027248:0,0,0
+)
+)
+x1,533:5724274,51649840
+g1,533:5855346,51649840
+x1,533:7631597,51649840
+g1,533:7762669,51649840
+x1,533:9801600,51649840
+g1,533:9932672,51649840
+x1,533:11621384,51649840
+g1,533:11752456,51649840
+$1,533:11752456,51649840
+x1,533:12175132,51649840
+x1,533:12849388,51649840
+x1,533:13137340,51649840
+x1,533:13641382,51649840
+x1,533:13913860,51649840
+$1,533:13913860,51649840
+g1,533:14044932,51649840
+x1,533:15005931,51649840
+g1,533:15137003,51649840
+x1,533:15544894,51649840
+g1,533:15675966,51649840
+x1,533:16316638,51649840
+g1,533:16447710,51649840
+x1,533:17859602,51649840
+r1,549:17859602,51649840:0,186779,186779
+k1,533:31699557,51649840:13839955
+g1,533:31699557,51649840
 )
 ]
-)
-x1,535:16272211,23718743
-$1,535:16272211,23718743
-g1,535:16436051,23718743
-x1,535:17637297,23718743
-g1,535:17801137,23718743
-x1,535:18311000,23718743
-g1,535:18474840,23718743
-x1,535:19275679,23718743
-g1,535:19439519,23718743
-x1,535:21040542,23718743
-g1,535:21204382,23718743
-x1,535:21714245,23718743
-g1,535:21878085,23718743
-x1,535:23988980,23718743
-g1,535:24152820,23718743
-x1,535:24953659,23718743
-g1,535:25117499,23718743
-x1,535:26955107,23718743
-k1,536:31699557,23718743:4744450
-g1,536:31699557,23718743
-)
-(180,1:3729359,25885979:27970198,825750,353898
-r1,543:3729359,25885979:0,1179648,353898
-x1,543:5981989,25885979
-k180,1:3729359,25885979:-16981
-x180,1:8113821,25885979
-r1,543:8113821,25885979:0,1179648,353898
-k180,1:31699557,25885979:23585736
-g180,1:31699557,25885979
-)
-(180,7:4821183,27402987:26878374,448587,141880
-(180,3:4821183,27402987:0,446948,102232
-g180,3:4821183,27402987
-g180,3:4057039,27402987
-g180,3:3729359,27402987
-(180,3:3729359,27402987:764144,446948,102232
-g180,3:3729359,27402987
-x180,3:4493503,27402987
-)
-g180,3:4821183,27402987
-)
-x180,3:6968765,27402987
-k180,4:7208637,27402987:239872
-x180,4:7845645,27402987
-k180,4:8085517,27402987:239872
-x180,4:10087611,27402987
-k180,4:10327483,27402987:239872
-x180,4:11273819,27402987
-k180,4:11513691,27402987:239872
-x180,4:12859779,27402987
-k180,4:13099651,27402987:239872
-x180,4:13663915,27402987
-k180,4:13903787,27402987:239872
-x180,4:16106443,27402987
-k180,4:16346315,27402987:239872
-k180,5:16585678,27402987:239363
-x180,5:19024917,27402987
-k180,5:19264789,27402987:239872
-x180,5:22687706,27402987
-k180,5:22927578,27402987:239872
-x180,5:23910618,27402987
-k180,5:24150490,27402987:239872
-x180,5:26589729,27402987
-k180,5:26829601,27402987:239872
-x180,5:30179110,27402987
-k180,5:30534334,27402987:355224
-x180,5:31699557,27402987
-k180,5:31699557,27402987:0
-)
-(180,7:4821183,28189419:26878374,448587,141880
-x180,7:6896030,28189419
-x180,5:8017989,28189419
-g180,5:8181829,28189419
-x180,5:10275682,28189419
-g180,5:10439522,28189419
-g180,6:10511612,28189419
-x180,6:13424002,28189419
-g180,6:13587842,28189419
-x180,6:14570873,28189419
-x180,6:14882169,28189419
-x180,6:16328527,28189419
-g180,6:16492367,28189419
-x180,6:18039647,28189419
-g180,6:18203487,28189419
-x180,6:20896334,28189419
-g180,6:21060174,28189419
-x180,6:22534734,28189419
-k180,7:31699557,28189419:9164823
-g180,7:31699557,28189419
-)
-(1,533:3729359,51649307:27970198,453198,186779
-(1,533:3729359,51649307:1179651,453198,0
-k1,533:4679634,51649307:950275
-(1,533:4679634,51649307:229376,453198,0
-$1,533:4679634,51649307
-(1,533:4679634,51464277:229376,268168,0
-x1,533:4876242,51464277
-)
-$1,533:4909010,51649307
-)
-)
-(1,533:4909010,51649307:0,435814,0
-r1,543:4909010,51649307:0,435814,0
-)
-(1,533:4909010,51649307:0,0,0
-(1,533:4909010,51026715:0,0,0
-)
-)
-x1,533:5724274,51649307
-g1,533:5855346,51649307
-x1,533:7631597,51649307
-g1,533:7762669,51649307
-x1,533:9801600,51649307
-g1,533:9932672,51649307
-x1,533:11621384,51649307
-g1,533:11752456,51649307
-$1,533:11752456,51649307
-x1,533:12175132,51649307
-x1,533:12849388,51649307
-x1,533:13137340,51649307
-x1,533:13641382,51649307
-x1,533:13913860,51649307
-$1,533:13913860,51649307
-g1,533:14044932,51649307
-x1,533:15005931,51649307
-g1,533:15137003,51649307
-x1,533:15544894,51649307
-g1,533:15675966,51649307
-x1,533:16316638,51649307
-g1,533:16447710,51649307
-x1,533:17859602,51649307
-r1,543:17859602,51649307:0,186779,186779
-k1,533:31699557,51649307:13839955
-g1,533:31699557,51649307
-)
-]
-(1,543:3729359,53617711:27970198,446948,9168
-(1,543:3729359,53617711:27970198,446948,9168
-k1,543:17550618,53617711:13821259
-x1,543:17878298,53617711
-k1,543:31699557,53617711:13821259
+(1,549:3729359,53617711:27970198,446948,9168
+(1,549:3729359,53617711:27970198,446948,9168
+k1,549:17550618,53617711:13821259
+x1,549:17878298,53617711
+k1,549:31699557,53617711:13821259
 )
 )
 ]
 ]
 ]
-!23185
+!24239
 }8
-Input:181:d:/QuantumSearchAlgorithm/Notes/./Tmp/main.aux
-!67
+Input:181:/mnt/d/QuantumSearchAlgorithm/Notes/./Tmp/main.aux
+!71
 Postamble:
-Count:44556
+Count:44557
 !27
 Post scriptum:
