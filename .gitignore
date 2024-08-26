@@ -1,3 +1,3 @@
-Tmp/*
-!Tmp/*.pdf
+**/Tmp/*
+!**/Tmp/*.pdf
 /.venv/
