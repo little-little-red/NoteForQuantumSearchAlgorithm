@@ -1,0 +1,202 @@
+\begin{thebibliography}{10}
+
+\bibitem{2017Alsina}
+Daniel Alsina.
+\newblock Phd thesis: Multipartite entanglement and quantum algorithms, 2017.
+
+\bibitem{MBJGL2019}
+Marc Bataille and Jean-Gabriel Luque.
+\newblock Quantum circuits of {cZ} and {SWAP} gates: optimization and
+  entanglement.
+\newblock {\em Journal of Physics A: Mathematical and Theoretical},
+  52(32):325302, jul 2019.
+
+\bibitem{1992BWS}
+Charles~H. Bennett and Stephen~J. Wiesner.
+\newblock Communication via one- and two-particle operators on
+  einstein-podolsky-rosen states.
+\newblock {\em Phys. Rev. Lett.}, 69:2881--2884, Nov 1992.
+
+\bibitem{1846Cayley}
+Arthur Cayley.
+\newblock M\'emoire sur les hyperd\'eterminants.
+\newblock {\em Journal f\"ur die reine und angewandte {Mathematik}}, 30:1--37,
+  1846.
+
+\bibitem{2013CD}
+Lin Chen and Dragomir~Z. Djokovic.
+\newblock Proof of the {Gour-Wallach} conjecture.
+\newblock {\em Physical Review A}, 88(4), oct 2013.
+
+\bibitem{1999CGL}
+Richard Cleve, Daniel Gottesman, and Hoi-Kwong Lo.
+\newblock How to share a quantum secret.
+\newblock {\em Physical Review Letters}, 83(3):648–651, Jul 1999.
+
+\bibitem{2004DP}
+Ellie D'Hondt and Prakash Panangaden.
+\newblock The computational power of the {W} and {GHZ} states, 2004.
+
+\bibitem{2000DVC}
+Wolfgang {D\"ur}, Guifre {Vidal}, and {Cirac}~J. Ignacio.
+\newblock Three qubits can be entangled in two inequivalent ways.
+\newblock {\em Physical Review A}, 62:062314, 2000.
+
+\bibitem{EPR}
+A.~Einstein, B.~Podolsky, and N.~Rosen.
+\newblock Can quantum-mechanical description of physical reality be considered
+  complete ?
+\newblock {\em Physical Review, Vol. 47}, 1935.
+
+\bibitem{1991Ekert}
+Ekert.
+\newblock Quantum cryptography based on {Bell's} theorem.
+\newblock {\em Physical review letters}, 67 6:661--663, 1991.
+
+\bibitem{1998FSBFKP}
+Akira {Furusawa}, Jens~Lykke {Sorensen}, Samuel~L. {Braunstein}, Christopher~A
+  {Fuchs}, H.~Jeff {Kimble}, and Eugene~S. {Polzik}.
+\newblock {Unconditional Quantum Teleportation}.
+\newblock {\em Science}, 282:706, October 1998.
+
+\bibitem{1992GKL}
+Israel~M {Gelfand}, Mikhail~M. Kapranov, and Zelevisnky~Andrei V.
+\newblock {\em Discriminants, Resultants and Multidimensional Determinant}.
+\newblock Birkh\"auser, 1992.
+
+\bibitem{2007GW}
+Gilad Gour and Nolan~R. Wallach.
+\newblock Entanglement of subspaces and error-correcting codes.
+\newblock {\em Physical Review A}, 76(4), Oct 2007.
+
+\bibitem{2012GW}
+Gilad Gour and Nolan~R. Wallach.
+\newblock On symmetric {SL}-invariant polynomials in four qubits, 2012.
+
+\bibitem{1990GHZ}
+Daniel~M. {Greenberger}, Michael~A. {Horne}, and Anton {Zeilinger}.
+\newblock Bell's theorem without inequalities.
+\newblock {\em American Journal of Physics}, 58 (12):1131, 1990.
+
+\bibitem{2000HS}
+A.~Higuchi and A.~Sudbery.
+\newblock How entangled can two couples get?
+\newblock {\em Physics Letters A}, 273(4):213 -- 217, 2000.
+
+\bibitem{1999Hillery}
+Mark Hillery, Vladimír Bužek, and André Berthiaume.
+\newblock Quantum secret sharing.
+\newblock {\em Physical Review A}, 59(3):1829–1834, Mar 1999.
+
+\bibitem{2012HLT}
+Fr\'ed\'eric {Holweck}, Jean-Gabriel {Luque}, and {Thibon} Jean-Yves.
+\newblock Geometric descriptions of entangled states by auxiliary varieties.
+\newblock {\em Journal of Mathematical Physics}, 53 (10):102203, 2012.
+
+\bibitem{2014HLT}
+Fr\'ed\'eric {Holweck}, Jean-Gabriel {Luque}, and {Thibon} Jean-Yves.
+\newblock Entanglement of four qubit systems: A geometric atlas with polynomial
+  compass {I} (the finite world).
+\newblock {\em Journal of Mathematical Physics}, 55 (1):012202, 2014.
+
+\bibitem{2017HLT}
+Fr\'ed\'eric {Holweck}, Jean-Gabriel {Luque}, and {Thibon} Jean-Yves.
+\newblock Entanglement of four-qubit systems: a geometric atlas with polynomial
+  compass {II} (the tame world).
+\newblock {\em Journal of Mathematical Physics}, 58 (2):022201, 2017.
+
+\bibitem{HT1973}
+John Hopcroft and Robert Tarjan.
+\newblock Algorithm 447: Efficient algorithms for graph manipulation.
+\newblock {\em Commun. ACM}, 16(6):372–378, June 1973.
+
+\bibitem{HHHH2009}
+Ryszard Horodecki, Pawe\l{} Horodecki, Micha\l{} Horodecki, and Karol
+  Horodecki.
+\newblock Quantum entanglement.
+\newblock {\em Rev. Mod. Phys.}, 81:865--942, Jun 2009.
+
+\bibitem{2002Klyachko}
+Alexander {Klyachko}.
+\newblock Coherent states, entanglement, and geometric invariant theory.
+\newblock arXiv:quant-ph/0206012v1.
+
+\bibitem{2017Monroe}
+Norbert~M. {Linke}, Dmitri {Maslov}, Martin {Roetteler}, Shantanu {Debnath},
+  Caroline {Figgatt}, Kevin~A. {Landsman}, Kenneth {Wright}, and {Monroe}
+  Christopher.
+\newblock Experimental comparison of two quantum computing architectures.
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, 114 (13):3305--3310, March 2017.
+
+\bibitem{2003LT}
+Jean-Gabriel Luque and Jean-Yves Thibon.
+\newblock The polynomial invariants of four qubits.
+\newblock {\em Phys. Rev. A}, 67:042303, 2003.
+
+\bibitem{2003Miyake}
+Akimasa Miyake.
+\newblock Classification of multipartite entangled states by multidimensional
+  determinant.
+\newblock {\em Phys. Rev. A}, 67:012108, 2003.
+
+\bibitem{2004Miyake}
+Akimasa Miyake.
+\newblock Multipartite entanglement under stochastic local operations and
+  classical communication, 2004.
+
+\bibitem{2002MW}
+Akimasa Miyake and Miki Wadati.
+\newblock Multipartite entanglement and hyperdeterminants.
+\newblock {\em Quantum Information and Computation}, 2:540--555, 2002.
+
+\bibitem{NCI2011}
+Michael~A. Nielsen and Isaac~L. Chuang.
+\newblock {\em Quantum Computation and Quantum Information: 10th Anniversary
+  Edition}.
+\newblock Cambridge University Press, New York, NY, USA, 10th edition, 2011.
+
+\bibitem{2004PMH}
+Ketan Patel, Igor Markov, and John Hayes.
+\newblock Optimal synthesis of linear reversible circuits.
+\newblock {\em Quantum Information and Computation}, 8, 05 2004.
+
+\bibitem{2015PESWFB}
+Stefano {Pirandola}, Jens {Eisert}, Christian {Weedbrook}, Akira {Furusawa},
+  and Samuel~L. {Braunstein}.
+\newblock {Advances in quantum teleportation}.
+\newblock {\em Nature Photonics}, 9:641--652, October 2015.
+
+\bibitem{Steinberg1967}
+Robert Steinberg.
+\newblock {\em Lectures on {Chevalley} Groups}.
+\newblock University Lecture Series 66. American Mathematical Society, 2016.
+
+\bibitem{1994Vaidman}
+Lev {Vaidman}.
+\newblock {Teleportation of quantum states}.
+\newblock {\em Physical Review A}, 49:1473--1476, February 1994.
+
+\bibitem{2002VDDV}
+Frank Verstraete, Jeronen Dehaene, Bart De~Moor, and Henri Verschelde.
+\newblock Four qubits can be entangled in nine different ways.
+\newblock {\em Phys. Rev. A}, 65:052112, 2002.
+
+\bibitem{Wilson2009}
+Robert Wilson.
+\newblock {\em The Finite Simple Groups}.
+\newblock Springer London Ltd, 2009.
+
+\bibitem{2019Wright}
+K.~Wright, K.~M. Beck, S.~Debnath, J.~M. Amini, Y.~Nam, N.~Grzesiak, J.-S.
+  Chen, N.~C. Pisenti, M.~Chmielewski, C.~Collins, and et~al.
+\newblock Benchmarking an 11-qubit quantum computer.
+\newblock {\em Nature Communications}, 10(1), Nov 2019.
+
+\bibitem{2016Zajac}
+D.~M. Zajac, T.~M. Hazard, X.~Mi, E.~Nielsen, and J.~R. Petta.
+\newblock Scalable gate architecture for a one-dimensional array of
+  semiconductor spin qubits.
+\newblock {\em Phys. Rev. Applied}, 6:054013, Nov 2016.
+
+\end{thebibliography}

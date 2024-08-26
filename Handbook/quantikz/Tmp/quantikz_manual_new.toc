@@ -1,0 +1,28 @@
+\contentsline {title}{Tutorial on the Quantikz Package}{1}{section*.1}%
+\tocdepth@munge 
+\contentsline {section}{\numberline {}Contents}{1}{section*.2}%
+\tocdepth@restore 
+\contentsline {section}{\numberline {I}Usage}{2}{section*.3}%
+\contentsline {section}{\numberline {II}Basic Usage}{2}{section*.4}%
+\contentsline {subsection}{\numberline {A}Gates \& Measurement}{2}{section*.5}%
+\contentsline {subsection}{\numberline {B}Controlled Gates}{3}{section*.6}%
+\contentsline {subsection}{\numberline {C}Labelling Circuits}{3}{section*.7}%
+\contentsline {subsection}{\numberline {D}Boxing/Highlighting Parts of a Circuit}{4}{section*.8}%
+\contentsline {subsection}{\numberline {E}Slicing}{5}{section*.9}%
+\contentsline {section}{\numberline {III}Commands \& Options}{7}{section*.10}%
+\contentsline {section}{\numberline {IV}Spacing}{14}{section*.11}%
+\contentsline {subsection}{\numberline {A}Local Adjustment}{14}{section*.12}%
+\contentsline {subsection}{\numberline {B}Global Adjustment}{15}{section*.13}%
+\contentsline {subsection}{\numberline {C}Alignment}{15}{section*.14}%
+\contentsline {subsubsection}{\numberline {1}Perfecting Vertical Alignment}{16}{section*.15}%
+\contentsline {section}{\numberline {V}Styling \& Customising}{17}{section*.16}%
+\contentsline {subsection}{\numberline {A}Global Styling}{17}{section*.17}%
+\contentsline {subsection}{\numberline {B}Per-Gate Styling}{18}{section*.18}%
+\contentsline {subsection}{\numberline {C}Scaling}{19}{section*.19}%
+\contentsline {section}{\numberline {VI}Bells and Whistles}{19}{section*.20}%
+\contentsline {subsection}{\numberline {A}Externalization}{19}{section*.21}%
+\contentsline {subsection}{\numberline {B}New Gate Types}{20}{section*.22}%
+\contentsline {section}{\numberline {VII}Converting from QCircuit}{23}{section*.23}%
+\contentsline {subsection}{\numberline {A}Converting from Quantikz to Quantikz2}{23}{section*.24}%
+\contentsline {section}{\numberline {VIII}Troubleshooting}{24}{section*.25}%
+\contentsline {section}{\numberline {IX}Citation}{24}{section*.26}%
