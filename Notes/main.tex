@@ -393,7 +393,9 @@ Before discussing the algorithm, let's make some basic assumptions about quantum
 
 \section{Quantum Search Algorithm}
 
-\subsection{Principles}
+\subsection{Grover's Algorithm}
+
+\subsubsection{Principles}
 
 In the search algorithm, we have the $N=2^{n}$ elements in the search space $S=\{0,1\}^{n}$ and the target element $T\subseteq S$ which has $M$ elements. The output of the algorithm should be the state containing all the target elements, so we let
 \begin{equation}
@@ -445,8 +447,7 @@ The angular error is at most $\theta/2\approx\sqrt{M/N}$.
 
 
 
-
-\subsection{Oracle}
+\subsubsection{Oracle}
 
 Let's construct the reflection about $\ket{\alpha}$, we call it oracle. We know that states in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$ can be decomposed into
 \begin{equation}
@@ -482,7 +483,7 @@ So the $U_{\omega}$ is the Oracle.
 
 
 
-\subsection{Grover iteration}
+\subsubsection{Grover iteration}
 
 Then, let's construct the reflection about $\ket{\psi}$. Same as the oracle, we decompose states into
 \begin{equation}
@@ -514,7 +515,7 @@ The ellipsis indicates that it is repeated $R$ times.
 
 
 
-\subsection{Performance}
+\subsubsection{Performance}
 
 Each of the operations in the Grover iteration may be efficiently implemented on a quantum computer. So we just need to focus on the number of Grover iteration.
 
@@ -528,7 +529,7 @@ times. This is not intuitive enough, so let's sacrifice some precision to find a
 \end{equation}
 from which we obtain an elegant upper bound on the number of iterations required,
 \begin{equation}
-    R\leq\left\lceil\frac{\pi}{4}\sqrt{\frac{N}{M}}\right\rceil
+    R\leq\left\lceil\frac{\pi}{4}\sqrt{\frac{N}{M}}\right\rceil.
 \end{equation}
 That is, $R=O(\sqrt{N/M})$ Grover iterations must be performed in order to obtain a solution to the search problem with high probability.\footnote{The classical algorithm requires $O(N/M)$ calls to the oracle.}
 
@@ -536,9 +537,15 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 
 
+\subsection{Long algorithm}
+
+\cite{Long_2001}
+
+
+
 \section{Bounds for Grover's algorithm}
 
-Show the proof of Theorem 8 and 9 in \cite{2009Exact}.
+\cite{2009Exact}
 
 
 
