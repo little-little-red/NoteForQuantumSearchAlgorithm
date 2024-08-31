@@ -1,26 +1,33 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[bottom=20mm,top=20mm,left=20mm,right=40mm]{geometry}
+
 %-----------------------package---------------------------
-\usepackage{verbatim}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=red, linktocpage=true,breaklinks=true]{hyperref} 
-\usepackage{amsmath,amsfonts,amssymb,graphics,graphicx,epsfig,color,times,braket,enumerate,bm,subcaption}
-\usepackage{epstopdf}
-\usepackage{enumerate}
-\hypersetup{linktocpage = true}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{braket}
 \usepackage{cancel}
 \usepackage{xcolor}
-\usepackage{amsthm}
-\usepackage{mathtools}
+\usepackage{graphicx}%需要在epstopdf之前
+\usepackage{epstopdf}
+\usepackage{enumerate}
 \usepackage[perpage]{footmisc}
-\allowdisplaybreaks[3]
-\usepackage{titlesec}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red, linktocpage=true,breaklinks=true]{hyperref}
+\usepackage{mathtools}
+\usepackage{subcaption}
+\usepackage{times}
 \usepackage{tikz}
+\usepackage{titlesec}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{verbatim}
 \usetikzlibrary{quantikz2}
+
+%-----------------------settings---------------------------
+\allowdisplaybreaks[3]
 \newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}{Lemma}[subsection]
 \numberwithin{equation}{subsection}
-
 
 % Ensure proper formatting of section titles
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
@@ -545,7 +552,7 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 \section{Bounds for Grover's algorithm}
 
-\cite{2009Exact}
+
 
 
 
