@@ -386,7 +386,7 @@ This is exponential in $n$, so it is hard to approximate arbitrary unitary gates
 
 \subsection{Quantum Circuit Model}
 
-Before discussing the algorithm, let's make some basic assumptions about quantum computers (quantum circuit model) clear\footnote{This part is completely taken from the book\cite{nielsen2010}.}:
+Before discussing the algorithm, let's make some basic assumptions about quantum computers (quantum circuit model) clear:
 \begin{itemize}
     \item A quantum computer consists of a classical part and a quantum part: The classical part is unnecessary but can simplify many tasks.
     \item A quantum circuit operates on $n$ qubits, so the state space is $2^{n}$-dimensional complex Hilbert space.
@@ -545,14 +545,85 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 \subsection{Long algorithm}
 
-\cite{Long_2001}
+\textit{This section is based on the paper\cite{Long_2001}.}
 
 
 
 \section{Bounds for Grover's algorithm}
 
+\textit{This section is based on the paper\cite{2009Exact}.}
+
+\subsection{Principles}
+
+Oracle is at the heart of grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state which uses $T$ queries to the oracle as
+\begin{equation}
+    \ket{\Psi_{x}^{T}}=U_{T}O_{x}U_{T-1}\cdots U_{1}O_{x}\ket{\psi},
+\end{equation}
+where $U_{i}$ is some unitary operation and $O_{x}$ is the oracle which marks the target element $x$. To illustrate the effect of oracles, let's replace some of them with unit operations, we write
+\begin{equation}
+    \ket{\Psi_{x}^{i,T}}=U_{T}O_{x}\cdots O_{x}U_{i+1}O_{x}U_{i}I\cdots U_{1}I\ket{\psi},
+\end{equation}
+which use the identity for the first $i$ oracle queries and the oracle for the latter $T-i$ oracle queries. If there is no application oracle,  then the state is independent of the target element, may be denoted as $\Psi^{T}$. So that we can find the measure changed by oracle, here we use two kinds of measures
+\begin{equation}
+    D(\ket{\alpha},\ket{\beta})=\left\|\ket{\alpha}-\ket{\beta}\right\|
+    \quad\text{and}\quad
+    A(\ket{\alpha},\ket{\beta})=\arccos\frac{\left\lvert \braket{\alpha|\beta}\right\rvert}{\left\|\ket{\alpha}\right\|\left\|\ket{\beta}\right\|}.
+\end{equation}
+Taking the measure $D$ as an example, if $\Psi_{x}^{T}$ satisfies the properties the output should have
+\begin{equation}
+    \left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}} \right\|^{2} \geq p
+\end{equation}
+which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element, we can calculate the number of queries $T$ by dividing $D(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})$ with the measure changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
+\begin{equation}
+    T=\frac{D(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})}{D(O_{x}\ket{\gamma},\ket{\gamma})}.
+\end{equation}
+It is important to note that $\ket{\gamma}$ here is not some particular state, we will calculate the mean of the measure changed by oracle on each state.
 
 
+
+\subsection{Changes by oracle}
+
+First, let's calculate the measure changed by oracle. Considering the measure of the state before and after $T$ oracle queries, we have
+\begin{lemma}
+    The average \textcolor{red}{distance} after $T$ oracle queries is at most $2T\textcolor{red}{\frac{1}{\sqrt{N}}}$.
+\end{lemma}
+\begin{proof}
+    With triangle inequality,
+    \begin{equation}
+        \begin{split}
+            \frac{1}{N}\sum_{x=0}^{N-1}\textcolor{red}{D}(\ket{\Psi_{x}^{T,T}},\ket{\Psi_{x}^{0,T}})
+             & \leq \frac{1}{N}\sum_{x=0}^{N-1}\sum_{i=1}^{T}\textcolor{red}{D}(\ket{\Psi_{x}^{i,T}},\ket{\Psi_{x}^{i-1,T}}) \\
+             & = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=0}^{N-1}\textcolor{red}{D}(\ket{\Psi^{i}},O_{x}\ket{\Psi^{i}})             \\
+             & = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=0}^{N-1}2\textcolor{red}{\left\| \mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|}   \\
+             & \leq 2\sum_{i=1}^{T}\textcolor{red}{\frac{1}{\sqrt{N}}} = 2T\textcolor{red}{\frac{1}{\sqrt{N}}},
+        \end{split}
+    \end{equation}
+    where the last inequality needs to notice that
+    \begin{equation}\label{Cauchy-Schwarz}
+        \left(\sum_{i=0}^{N-1}a_{i}\right)^{2}=\sum_{i=0}^{N-1}a_{i}^{2}+2\sum_{i=0}^{N-1}\sum_{j=0}^{i-1}a_{i}a_{j}\leq N\sum_{i=0}^{N-1}a_{i}^{2},
+    \end{equation}
+    that is $\sum_{x=0}^{N-1}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|\leq \sqrt{N\sum_{i=0}^{N-1}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|^{2}}=\sqrt{N}$.
+\end{proof}
+\begin{lemma}
+    The average \textcolor{blue}{angle} after $T$ oracle queries is at most $2T\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})}$.
+\end{lemma}
+\begin{proof}
+    With triangle inequality,
+    \begin{equation}
+        \begin{split}
+            \frac{1}{N}\sum_{x=0}^{N-1}\textcolor{blue}{A}(\ket{\Psi_{x}^{T,T}},\ket{\Psi_{x}^{0,T}})
+             & \leq \frac{1}{N}\sum_{x=0}^{N-1}\sum_{i=1}^{T}\textcolor{blue}{A}(\ket{\Psi_{x}^{i,T}},\ket{\Psi_{x}^{i-1,T}})      \\
+             & = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=0}^{N-1}\textcolor{blue}{A}(\ket{\Psi^{i}},O_{x}\ket{\Psi^{i}})                  \\
+             & = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=0}^{N-1}2\textcolor{blue}{\arccos(\left\lvert\cos(2\theta_{x}^{i})\right\rvert)} \\
+             & \leq 2\sum_{i=1}^{T}\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})} = 2T\textcolor{blue}{arcsin(\frac{1}{\sqrt{N}})},
+        \end{split}
+    \end{equation}
+    where the last inequality still needs to notice the monotonicity of $\sin(x)$ in the interval $x\in\left[0,\frac{\pi}{2}\right]$ and notice the equation\ref{Cauchy-Schwarz}. And where is $\theta_{x}^{i}=\arcsin\left\| \mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|$.
+\end{proof}
+
+
+
+\subsection{Measure when the output is we need}
 
 
 \bibliographystyle{plain}
