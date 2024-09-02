@@ -563,29 +563,29 @@ where $U_{i}$ is some unitary operation and $O_{x}$ is the oracle which marks th
 \begin{equation}
     \ket{\Psi_{x}^{i,T}}=U_{T}O_{x}\cdots O_{x}U_{i+1}O_{x}U_{i}I\cdots U_{1}I\ket{\psi},
 \end{equation}
-which use the identity for the first $i$ oracle queries and the oracle for the latter $T-i$ oracle queries. If there is no application oracle,  then the state is independent of the target element, may be denoted as $\Psi^{T}$. So that we can find the measure changed by oracle, here we use two kinds of measures
+which use the identity for the first $i$ oracle queries and the oracle for the latter $T-i$ oracle queries. If there is no application oracle,  then the state is independent of the target element, may be denoted as $\Psi^{T}$. So that we can find the distance changed by oracle, here we use two kinds of metric, eulidean distance and angular distance:
 \begin{equation}
-    D(\ket{\alpha},\ket{\beta})=\left\|\ket{\alpha}-\ket{\beta}\right\|
+    E(\ket{\alpha},\ket{\beta})=\left\|\ket{\alpha}-\ket{\beta}\right\|
     \quad\text{and}\quad
     A(\ket{\alpha},\ket{\beta})=\arccos\frac{\left\lvert \braket{\alpha|\beta}\right\rvert}{\left\|\ket{\alpha}\right\|\left\|\ket{\beta}\right\|}.
 \end{equation}
-Taking the measure $D$ as an example, if $\Psi_{x}^{T}$ satisfies the properties the output should have
+Taking the distance $E$ as an example, if $\Psi_{x}^{T}$ satisfies the properties the output should have
 \begin{equation}
     \left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}} \right\|^{2} \geq p
 \end{equation}
-which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element, we can calculate the number of queries $T$ by dividing $D(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})$ with the measure changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
+which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element, we can calculate the number of queries $T$ by dividing $D(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
 \begin{equation}
-    T=\frac{D(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})}{D(O_{x}\ket{\gamma},\ket{\gamma})}.
+    T=\frac{E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})}{E(O_{x}\ket{\gamma},\ket{\gamma})}.
 \end{equation}
-It is important to note that $\ket{\gamma}$ here is not some particular state, we will calculate the mean of the measure changed by oracle on each state.
+It is important to note that $\ket{\gamma}$ here is not some particular state, we will calculate the mean of the distance changed by oracle on each state.
 
 
 
 \subsection{Changes by oracle}
 
-First, let's calculate the measure changed by oracle. Considering the measure of the state before and after $T$ oracle queries, we have
+First, let's calculate the distance changed by oracle. Considering the distance of the state before and after $T$ oracle queries, we have
 \begin{lemma}
-    The average \textcolor{red}{distance} after $T$ oracle queries is at most $2T\textcolor{red}{\frac{1}{\sqrt{N}}}$.
+    The average \textcolor{red}{eulidean distance} after $T$ oracle queries is at most $2T\textcolor{red}{\frac{1}{\sqrt{N}}}$.
 \end{lemma}
 \begin{proof}
     With triangle inequality,
@@ -605,7 +605,7 @@ First, let's calculate the measure changed by oracle. Considering the measure of
     that is $\sum_{x=0}^{N-1}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|\leq \sqrt{N\sum_{i=0}^{N-1}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|^{2}}=\sqrt{N}$.
 \end{proof}
 \begin{lemma}
-    The average \textcolor{blue}{angle} after $T$ oracle queries is at most $2T\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})}$.
+    The average \textcolor{blue}{angular distance} after $T$ oracle queries is at most $2T\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})}$.
 \end{lemma}
 \begin{proof}
     With triangle inequality,
@@ -620,10 +620,16 @@ First, let's calculate the measure changed by oracle. Considering the measure of
     \end{equation}
     where the last inequality still needs to notice the monotonicity of $\sin(x)$ in the interval $x\in\left[0,\frac{\pi}{2}\right]$ and notice the equation\ref{Cauchy-Schwarz}. And where is $\theta_{x}^{i}=\arcsin\left\| \mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|$.
 \end{proof}
+According to the theorem, the distance changed by each oracle query can only add up linearly.
 
 
 
-\subsection{Measure when the output is we need}
+\subsection{distance when the output is we need}
+
+
+
+
+
 
 
 \bibliographystyle{plain}
