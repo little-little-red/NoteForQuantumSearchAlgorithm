@@ -132,10 +132,10 @@ The success probability (finding the target state) does not scale linearly with 
 
 \begin{figure}
 	\subfloat[\label{fig G n} $G_n = D_nU_t$.]{%
-		\includegraphics[width=0.48\columnwidth]{G_n.pdf}%
+		\includegraphics[width=0.48\columnwidth]{figures/G_m.pdf}
 	}\hfill
 	\subfloat[\label{fig G m} $G_m = D_mU_t$.]{%
-		\includegraphics[width=0.5\columnwidth]{G_m.pdf}%
+		\includegraphics[width=0.5\columnwidth]{figures/G_n.pdf}
 	}
 	\caption{Quantum circuits of global Grover operator $G_n$ defined in Eq. (\ref{def G n}) and local Grover operator defined in Eq. (\ref{def G m}). The diffusion operator $D_n$ ($D_m$) is single-qubit-gate equivalent to the $n$-qubit Toffoli gate $\Lambda_{n-1}(X)$ ($m$-qubit Toffoli gate $\Lambda_{m-1}(X)$) \cite{NC10}. Here $X$ and $Z$ are Pauli gates, and $H$ is the Hadamard gate. The subspace where $D_m$ acts can be chosen arbitrarily.}
 	\label{fig G n m}
@@ -243,7 +243,7 @@ The minimization results will depend on: the size of the database (the number $n
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=\columnwidth]{depth.pdf}
+		\includegraphics[width=\columnwidth]{figures/depth.pdf}
 		\caption{(a) Estimated $\text d_\text{G}(\alpha)$ (MED of Grover's algorithm is defined in Eq. (\ref{def d G})), $\text d_1(\alpha)$ defined in Eq. (\ref{d 1 G}) and $\text d_2(\alpha)$ defined in Eq. (\ref{d 2 G}) with $\alpha=1$. Depth $\text d(D_n)$ is counted using the optimal results in Ref. \cite{BBCDMSSSW95}. The corresponding optimal sequences and success probabilities are listed in Appendix \ref{Appendix opt examples}. (b) Depth of the optimal sequence. The left (red) bar is Grover's algorithm. The right (green) bar is the optimal sequence from $\text d_1(1)$ defined in Eq. (\ref{d 1 G}). $\text d_2(1)$ has two stages: the bottom of the middle bar is the depth of the first stage circuit and the top of the middle bar is the depth of the second stage circuit. }\label{fig 2}
 	\end{center}
 \end{figure}
