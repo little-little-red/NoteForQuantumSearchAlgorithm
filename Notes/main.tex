@@ -43,61 +43,40 @@
 
 \subsubsection{Single-qubit gate}
 
-The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the quantum state can be mapped to the Bloch sphere with two parameters:
-\begin{equation}
-    \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \sin \frac{\theta}{2}\mathrm{e}^{\mathrm{i}\varphi }\ket{1}
+The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the Bloch sphere repersentation gives us a more intuitive way to observe the qubit, a homomorphism from a qubit to the three-dimensional real sphere:
+\begin{equation}\label{BlochSphereRepersentation}
+    \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \sin \frac{\theta}{2}\mathrm{e}^{\mathrm{i}\varphi }\ket{1} \mapsto \vec{n}=(\cos\phi\sin\theta,\sin\phi\cos\theta,\cos\theta)^{T}.
 \end{equation}
 
-Operations on a qubit must preserve the norm, and thus are described by $2\times2$ unitary matrices.By $\det|U|=e^{2i\alpha}$ Then
+Operations on a qubit must preserve the norm, and thus are described by $2\times2$ unitary matrices. By $\det|U|=e^{2i\alpha}$ Then
 \begin{equation}
     e^{-i\alpha}U\in SU(2)
 \end{equation}
-They're only off by one global phase, so we usually ignore the global phase and only consider $SU(2)$.
-
-The Lie group $SU(2)$ has three generators $i\sigma_j$, $\sigma_j$ called Pauli matrices:
+They're only off by one global phase, so we usually ignore the global phase and only consider $SU(2)$. The Lie group $SU(2)$ has three generators $i\sigma_j$, $\sigma_j$ called Pauli matrices:
 \begin{equation}
     \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
     \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
     \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.
 \end{equation}
-
-
 From Lie group elements, any single-qubit unitary can be written as a product of exponentials of Pauli matrices by a global phase:
 \begin{equation}
-    U = e^{i\alpha}\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)
+    U = e^{i\alpha}\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right),
 \end{equation}
-$\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
-There is a homomorphism:
+which $\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
+From the homomorphism \ref{BlochSphereRepersentation}, we can also induce a homomorphism of operations on two spaces:
 \begin{equation}
     \begin{split}
         SU(2)                                                       & \to SO(3)
         \\
-        \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto R_{\vec{n}}(\theta)
+        \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto \exp\left(\theta\vec{n}\cdot\vec{J}\right)
     \end{split}
 \end{equation}
-
-The former refers to single-qubit gates and the latter to transformations on the Bloch sphere. Since we often need transformations on the Bloch sphere to visualize quantum gates, we will use $R_{\vec{n}}(\theta)$ to refer to $\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$ directly in the following. So $R_{\vec{n}}(\theta) \coloneqq \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$.
-
-According to the lemma:
-\begin{lemma}
-    The real number $x$ and the matrix $A$ such that $A^2=I$ give us
-    \begin{equation}
-        e^{iAx}=\cos (x)I+i\sin (x)A
-    \end{equation}
-\end{lemma}
-
-we know that:
-\begin{equation}
-    R_{\vec{n}}(\theta)=\cos \left(\frac{\theta}{2}\right)I-i\sin \left(\frac{\theta}{2}\right)(\vec{n}\cdot\vec{\sigma})
-\end{equation}
-
-
-There is another form about $V\in SU(2)$:
-\begin{equation}
+which $J_{j}$ is the three generators of Lie group $SO(3)$, the former refers to single-qubit gates and the latter to transformations on the Bloch sphere. For visualization and convenience, we let $R_{\vec{n}}(\theta) \coloneqq \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$. There is another form about $V\in SU(2)$:
+\begin{equation}\label{EulerAngle}
     V=R_{\vec{n}}(\beta)R_{\vec{m}}(\gamma)R_{\vec{n}}(\delta)
 \end{equation}
 where $\vec{n}\neq k\vec{m}$,so we have:
-\begin{equation}\label{EulerAngle}
+\begin{equation}
     U=e^{i\alpha}R_{\vec{n}}(\beta)R_{\vec{m}}(\gamma)R_{\vec{n}}(\delta)
 \end{equation}
 
@@ -110,7 +89,7 @@ In the following, we use $XYZ$ instead of $\sigma_x\sigma_y\sigma_z$, here are s
 
 
 
-\subsubsection{Controlled operation}
+\subsubsection{\label{CtrlGate}Controlled operation}
 
 Analogous to the if statement of a classical circuit, we can use controlled-NOT gate to control target qubit with control qubit, its matrix form and circuit are shown as follows:
 \begin{equation}
@@ -241,9 +220,9 @@ Ultimately we will show that any unitary operation can be composed to an arbitra
 
 \subsection{Universal Gate Set}
 
-\subsubsection{Single-qubit and CNOT gates are universal}
+\subsubsection{\label{SingleAndCnot}Single-qubit and CNOT gates are universal}
 
-In the previous subsection, we showed that $C^{n}(U)$ gate can be decomposed into a combination of single-qubit gates and CNOT gates. In this section, we will show that any unitary gate can be combined from $C^{n}(U)$ gate.
+In the section \ref{CtrlGate}, we showed that $C^{n}(U)$ gate can be decomposed into a combination of single-qubit gates and CNOT gates. In this section \ref{SingleAndCnot}, we will show that any unitary gate can be combined from $C^{n}(U)$ gate.
 
 First, we introduce the theorem:
 \begin{lemma}
