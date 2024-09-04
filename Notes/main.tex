@@ -1,31 +1,34 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[bottom=20mm,top=20mm,left=20mm,right=40mm]{geometry}
+
 %-----------------------package---------------------------
-\usepackage{verbatim}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=red, linktocpage=true,breaklinks=true]{hyperref} 
-\usepackage{amsmath,amsthm,amsfonts,amssymb,graphics,graphicx,epsfig,color,times,braket,tikz,enumerate,bm,subcaption}
-\usepackage{epstopdf}
-\usepackage{enumerate}
-\hypersetup{linktocpage = true}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{braket}
 \usepackage{cancel}
 \usepackage{xcolor}
-\usepackage{amsthm}
-\usepackage{mathtools}
+\usepackage{graphicx}%需要在epstopdf之前
+\usepackage{epstopdf}
+\usepackage{enumerate}
 \usepackage[perpage]{footmisc}
-\allowdisplaybreaks[3]
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red, linktocpage=true,breaklinks=true]{hyperref}
+\usepackage{mathtools}
+\usepackage{subcaption}
+\usepackage{times}
 \usepackage{titlesec}
-\usepackage{qcircuit,tikz}
 \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{verbatim}
+\usepackage{quantikz}
+
+%-----------------------settings---------------------------
+\allowdisplaybreaks[3]
 \newtheorem{theorem}{Theorem}[subsection]
-%\usetikzlibrary{quantikz2}
-
-% Ensure proper formatting of section titles
-\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
-
-%by Zhongwei Jiang
+\newtheorem{lemma}{Lemma}[subsection]
 \numberwithin{equation}{subsection}
 
+%-----------------------maintext---------------------------
 \title{Notes on quantum search algorithm}
 \author{Zhongwei Jiang, Linfeng Zhao}
 \date{\today}
@@ -67,21 +70,21 @@ $\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
 There is a homomorphism:
 \begin{equation}
     \begin{split}
-        SU(2)               & \to SO(3)
+        SU(2)                                                       & \to SO(3)
         \\
-        R_{\vec{n}}(\theta) & \mapsto \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)
+        \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto R_{\vec{n}}(\theta)
     \end{split}
 \end{equation}
 
-The former refers to the transformation on the Bloch sphere, and the latter for a single-qubit gate. Since we often need transformations on the Bloch sphere to visualize quantum gates, we will use $R_{\vec{n}}(\theta)$ to refer to $\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$ directly in the following. So $R_{\vec{n}}(\theta) = \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$.
+The former refers to single-qubit gates and the latter to transformations on the Bloch sphere. Since we often need transformations on the Bloch sphere to visualize quantum gates, we will use $R_{\vec{n}}(\theta)$ to refer to $\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$ directly in the following. So $R_{\vec{n}}(\theta) \coloneqq \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$.
 
-According to the theorem:
-\begin{theorem}
+According to the lemma:
+\begin{lemma}
     The real number $x$ and the matrix $A$ such that $A^2=I$ give us
     \begin{equation}
         e^{iAx}=\cos (x)I+i\sin (x)A
     \end{equation}
-\end{theorem}
+\end{lemma}
 
 we know that:
 \begin{equation}
@@ -114,129 +117,124 @@ Analogous to the if statement of a classical circuit, we can use controlled-NOT 
     CNOT = \begin{pmatrix} I & 0 \\ 0 & X \end{pmatrix}
 \end{equation}
 \begin{equation}
-    \Qcircuit @C=1.5em @R=1.5em {
-    & \ctrl{1} & \qw \\
-    & \targ & \qw
-    }
+    \begin{quantikz}[row sep=0.4cm]
+        & \ctrl{1} & \\
+        & \targ{} &
+    \end{quantikz}
 \end{equation}
-CNOT gate makes the state of the target qubit be flipped when the control qubit is 1 and remain unchanged when the control qubit is 0. That is $\ket{c}\ket{t}\rightarrow\ket{c}X^{c}\ket{t}$. Considering a different basis then the control qubit does change and the control qubit could be flipped depending on the state of the ‘target’qubit, show that:
+CNOT gate makes the state of the target qubit be flipped when the control qubit is 1 and remain unchanged when the control qubit is 0. That is $\ket{c}\ket{t}\rightarrow\ket{c}X^{c}\ket{t}$. We will also use two deformations of CNOT gates:
 \begin{equation}
-    \Qcircuit @C=1.5em @R=1.8em {
-    & \targ & \qw \\
-    & \ctrl{-1} & \qw
-    }
-    \quad \raisebox{-1em}{=} \quad
-    \Qcircuit @C=1em @R=1em {
-    & \gate{H} & \ctrl{1} & \gate{H} & \qw \\
-    & \gate{H} & \targ & \gate{H} & \qw
-    }
+    \begin{quantikz}
+        & \targ{} & \ghost{H} \\
+        & \ctrl{-1} & \ghost{H}
+    \end{quantikz} = \begin{quantikz}[row sep=0.4cm,column sep=0.4cm]
+        & \gate{H} & \ctrl{1} & \gate{H} & \\
+        & \gate{H} & \targ{} & \gate{H} &
+    \end{quantikz}
+    \quad\text{and}\quad
+    \begin{quantikz}
+        & \octrl{1} & \ghost{X} \\
+        & \targ{} &
+    \end{quantikz} = \begin{quantikz}[row sep=0.4cm,column sep=0.4cm]
+        & \gate{X} & \ctrl{1} & \gate{X} & \\
+        & & \targ{} & &
+    \end{quantikz}
 \end{equation}
 
 We expect to extend this control from $X$ to an arbitrary single-qubit gate $U$. That is, $\ket{c}\ket{t}\rightarrow\ket{c}U^{c}\ket{t}$ which is known as a controlled-U gate. Show that:
 \begin{equation}
-    \Qcircuit @C=1.5em @R=1.5em {
-    & \ctrl{1} & \qw \\
-    & \gate{U} & \qw
-    }
+    \begin{quantikz}[row sep=0.4cm]
+        & \ctrl{1} & \\
+        & \gate{U} &
+    \end{quantikz}
 \end{equation}
 We wish to decompose this into a combination of single quantum bit gates and CNOT gates by introducing the theorem:
-\begin{theorem}
+\begin{lemma}
     If $U$ is a single quantum bit gate, then there exists $A,B,C \in SU(2)$, $ABC=I$, and then there is
     \begin{equation}
         U = e^{i\alpha}AXBXC
     \end{equation}
-\end{theorem}
+\end{lemma}
 With this theorem, we can divide the controlled-U gate into several parts, looking first at the global phase part, which obviously has:
 \begin{equation}
-    \Qcircuit @C=1.5em @R=1.5em {
-    & \ctrl{1} & \qw \\
-    & \gate{e^{i\alpha}I} & \qw
-    }
-    \quad \raisebox{-1em}{=} \quad
-    \Qcircuit @C=1em @R=1.5em {
-    & \gate{phase} & \qw \\
-    & \qw & \qw
-    }
+    \begin{quantikz}[row sep=0.4cm]
+        & \ctrl{1} & \ghost{phase} \\
+        & \gate{e^{i\alpha}I} &
+    \end{quantikz} = \begin{quantikz}[row sep=0.4cm]
+        & \gate{phase} & \\
+        & \ghost{e^{i\alpha}I} &
+    \end{quantikz}
 \end{equation}
 where $phase = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\alpha} \end{pmatrix}$.
 
 Looking at the $AXBXC$ part again, we have the expectation that if the control qubit is $\ket{0}$, then we do nothing, and adding a CNOT gate anywhere doesn't change that, so we have.
 \begin{equation}
-    \Qcircuit @C=1em @R=1.5em {
-    \lstick{\ket{0}} & \qw & \qw \\
-    \lstick{} & \gate{I} & \qw
-    }
-    \quad \raisebox{-1em}{=} \quad
-    \Qcircuit @C=1em @R=1.5em {
-    & \qw & \qw & \qw & \qw \\
-    & \gate{A} & \gate{B} & \gate{C} & \qw
-    }
-    \quad \raisebox{-1em}{=} \quad
-    \Qcircuit @C=1em @R=1.5em {
-    & \qw & \ctrl{1} & \qw & \ctrl{1} & \qw & \qw \\
-    & \gate{A} & \targ & \gate{B} & \targ & \gate{C} & \qw
-    }
+    \begin{quantikz}
+        \lstick{$\ket{0}$} & & \ghost{} \\
+        \lstick{} & \gate{I} &
+    \end{quantikz} = \begin{quantikz}
+        & & & & \ghost{} \\
+        & \gate{A} & \gate{B} & \gate{C} &
+    \end{quantikz} = \begin{quantikz}
+        & & \ctrl{1} & & \ctrl{1} & & \ghost{} \\
+        & \gate{A} & \targ{} & \gate{B} & \targ{} & \gate{C} &
+    \end{quantikz}
 \end{equation}
 This construction also satisfies:if the control qubit is $\ket{1}$, then we apply $AXBXC$ to the target qubit.
 
-So we have the controlled-U gate decomposition in this form:
-\begin{equation}
-    \Qcircuit @C=1em @R=1.8em {
-    & \ctrl{1} & \qw \\
-    & \gate{U} & \qw
-    }
-    \quad \raisebox{-1.25em}{=} \quad
-    \Qcircuit @C=0.8em @R=1.2em {
-    & \qw & \ctrl{1} & \qw & \ctrl{1} & \gate{phase} & \qw \\
-    & \gate{A} & \targ & \gate{B} & \targ & \gate{C} & \qw
-    }
-\end{equation}
+So we have that:
+\begin{theorem}
+    The controlled-U gate can be decomposed with CNOT gates and single qubit gates into this form:
+    \begin{equation}
+        \begin{quantikz}
+            & \ctrl{1} & \ghost{X} \\
+            & \gate{U} &
+        \end{quantikz} = \begin{quantikz}
+            & & \ctrl{1} & & \ctrl{1} & \gate{phase} & \\
+            & \gate{A} & \targ{} & \gate{B} & \targ{} & \gate{C} &
+        \end{quantikz}
+    \end{equation}
+\end{theorem}
 
 Considering the case of multiple control Qubits, first look at the case of two control Qubits, you can construct: if $V$ is a single qubit gate satisfying $V^2=U$, we have:
 \begin{equation}
-    \Qcircuit @C=1em @R=1.25em {
-    & \ctrl{1} & \qw \\
-    & \ctrl{1} & \qw \\
-    & \gate{U} & \qw
-    }
-    \quad \raisebox{-1.5em}{=} \quad
-    \Qcircuit @C=0.8em @R=1em {
-    & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
-    & \ctrl{1} & \targ & \ctrl{1} & \targ & \qw & \qw \\
-    & \gate{V} & \qw & \gate{V^\dagger} & \qw & \gate{V} & \qw
-    }
+    \begin{quantikz}[row sep=0.4cm]
+        & \ctrl{1} & \qw \\
+        & \ctrl{1} & \qw \\
+        & \gate{U} & \qw
+    \end{quantikz} = \begin{quantikz}[row sep=0.3cm,column sep=0.3cm]
+        & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
+        & \ctrl{1} & \targ{} & \ctrl{1} & \targ{} & \qw & \qw \\
+        & \gate{V} & \qw & \gate{V^\dagger} & \qw & \gate{V} & \qw
+    \end{quantikz}
 \end{equation}
 
 Then we can extend this to the case of $n$ control qubits, there are many kinds of construction methods, here we use recursive method to construct:
 \begin{equation}
-    \Qcircuit @C=1em @R=1em {
-    & \ctrl{1} & \qw \\
-    & \ctrl{1} & \qw \\
-    & \ctrl{1} & \qw \\
-    & \gate{U} & \qw
-    }
-    \quad \raisebox{-2em}{=} \quad
-    \Qcircuit @C=0.8em @R=0.85em {
-    & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
-    & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
-    & \ctrl{1} & \targ & \ctrl{1} & \targ & \qw & \qw \\
-    & \gate{V} & \qw & \gate{V^\dagger} & \qw & \gate{V} & \qw
-    }
+    \begin{quantikz}[row sep=0.35cm]
+        & \ctrl{1} & \qw \\
+        & \ctrl{1} & \qw \\
+        & \ctrl{1} & \qw \\
+        & \gate{U} & \qw
+    \end{quantikz} = \begin{quantikz}[row sep=0.3cm,column sep=0.3cm]
+        & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
+        & \qw & \ctrl{1} & \qw & \ctrl{1} & \ctrl{2} & \qw \\
+        & \ctrl{1} & \targ{} & \ctrl{1} & \targ{} & \qw & \qw \\
+        & \gate{V} & \qw & \gate{V^\dagger} & \qw & \gate{V} & \qw
+    \end{quantikz}
 \end{equation}
 
 Ultimately we will show that any unitary operation can be composed to an arbitrarily good approximation from just H, S, T, CNOT gates. Here is the construction of the Toffoli gate:
 \begin{equation}
-    \Qcircuit @C=.75em @R=1.5em {
-    & \ctrl{1} & \qw \\
-    & \ctrl{1} & \qw \\
-    & \targ & \qw
-    }
-    \quad \raisebox{-1.75em}{=} \quad
-    \Qcircuit @C=.5em @R=.5em {
-    & \qw & \qw & \qw & \ctrl{2} & \qw & \qw & \qw & \qw & \ctrl{2} & \qw & \ctrl{1} & \qw & \ctrl{1} & \gate{T} & \qw \\
-    & \qw & \ctrl{1} & \qw & \qw & \qw & \qw & \ctrl{1} & \qw & \qw & \gate{T^\dagger} & \targ & \gate{T^\dagger} & \targ & \gate{S} & \qw \\
-    & \gate{H} & \targ & \gate{T^\dagger} & \targ & \gate{T} & \qw & \targ & \gate{T^\dagger} & \targ & \gate{T} & \gate{H} & \qw & \qw & \qw & \qw
-    }
+    \begin{quantikz}
+        & \ctrl{1} & \qw \\
+        & \ctrl{1} & \qw \\
+        & \targ{} & \qw
+    \end{quantikz} = \begin{quantikz}[row sep=0.1cm,column sep=0.25cm]
+        & & & & \ctrl{2} & & & & \ctrl{2} & & \ctrl{1} & & \ctrl{1} & \gate{T} & \\
+        & & \ctrl{1} & & & & \ctrl{1} & & & \gate{T^\dagger} & \targ{} & \gate{T^\dagger} & \targ{} & \gate{S} & \\
+        & \gate{H} & \targ{}  & \gate{T^\dagger} & \targ{} & \gate{T} & \targ{} & \gate{T^\dagger} & \targ{} & \gate{T} & \gate{H} & & & &
+    \end{quantikz}
 \end{equation}
 
 
@@ -248,9 +246,9 @@ Ultimately we will show that any unitary operation can be composed to an arbitra
 In the previous subsection, we showed that $C^{n}(U)$ gate can be decomposed into a combination of single-qubit gates and CNOT gates. In this section, we will show that any unitary gate can be combined from $C^{n}(U)$ gate.
 
 First, we introduce the theorem:
-\begin{theorem}
+\begin{lemma}
     Any D-dimensional unitary transformation U can always be decomposed into the product of $d(d-1)/2$ two-level unitary transformations under natural basis.
-\end{theorem}
+\end{lemma}
 So exists two-level unitary transformations $ V_{j} $ made $U = \prod\limits_{j=1}^{d(d-1)/2}V_{j}$\footnote{Unless otherwise specified, the conjunction sign in this document is calculated according to the composite order of the map, that is $\prod\limits_{j=1}^{n}a_{j} = a_{n}a_{n-1}\cdots a_{1}$. }. Two-level unitary transformations are unitary matrices which act non-trivially only on two-or-fewer vector components.The proof idea of this theorem is simple\footnote{Each single-qubit gates has $d(d-1)/2$ degrees of freedom and each two-level unitary transformations turn one of single-qubit gates elements into zero in order. So exists two-level unitary transformations $ V_{j} $ made $\left( \prod\limits_{j=1}^{d(d-1)/2}V_{j} \right) U = I $. },  let's focus on the two-level unitary transformations $V$.
 
 Consider the binary expansion of the two bases $\ket{s}$ and $\ket{t}$ on which $V$ operates, where $s=s_{1}\ldots s_{n}$ and $t=t_{1}\ldots t_{n}$. We can use Toffoli gate to turn $s_{j}$ into $t_{j}$, after $n-1$ steps $\ket{s_{1}\ldots s_{k-1} s_{k} s_{k+1} \ldots s_{n}}$ into $\ket{t_{1}\ldots t_{k-1} s_{k} t_{k+1} \ldots t_{n}}$. It puts $\ket{s}$ and $\ket{t}$in the same qubit and makes $V$ into a $C^{n}(\widetilde{V})$ gate which $\widetilde{V}$ is the non-trivial $2\times 2$ unitary submatrix of $V$.
@@ -258,20 +256,18 @@ Consider the binary expansion of the two bases $\ket{s}$ and $\ket{t}$ on which 
 Let's take an example to illustrate this theorem, consider the $U$ gate:
 \begin{equation}
     V = \begin{pmatrix} a & 0 & 0 & c \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ b & 0 & 0 & d \end{pmatrix}
-    \quad and \quad
+    \quad \text{and} \quad
     \widetilde{V} = \begin{pmatrix} a & c \\ b & d \end{pmatrix}
 \end{equation}
 Notice that $V$ acts non-trivially only on the states $\ket{00}$ and $\ket{11}$, so we can use the CNOT gate to turn $\ket{00}$ into $\ket{01}$, then we can get the $C(\widetilde{V})$ gate. Here is the circuit of $V$:
 \begin{equation}
-    \Qcircuit @C=1em @R=1.5em {
-    & \multigate{1}{V} & \qw \\
-    & \ghost{V} & \qw
-    }
-    \quad \raisebox{-1.5em}{=} \quad
-    \Qcircuit @C=0.8em @R=1.3em {
-    & \gate{X} & \ctrl{1} & \gate{X} & \gate{\widetilde{V}} & \gate{X} & \ctrl{1} & \gate{X} & \qw \\
-    & \qw & \targ & \qw & \ctrl{-1} & \qw & \targ & \qw & \qw
-    }
+    \begin{quantikz}
+        & \gate[2]{V} & \qw \\
+        & & \qw
+    \end{quantikz} = \begin{quantikz}
+        & \octrl{1} & \gate{\widetilde{V}} & \octrl{1} & \qw \\
+        & \targ{} & \ctrl{-1} & \targ{} & \qw
+    \end{quantikz}
 \end{equation}
 
 So we have:
@@ -285,7 +281,7 @@ So we have:
 
 It is hard to implement all single-qubit, so we consider to approximate it with a discrete set which we can implement. We introduce the induced norm of operators to measure the degree of approximation:
 \begin{equation}
-    E(U,V) = \left\| U-V \right\| = \sup\limits_{\ket{\psi} \in \mathbb{C}^{n} \atop \left\| \ket{\psi} \right\| = 1} \left\| (U-V)\ket{\psi} \right\|
+    E(U,V) = \left\| U-V \right\| \coloneqq \sup\limits_{\substack{\ket{\psi} \in \mathbb{C}^{n} \\ \left\| \ket{\psi} \right\| = 1}} \left\| (U-V)\ket{\psi} \right\|
 \end{equation}
 Where $U$ is the target unitary operator
 that we wish to implement, $V$ is the unitary operator that is actually implemented in practice, and $E(U,V)$ is the error when $V$ is implemented instead of $U$. It is natural that:
@@ -309,10 +305,11 @@ We are more concerned with the error of the approximation in the measurement. co
 \end{equation}
 This makes it possible that if we want the probability difference between the approximate line and the ideal line on a certain outcome to be within a tolerance $\Delta > 0$, we only need to ensure that $E(U_{j},V_{j}) \leq \Delta/(2m)$.
 
+\vspace{.5cm}
 From the decomposition given by \ref{EulerAngle}, we can further care about the degree of approximation of $R_{\vec{n}}(\theta)$. Let's start by introducing a neat theorem:
-\begin{theorem}\label{AngleCoverR}
+\begin{lemma}\label{AngleCoverR}
     Considering $\alpha$, $\theta \in \mathbb{R} /2\pi\mathbb{Z}$, if $\theta/\pi \in \mathbb{R} \backslash \mathbb{Q}$ , we can find a subsequences $\{x_n\}$ of sequences $\{n\}$ makes $\lim\limits_{n\to\infty}x_n\theta = \alpha$.
-\end{theorem}
+\end{lemma}
 \begin{proof}
     $\forall \epsilon>0$, $\exists N=\frac{2\pi}{\epsilon}$, when $n>N$, we can find $|j\theta-k\theta|\leq\frac{2\pi}{n}$ which $j,k \in \{n\},j>k$, let $x_{n} = (j-k)\left\lfloor\frac{\alpha}{|j\theta-k\theta|}\right\rfloor$, so we have $|x_{n}\theta-\alpha|<|j\theta-k\theta|\leq\frac{2\pi}{n}<\epsilon$.
 \end{proof}
@@ -334,21 +331,373 @@ According the proof, we just need to find the gate that has the Angle that the t
 
 
 
-\subsubsection{talking about complexity}
+\subsubsection{Circuit size for approximation}
 
+It makes no sense to talk about its existence without giving its size,  so let's estimate the number of gates needed for the approximation in the previous section. For convenience of stating the theorem, we say that $S$ is an $\epsilon$-net in $W$, if every point in $W$ is within a distance $\epsilon$ of some point in $S$, where $S$, $W\in SU(2)$ and $\epsilon>0$ and the distance is $D(U,V)\coloneqq\mathrm{tr}|U-V|$. And we define $\mathcal{G}_{l}$ to be the set of all words of length at most $l$.
+\begin{theorem}[Solovay-Kitaev theorem]
+    Let $\mathcal{G}$ be a fitite set of elements in $SU(2)$ conatining its own inverses, such that $\left\langle\mathcal{G}\right\rangle$ is dense in $SU(2)$. Let $\epsilon > 0$ be given. Then $\mathcal{G}_{l}$ is an $\epsilon$-net in $SU(2)$ for $l=O(\ln^{c}(1/\epsilon))$, where $c=\ln5/\ln(3/2)$.
+\end{theorem}
+According to the theorem, we can konw that to approximate a circuit containing $m$ single qubit unitaries to an accuracy $\epsilon$ requires $O(m\ln^{c}(m/\epsilon))$ gates from the discrete set. The proof of this theorem is quite long, so only the main ideas are given here. Let's first introduce the lamma:
+\begin{lemma}
+    Let $\mathcal{G}$ be a fitite set of elements in $SU(2)$ conatining its own inverses, such that $\left\langle\mathcal{G}\right\rangle$ is dense in $SU(2)$. For some $\epsilon>0$ and any $k\in\mathbb{N}$, if $\mathcal{G}_{l}$ is an $\epsilon^{2}$-net for $S_{\epsilon}$, then $\mathcal{G}_{5^{k}l}$ is an $\epsilon(k)^{2}$-net for $S_{\epsilon(k)}$. where $\epsilon(k)=(C\epsilon)^{(3/2)^{k}}/C$, $\epsilon(k)^{2}<\epsilon(k+1)$ and $S_{\epsilon}\coloneqq \{U\in SU(2)|D(U,I)\leq \epsilon\}$.
+\end{lemma}
+\begin{proof}
+    We know the element of $SU(2)$ can be written as $U=\exp(-i\vec{a}\cdot\vec{\sigma}/2)$, we write $U=u(\vec{a})$.And introduce the symbol $[U,V]_{gp}=UVU^{\dagger}V^{\dagger}$. With constant $d$, we have two conclusions:
+    \begin{equation}
+        D([u(\vec{a}),u(\vec{b})]_{gp},u(\vec{a}\times\vec{b}))\leq d\epsilon^{3}\quad\text{and}\quad D(u(\vec{a}),u(\vec{b}))=\left\| \vec{a}-\vec{b} \right\| + O(\epsilon^{3})
+    \end{equation}
+    If $U=u(\vec{x})\in S_{\epsilon^{2}}$, we can find $\vec{y}\times \vec{z}=\vec{x}$ which $u(\vec{y}),u(\vec{z})\in S_{\epsilon}$, so that we can find $u(\vec{y_{0}}),u(\vec{z_{0}})\in \mathcal{G}_{l}\cap S_{\epsilon}$ make $D(u(\vec{y_{0}}),u(\vec{y})),D(u(\vec{z_{0}}),u(\vec{z}))\leq \epsilon$. Notice that
+    \begin{equation}
+        \begin{split}
+            D(U,[u(\vec{y_{0}}),u(\vec{z_{0}})]_{gp})\leq & \ D(U,u(\vec{y_{0}}\times\vec{z_{0}}))+D(u(\vec{y_{0}}\times\vec{z_{0}}),[u(\vec{y_{0}}),u(\vec{z_{0}})]_{gp}) \\
+            =                                             & \  \left\| \vec{y}\times\vec{z}-\vec{y_{0}}\times\vec{z_{0}} \right\|+d\epsilon^{3}                            \\
+            \leq                                          & \ (d+2)\epsilon^{3}+O(\epsilon^{4})                                                                            \\
+            \leq                                          & \ C\epsilon^{3} = \epsilon(1)^{2}
+        \end{split}
+    \end{equation}
+    Specifically, given $U\in S_{\epsilon(1)}$, we can find $V\in\mathcal{G}_{l}$ such that $D(U,V)\leq \epsilon(0)^{2}$, and thus $UV^{\dagger}\in S_{\epsilon(0)^{2}}$, so
+    \begin{equation}
+        D([u(\vec{y_{0}}),u(\vec{z_{0}})]_{gp},UV^{\dagger})=D([u(\vec{y_{0}}),u(\vec{z_{0}})]_{gp}V,U)\leq\epsilon(1)^{2}
+    \end{equation}
+    that is, $\mathcal{G}_{5l}$ is an $\epsilon(1)^{2}$-net for $S_{\epsilon(1)}$. Recursively, $\mathcal{G}_{5^{k}l}$ is an $\epsilon(k)^{2}$-net for $S_{\epsilon(k)}$.
+\end{proof}
+For $U\in SU(2)$ we can find $U_{0}$ make $D(U_{0},U)<\epsilon(0)^{2}<\epsilon(1)$, so we have a first order approximation $U_{0}$ of $U$.  We can go on to approximate their difference $V=UU_{0}^{\dagger}$, With the lemma, we can find $U_{1}$ make $D(U_{1},V)<\epsilon(1)^{2}<\epsilon(2)$, so we have a second order approximation $U_{1}U_{0}$ of $U$. Continue in this way, we can approximate to the accuracy we want which $\epsilon(k+1)<\epsilon$.
+
+\vspace{.5cm}
+Although the approximation of a set of single-qubit gates is polynomial, approximating arbitrary unitary gates is actually hard. Considering the normalization of $n$ qubit states $\left\|\ket{\psi}\right\|=1$ gives that the state space is an unit $(2^{n+1}-1)$-dimensional unit sphere. Given the error $\epsilon$, a state approximation gives an $(2^{n+1}-2)$-dimensional sphere of radius $\epsilon$. So in order to cover the state space, we need about\footnote{$O$ is for upper bounds, $\Omega$ is for lower bounds and $\Theta$ is for tight bounds. }
+\begin{equation}
+    \frac{S_{2^{n+1}-1}(1)}{V_{2^{n+1}-2}(\epsilon)} = \frac{\sqrt{\pi}\Gamma(2^{n}-\frac{1}{2})(2^{n+1}-1)}{\Gamma(2^{n})\epsilon^{2^{n+1}-1}}=\Omega(\epsilon^{-2^{n+1}+1})
+\end{equation}
+states, where\footnote{$S_{k}(r)=2\pi^{(k+1)/2}r^{k}/\Gamma((k+1)/2)$, $V_{k}(r)=2\pi^{(k+1)/2}r^{k+1}/(k+1)\Gamma((k+1)/2)$, where $\Gamma(s)=\int_{0}^{\infty}t^{s-1}e^{-t}\mathrm{d}t$.} $S_{d}(r)$, $V_{d}(r)$ is the surface area, volume of a $d$-dimensional sphere of radius $r$. But for a fixed initial state, $m$ gates can only compute $O(n^{km})$ different states at most, where $k$ is a constant. We must have:
+\begin{equation}
+    O(n^{km})\geq\Omega(\epsilon^{-2^{n+1}+1})
+\end{equation}
+which gives us
+\begin{equation}
+    m = \Omega\left(\frac{2^{n}\ln(1/\epsilon)}{\ln(n)}\right).
+\end{equation}
+This is exponential in $n$, so it is hard to approximate arbitrary unitary gates.
 
 
 
 \subsection{Quantum Circuit Model}
 
-Read Section 4.6 of
+Before discussing the algorithm, let's make some basic assumptions about quantum computers (quantum circuit model) clear:
+\begin{itemize}
+    \item A quantum computer consists of a classical part and a quantum part: The classical part is unnecessary but can simplify many tasks.
+    \item A quantum circuit operates on $n$ qubits, so the state space is $2^{n}$-dimensional complex Hilbert space.
+    \item It is assumed that any computational basis state $\ket{x_{1},\cdots,x_{n}}$ can be prepared in at most $n$ steps.
+    \item Gates can be applied to any subset of qubits as desired, and a universal family of gates can be implemented.
+    \item Measurements may be performed in the computational basis of one or more of the qubits in the computer.
+\end{itemize}
 
 
 
 \section{Quantum Search Algorithm}
 
-Read Section 6.1 of \cite{nielsen2010}.
+\subsection{Grover's Algorithm}
 
+\subsubsection{Principles}
+
+In the search algorithm, we have the $N=2^{n}$ elements in the search space $S=\{0,1\}^{n}$ and the target element $T\subseteq S$ which has $M$ elements. The output of the algorithm should be the state containing all the target elements, so we let
+\begin{equation}
+    \ket{\beta}\coloneqq\frac{1}{\sqrt{M}}\sum_{x\in T}\ket{x}
+    \quad\text{and}\quad
+    \ket{\alpha}\coloneqq\frac{1}{\sqrt{N-M}}\sum_{x\notin T}\ket{x}.
+\end{equation}
+And the input of the algorithm should be a trivial state, may as well let\footnote{$\ket{\psi}$ is a commonly used state, called the equal superposition state.}
+\begin{equation}
+    \ket{\psi}\coloneqq H^{\otimes n}\ket{0}
+\end{equation}
+which use $\ket{0}$ to refer to $\ket{0}^{\otimes n}$ for convenience. There is
+\begin{equation}
+    \braket{\alpha|\beta}=0
+    \quad\text{and}\quad
+    \ket{\psi}=\sqrt{\frac{N-M}{N}}\ket{\alpha}+\sqrt{\frac{M}{N}}\ket{\beta}.
+\end{equation}
+We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operation of turning some non-trivial Angle is hard, so we consider the operation reflecting across some axis. Define two operations here, $O$ is a reflection about $\ket{\alpha}$ and $GO^{-1}$ is a reflection about $\ket{\psi}$.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        % 绘制箭头
+        \draw[->, thick] (0,0) -- (0,3) node[anchor=south] {$\ket{\beta}$};
+        \draw[->, thick] (0,0) -- (2.1,2.1) node[anchor=west] {$G\ket{\psi}$};
+        \draw[->, thick] (0,0) -- (2.8,0.75) node[anchor=west] {$\ket{\psi}$};
+        \draw[->, thick] (0,0) -- (3,0) node[anchor=west] {$\ket{\alpha}$};
+        \draw[->, gray, thick] (0,0) -- (2.8,-0.75) node[anchor=west,black] {$O\ket{\psi}$};
+        % 绘制虚线
+        \draw[dashed] (2.8,0.75) -- (2.8,-0.75);
+        \draw[dashed] (2.1,2.1) -- (2.8,-0.75);
+        % 绘制角度标记
+        \draw (1.5,0) arc[start angle=0,end angle=15,radius=1.5];
+        \draw (1.5,0) arc[start angle=0,end angle=-15,radius=1.5];
+        \draw (1,0.27) arc[start angle=15,end angle=45,radius=1];
+        % 标记角度
+        \node at (1.8,0.25) {$\theta/2$};
+        \node at (1.8,-0.25) {$\theta/2$};
+        \node at (1.2,0.7) {$\theta$};
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:grover}
+\end{figure}
+
+Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in the Figure \ref{fig:grover},  operation $G$ gives us a rotation of $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
+\begin{equation}
+    G^{k}\ket{\psi}=\cos(\frac{2R+1}{2}\theta)\ket{\alpha}+\sin(\frac{2R+1}{2}\theta)\ket{\beta}\approx\ket{\beta}.
+\end{equation}
+The angular error is at most $\theta/2\approx\sqrt{M/N}$.
+
+
+
+\subsubsection{Oracle}
+
+Let's construct the reflection about $\ket{\alpha}$, we call it oracle. We know that states in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$ can be decomposed into
+\begin{equation}
+    \ket{x}=\ket{\beta}\braket{\beta|x}+\ket{\alpha}\braket{\alpha|x}
+\end{equation}
+and we wish
+\begin{equation}
+    O\ket{x}=\ket{\beta}\braket{\beta|x}-\ket{\alpha}\braket{\alpha|x}.
+\end{equation}
+But we don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$. To construct this, we need a special gate\footnote{Note that the mapping $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$ holds only if the controlled qubit is $\ket{-}$.}
+\begin{equation}
+    \begin{quantikz}
+        \lstick{$\ket{x}$} & \qwbundle{n} & \gate[2][1.7cm]{U_{f}}\gateinput{$x$}\gateoutput{$x$} & \rstick{$(-1)^{f(x)}\ket{x}$} \\
+        \lstick{$\ket{-}$} & & \gateinput{$y$}\gateoutput{$y\oplus f(x)$} & \rstick{$\ket{-}$}
+    \end{quantikz}
+\end{equation}
+which gives us a operation $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$. Then we just need to construct the mapping
+\begin{equation}
+    \omega(x)=
+    \begin{cases}
+        1 & x\in T    \\
+        0 & x\notin T
+    \end{cases}
+\end{equation}
+such that $U_{\omega}$ satisfies the properties we need:
+\begin{equation}
+    \begin{split}
+        U_{\omega}\ket{\beta}  & =\ket{\beta}    \\
+        U_{\omega}\ket{\alpha} & =-\ket{\alpha}.
+    \end{split}
+\end{equation}
+So the $U_{\omega}$ is the Oracle.
+
+
+
+\subsubsection{Grover iteration}
+
+Then, let's construct the reflection about $\ket{\psi}$. Same as the oracle, we decompose states into
+\begin{equation}
+    \ket{x}=\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}+\ket{\psi}\braket{\psi|x}
+\end{equation}
+which $\ket{\psi_{\perp}}=\sqrt{\frac{N-M}{N}}\ket{\alpha}-\sqrt{\frac{M}{N}}\ket{\beta}$, and we wish
+\begin{equation}
+    GO^{-1}\ket{x}=\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}-\ket{\psi}\braket{\psi|x}.
+\end{equation}
+But this time, we know $\ket{\psi}$ specifically. Operation $2\ket{\psi}\bra{\psi}-I$ is what we need which satisfies the properties:
+\begin{equation}
+    \begin{split}
+        (2\ket{\psi}\bra{\psi}-I)\ket{\psi}         & =-\ket{\psi}         \\
+        (2\ket{\psi}\bra{\psi}-I)\ket{\psi_{\perp}} & =\ket{\psi_{\perp}}.
+    \end{split}
+\end{equation}
+So we get the construction of the Grover iteration:
+\begin{equation}
+    G=(2\ket{\psi}\bra{\psi}-I)O.
+\end{equation}
+After constructing each sub-operation, the circuit of the algorithm is given here\footnote{The oracle workspace are omitted here.}:
+\begin{equation}
+    \begin{quantikz}[column sep=0.4cm]
+        \lstick{$\ket{0}$} & \qwbundle{n} & \gate{H^{\otimes n}} & \gate[2]{oracle}\gategroup[wires=2,steps=4]{Grover iteration} & \gate{H^{\otimes n}} & \gate{2\ket{0}\bra{0}-I} & \gate{H^{\otimes n}} & \gate[2]{G} & \midstick[2,brackets=none]{$\cdots$} & \gate[2]{G} & \\
+        \lstick{$\ket{1}$} & & \gate{H} & & & & & & & &
+    \end{quantikz}
+\end{equation}
+The ellipsis indicates that it is repeated $R$ times.
+
+
+
+\subsubsection{Performance}
+
+Each of the operations in the Grover iteration may be efficiently implemented on a quantum computer. So we just need to focus on the number of Grover iteration.
+
+We already know, in order to rotate $\ket{\psi}$ near $\ket{\beta}$, we need to repeat the Grover iteration
+\begin{equation}
+    R=\left\lfloor\frac{2\arccos\sqrt{M/N}}{\arcsin\sqrt{M/N}}\right\rceil
+\end{equation}
+times. This is not intuitive enough, so let's sacrifice some precision to find a simpler expression. We know that $R\leq\left\lceil\pi/2\theta\right\rceil$, and if $M\leq N/2$ we have
+\begin{equation}
+    \frac{\theta}{2}\geq\sin\frac{\theta}{2}=\sqrt{\frac{N}{M}},
+\end{equation}
+from which we obtain an elegant upper bound on the number of iterations required,
+\begin{equation}
+    R\leq\left\lceil\frac{\pi}{4}\sqrt{\frac{N}{M}}\right\rceil.
+\end{equation}
+That is, $R=O(\sqrt{N/M})$ Grover iterations must be performed in order to obtain a solution to the search problem with high probability.\footnote{The classical algorithm requires $O(N/M)$ calls to the oracle.}
+
+If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly pick an item from the search space, and then check that it is a solution using the oracle. This approach has a success probability at least one-half, and only requires one consultation with the oracle.
+
+
+
+\subsection{Long algorithm}
+
+\textit{This section is based on the paper\cite{Long_2001}.}
+
+
+
+\section{Bounds for Grover's algorithm}
+
+\textit{This section is based on the paper\cite{2009Exact}.}
+
+\subsection{Principles}
+
+Oracle is at the heart of grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state which uses $T$ queries to the oracle as
+\begin{equation}
+    \ket{\Psi_{x}^{T}}=\prod_{j=1}^{T}U_{j}O_{x}\ket{\psi},
+\end{equation}
+where $U_{i}$ is some unitary operation and $O_{x}$ is the oracle which marks the target element $x$. To illustrate the effect of oracles, let's replace some of them with unit operations, we write
+\begin{equation}
+    \ket{\Psi_{x}^{i,T}}=\prod_{j=i+1}^{T}U_{j}O_{x}\prod_{j=1}^{i}U_{j}I\ket{\psi},
+\end{equation}
+which use the identity for the first $i$ oracle queries and the oracle for the latter $T-i$ oracle queries. If there is no application oracle,  then the state is independent of the target element, may be denoted as
+\begin{equation}
+    \ket{\Psi^{T}}=\prod_{j=1}^{T}U_{j}I\ket{\psi}.
+\end{equation}
+So that we can find the distance changed by oracle, here we use two kinds of metric, eulidean distance and angular distance:
+\begin{equation}
+    E(\ket{\alpha},\ket{\beta})=\left\|\ket{\alpha}-\ket{\beta}\right\|
+    \quad\text{and}\quad
+    A(\ket{\alpha},\ket{\beta})=\arccos\frac{\left\lvert \braket{\alpha|\beta}\right\rvert}{\left\|\ket{\alpha}\right\|\left\|\ket{\beta}\right\|}.
+\end{equation}
+Taking the distance $E$ as an example, if $\Psi_{x}^{T}$ satisfies the properties the output should have
+\begin{equation}\label{TheOutputWeWant}
+    \left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}} \right\|^{2} \geq p
+\end{equation}
+which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element, we can calculate the number of queries $T$ by dividing $E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
+\begin{equation}
+    T=\frac{E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})}{E(O_{x}\ket{\gamma},\ket{\gamma})}.
+\end{equation}
+It is important to note that $\ket{\gamma}$ here is not some particular state, we will calculate the mean of the distance changed by oracle on each state.
+
+
+
+\subsection{Changes by oracle}
+
+First, let's calculate the distance changed by oracle. Considering the distance of the state before and after $T$ oracle queries, we have
+\begin{lemma}
+    The average \textcolor{red}{eulidean distance} after $T$ oracle queries is at most
+    \begin{equation}
+        \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})\leq 2T\textcolor{red}{\frac{1}{\sqrt{N}}}.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    With triangle inequality,
+    \begin{equation*}
+        \begin{split}
+            \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
+             & = \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{0,T}},\ket{\Psi_{x}^{T,T}})
+            \leq \frac{1}{N}\sum_{x=1}^{N}\sum_{i=1}^{T}\textcolor{red}{E}(\ket{\Psi_{x}^{i-1,T}},\ket{\Psi_{x}^{i,T}}) \\
+             & = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=1}^{N}\textcolor{red}{E}(O_{x}\ket{\Psi^{i}},\ket{\Psi^{i}})
+            = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=1}^{N}\textcolor{red}{2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|}    \\
+             & \leq 2\sum_{i=1}^{T}\textcolor{red}{\frac{1}{\sqrt{N}}} = 2T\textcolor{red}{\frac{1}{\sqrt{N}}},
+        \end{split}
+    \end{equation*}
+    where the last inequality needs to notice that
+    \begin{equation}\label{Cauchy-Schwarz}
+        \left(\sum_{i=1}^{N}a_{i}\right)^{2}=\sum_{i=1}^{N}a_{i}^{2}+2\sum_{i=1}^{N}\sum_{j=1}^{i-1}a_{i}a_{j}\leq N\sum_{i=1}^{N}a_{i}^{2},
+    \end{equation}
+    that is $\sum_{x=1}^{N}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|\leq \sqrt{N\sum_{x=1}^{N}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|^{2}}=\sqrt{N}$.
+\end{proof}
+\begin{lemma}
+    The average \textcolor{blue}{angular distance} after $T$ oracle queries is at most
+    \begin{equation}
+        \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})\leq 2T\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})}.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    With triangle inequality,
+    \begin{equation*}
+        \begin{split}
+            \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
+             & = \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{0,T}},\ket{\Psi_{x}^{T,T}})
+            \leq \frac{1}{N}\sum_{x=1}^{N}\sum_{i=1}^{T}\textcolor{blue}{A}(\ket{\Psi_{x}^{i-1,T}},\ket{\Psi_{x}^{i,T}})           \\
+             & = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=1}^{N}\textcolor{blue}{A}(O_{x}\ket{\Psi^{i}},\ket{\Psi^{i}})
+            = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=1}^{N}\textcolor{blue}{\arccos(\left\lvert\cos(2\theta_{x}^{i})\right\rvert)}       \\
+             & \leq 2\sum_{i=1}^{T}\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})} = 2T\textcolor{blue}{arcsin(\frac{1}{\sqrt{N}})},
+        \end{split}
+    \end{equation*}
+    where the last inequality still needs to notice the monotonicity of $\sin(x)$ in the interval $x\in\left[0,\frac{\pi}{2}\right]$ and notice the equation \ref{Cauchy-Schwarz}. And where has $\theta_{x}^{i}=\arcsin\left\| \mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|$.
+\end{proof}
+According to the theorem, the distance changed by each oracle query can only add up linearly.
+
+
+
+\subsection{Distance when the output is we need}
+
+Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisfied.\footnote{From here on, the properties of the two distance are so far apart that no comparison is made.}
+\begin{lemma}
+    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $T$ queries, given oracle $O_{y}$. Then the average eulidean distance is at least
+    \begin{equation}
+        \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})\geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right).
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    For a certain $x$, we have
+    \begin{equation*}
+        \begin{split}
+            E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
+             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\left(\ket{\Psi_{x}^{T}}-\ket{\Psi^{T}}\right)\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\left(\ket{\Psi_{x}^{T}}-\ket{\Psi^{T}}\right)\right\|\right)                                             \\
+             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}}\right\|-\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi^{T}}\right\|-\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{T}}\right\|\right) \\
+             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}}\right\|-\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{T}}\right\|+1-2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|\right)                                                    \\
+             & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|\right),
+        \end{split}
+    \end{equation*}
+    where the last inequality from the success probability being at least $p$. To eliminate the last term, consider a traversal of $x$
+    \begin{equation*}
+        \begin{split}
+            \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
+             & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{N}\sum_{x=1}^{N}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|\right) \\
+             & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right),
+        \end{split}
+    \end{equation*}
+    where the last inequality uses the equation \ref{Cauchy-Schwarz} again.
+\end{proof}
+\begin{lemma}
+    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $T$ queries, given oracle $O_{y}$. Then the average angular distance is at least
+    \begin{equation}
+        \frac{1}{N}\sum_{x=1}^{N}A(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})\geq \arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    For a certain $x$, we have
+    \begin{equation*}
+        \begin{split}
+            A(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
+             & = \arccos\left(\left\lvert \braket{\Psi_{x}^{T}|\Psi^{T}}\right\rvert\right)                                                                                                                                                                  \\
+             & = \arccos\left(\bra{\Psi_{x}^{T}}(\mathsf{\Pi}_{x}+\mathsf{\Pi}_{x}^{\perp})^{\dagger}(\mathsf{\Pi}_{x}+\mathsf{\Pi}_{x}^{\perp})\ket{\Psi^{T}}\right)                                                                                        \\
+             & = \arccos\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}}\right\|\cdot\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{T}}\right\|\cdot\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi^{T}}\right\|\right) \\
+             & = \arccos\left(\sin\phi_{x}^{T}\sin\theta_{x}^{T}+\cos\phi_{x}^{T}\cos\theta_{x}^{T}\right)                                                                                                                                                   \\
+             & = \phi_{x}^{T}-\theta_{x}^{T} \geq \arcsin\sqrt{p}-\theta_{x}^{T},
+        \end{split}
+    \end{equation*}
+    where has $\phi_{x}^{i}=\arcsin\left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{i}}\right\|$ and still has $\theta_{x}^{i}=\arcsin\left\| \mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|$, and where the last inequality from the success probability being at least $p$. Just like the last proof, consider a traversal of $x$
+    \begin{equation*}
+        \frac{1}{N}\sum_{x=1}^{N}A(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
+        \geq \arcsin\sqrt{p}-\frac{1}{N}\sum_{x=1}^{N}\theta_{x}^{T}
+        \geq \arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}},
+    \end{equation*}
+    where the last inequality uses the equation \ref{Cauchy-Schwarz} again.
+\end{proof}
+
+
+
+\subsection{Lower bound of grover iterations}
+
+
+
+.
+
+%-----------------------bib---------------------------
 
 \bibliographystyle{plain}
 \bibliography{ref}
