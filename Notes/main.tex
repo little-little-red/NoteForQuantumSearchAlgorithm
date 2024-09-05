@@ -542,7 +542,7 @@ which use the identity for the first $i$ oracle queries and the oracle for the l
 \begin{equation}
     \ket{\Psi^{R}}=\prod_{j=1}^{R}U_{j}I\ket{\psi}.
 \end{equation}
-So that we can find the distance changed by oracle, here we use two kinds of metric, eulidean distance and angular distance:
+So that we can find the distance changed by oracle, here we use two kinds of metric, euclidean distance and angular distance:
 \begin{equation}
     E(\ket{\alpha},\ket{\beta})=\left\|\ket{\alpha}-\ket{\beta}\right\|
     \quad\text{and}\quad
@@ -553,18 +553,18 @@ Taking the distance $E$ as an example, if $\Psi_{x}^{R}$ satisfies the propertie
     \left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{R}} \right\|^{2} \geq p
 \end{equation}
 which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element, we can calculate the number of queries $R$ by dividing $E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
-\begin{equation}
+\begin{equation}\label{TheNumberForIteration}
     R=\frac{E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})}{E(O_{x}\ket{\gamma},\ket{\gamma})}.
 \end{equation}
 It is important to note that $\ket{\gamma}$ here is not some particular state, we will calculate the mean of the distance changed by oracle on each state.
 
 
 
-\subsection{Changes by oracle}
+\subsection{\label{DistanceByOracle}Distance the oracle changes}
 
 First, let's calculate the distance changed by oracle. Considering the distance of the state before and after $R$ oracle queries, we have
 \begin{lemma}
-    The average \textcolor{red}{eulidean distance} after $R$ oracle queries is at most
+    The average \textcolor{red}{euclidean distance} after $R$ oracle queries is at most
     \begin{equation}
         \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\leq 2R\textcolor{red}{\frac{1}{\sqrt{N}}}.
     \end{equation}
@@ -611,11 +611,11 @@ According to the theorem, the distance changed by each oracle query can only add
 
 
 
-\subsection{Distance when the output is we need}
+\subsection{\label{DistanceWhenWeNeed}Distance when the output is we need}
 
 Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisfied.\footnote{From here on, the properties of the two distance are so far apart that no comparison is made.}
 \begin{lemma}
-    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $R$ queries, given oracle $O_{y}$. Then the average eulidean distance is at least
+    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $R$ queries, given oracle $O_{y}$. Then the average euclidean distance is at least
     \begin{equation}
         \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right).
     \end{equation}
@@ -674,7 +674,20 @@ Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisf
 
 
 
-.
+From section \ref{DistanceByOracle} and section \ref{DistanceWhenWeNeed}, we obtain the two parts required for equation \ref{TheNumberForIteration} to compute the number of iterations: the upper bound of the distance changed by oracle and the lower bound of the distance when the output is we need. So we have the lower bound on the number of iterations for both versions
+\begin{theorem}
+    The unordered search problem with success probability $p>0$ requires at least $R$ queries, where
+    \begin{equation}
+        R =\frac{\sqrt{N}}{2\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right)
+    \end{equation}
+\end{theorem}
+\begin{theorem}
+    The unordered search problem with success probability $p>0$ requires at least $R$ queries, where
+    \begin{equation}
+        R =\frac{\arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}}{2\arcsin\frac{1}{\sqrt{N}}}
+    \end{equation}
+\end{theorem}
+In the case of euclidean distances, we conclude that Grover's algorithm is asymptotically optimal, and in the case of  angular distances, that Grover's algorithm is exactly optimal.\footnote{This quote is from the original paper\cite{2009Exact}. I did not understand the complexity of other algorithms, so I put it here without modification.}
 
 %-----------------------bib---------------------------
 
