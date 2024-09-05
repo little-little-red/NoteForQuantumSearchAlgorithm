@@ -127,7 +127,7 @@ We expect to extend this control from $X$ to an arbitrary single-qubit gate $U$.
         & \gate{U} &
     \end{quantikz}
 \end{equation}
-We wish to decompose this into a combination of single quantum bit gates and CNOT gates by introducing the theorem:
+We wish to decompose this into a combination of single quantum bit gates and CNOT gates by introducing the lemma:
 \begin{lemma}
     If $U$ is a single quantum bit gate, then there exists $A,B,C \in SU(2)$, $ABC=I$, and then there is
     \begin{equation}
@@ -224,7 +224,7 @@ Ultimately we will show that any unitary operation can be composed to an arbitra
 
 In the section \ref{CtrlGate}, we showed that $C^{n}(U)$ gate can be decomposed into a combination of single-qubit gates and CNOT gates. In this section \ref{SingleAndCnot}, we will show that any unitary gate can be combined from $C^{n}(U)$ gate.
 
-First, we introduce the theorem:
+First, we introduce the lemma:
 \begin{lemma}
     Any D-dimensional unitary transformation U can always be decomposed into the product of $d(d-1)/2$ two-level unitary transformations under natural basis.
 \end{lemma}
@@ -232,7 +232,7 @@ So exists two-level unitary transformations $ V_{j} $ made $U = \prod\limits_{j=
 
 Consider the binary expansion of the two bases $\ket{s}$ and $\ket{t}$ on which $V$ operates, where $s=s_{1}\ldots s_{n}$ and $t=t_{1}\ldots t_{n}$. We can use Toffoli gate to turn $s_{j}$ into $t_{j}$, after $n-1$ steps $\ket{s_{1}\ldots s_{k-1} s_{k} s_{k+1} \ldots s_{n}}$ into $\ket{t_{1}\ldots t_{k-1} s_{k} t_{k+1} \ldots t_{n}}$. It puts $\ket{s}$ and $\ket{t}$in the same qubit and makes $V$ into a $C^{n}(\widetilde{V})$ gate which $\widetilde{V}$ is the non-trivial $2\times 2$ unitary submatrix of $V$.
 
-Let's take an example to illustrate this theorem, consider the $U$ gate:
+Let's take an example to illustrate this lemma, consider the $U$ gate:
 \begin{equation}
     V = \begin{pmatrix} a & 0 & 0 & c \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ b & 0 & 0 & d \end{pmatrix}
     \quad \text{and} \quad
@@ -285,7 +285,7 @@ We are more concerned with the error of the approximation in the measurement. co
 This makes it possible that if we want the probability difference between the approximate line and the ideal line on a certain outcome to be within a tolerance $\Delta > 0$, we only need to ensure that $E(U_{j},V_{j}) \leq \Delta/(2m)$.
 
 \vspace{.5cm}
-From the decomposition given by \ref{EulerAngle}, we can further care about the degree of approximation of $R_{\vec{n}}(\theta)$. Let's start by introducing a neat theorem:
+From the decomposition given by \ref{EulerAngle}, we can further care about the degree of approximation of $R_{\vec{n}}(\theta)$. Let's start by introducing a neat lemma :
 \begin{lemma}\label{AngleCoverR}
     Considering $\alpha$, $\theta \in \mathbb{R} /2\pi\mathbb{Z}$, if $\theta/\pi \in \mathbb{R} \backslash \mathbb{Q}$ , we can find a subsequences $\{x_n\}$ of sequences $\{n\}$ makes $\lim\limits_{n\to\infty}x_n\theta = \alpha$.
 \end{lemma}
