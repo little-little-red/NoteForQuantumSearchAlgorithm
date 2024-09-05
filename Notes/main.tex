@@ -422,7 +422,7 @@ We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operat
 
 Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in the Figure \ref{fig:grover},  operation $G$ gives us a rotation of $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
 \begin{equation}
-    G^{k}\ket{\psi}=\cos(\frac{2R+1}{2}\theta)\ket{\alpha}+\sin(\frac{2R+1}{2}\theta)\ket{\beta}\approx\ket{\beta}.
+    G^{R}\ket{\psi}=\cos(\frac{2R+1}{2}\theta)\ket{\alpha}+\sin(\frac{2R+1}{2}\theta)\ket{\beta}\approx\ket{\beta}.
 \end{equation}
 The angular error is at most $\theta/2\approx\sqrt{M/N}$.
 
@@ -530,17 +530,17 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 \subsection{Principles}
 
-Oracle is at the heart of grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state which uses $T$ queries to the oracle as
+Oracle is at the heart of grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state which uses $R$ queries to the oracle as
 \begin{equation}
-    \ket{\Psi_{x}^{T}}=\prod_{j=1}^{T}U_{j}O_{x}\ket{\psi},
+    \ket{\Psi_{x}^{R}}=\prod_{j=1}^{R}U_{j}O_{x}\ket{\psi},
 \end{equation}
 where $U_{i}$ is some unitary operation and $O_{x}$ is the oracle which marks the target element $x$. To illustrate the effect of oracles, let's replace some of them with unit operations, we write
 \begin{equation}
-    \ket{\Psi_{x}^{i,T}}=\prod_{j=i+1}^{T}U_{j}O_{x}\prod_{j=1}^{i}U_{j}I\ket{\psi},
+    \ket{\Psi_{x}^{i,R}}=\prod_{j=i+1}^{R}U_{j}O_{x}\prod_{j=1}^{i}U_{j}I\ket{\psi},
 \end{equation}
-which use the identity for the first $i$ oracle queries and the oracle for the latter $T-i$ oracle queries. If there is no application oracle,  then the state is independent of the target element, may be denoted as
+which use the identity for the first $i$ oracle queries and the oracle for the latter $R-i$ oracle queries. If there is no application oracle,  then the state is independent of the target element, may be denoted as
 \begin{equation}
-    \ket{\Psi^{T}}=\prod_{j=1}^{T}U_{j}I\ket{\psi}.
+    \ket{\Psi^{R}}=\prod_{j=1}^{R}U_{j}I\ket{\psi}.
 \end{equation}
 So that we can find the distance changed by oracle, here we use two kinds of metric, eulidean distance and angular distance:
 \begin{equation}
@@ -548,13 +548,13 @@ So that we can find the distance changed by oracle, here we use two kinds of met
     \quad\text{and}\quad
     A(\ket{\alpha},\ket{\beta})=\arccos\frac{\left\lvert \braket{\alpha|\beta}\right\rvert}{\left\|\ket{\alpha}\right\|\left\|\ket{\beta}\right\|}.
 \end{equation}
-Taking the distance $E$ as an example, if $\Psi_{x}^{T}$ satisfies the properties the output should have
+Taking the distance $E$ as an example, if $\Psi_{x}^{R}$ satisfies the properties the output should have
 \begin{equation}\label{TheOutputWeWant}
-    \left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}} \right\|^{2} \geq p
+    \left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{R}} \right\|^{2} \geq p
 \end{equation}
-which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element, we can calculate the number of queries $T$ by dividing $E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
+which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element, we can calculate the number of queries $R$ by dividing $E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
 \begin{equation}
-    T=\frac{E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})}{E(O_{x}\ket{\gamma},\ket{\gamma})}.
+    R=\frac{E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})}{E(O_{x}\ket{\gamma},\ket{\gamma})}.
 \end{equation}
 It is important to note that $\ket{\gamma}$ here is not some particular state, we will calculate the mean of the distance changed by oracle on each state.
 
@@ -562,23 +562,23 @@ It is important to note that $\ket{\gamma}$ here is not some particular state, w
 
 \subsection{Changes by oracle}
 
-First, let's calculate the distance changed by oracle. Considering the distance of the state before and after $T$ oracle queries, we have
+First, let's calculate the distance changed by oracle. Considering the distance of the state before and after $R$ oracle queries, we have
 \begin{lemma}
-    The average \textcolor{red}{eulidean distance} after $T$ oracle queries is at most
+    The average \textcolor{red}{eulidean distance} after $R$ oracle queries is at most
     \begin{equation}
-        \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})\leq 2T\textcolor{red}{\frac{1}{\sqrt{N}}}.
+        \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\leq 2R\textcolor{red}{\frac{1}{\sqrt{N}}}.
     \end{equation}
 \end{lemma}
 \begin{proof}
     With triangle inequality,
     \begin{equation*}
         \begin{split}
-            \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
-             & = \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{0,T}},\ket{\Psi_{x}^{T,T}})
-            \leq \frac{1}{N}\sum_{x=1}^{N}\sum_{i=1}^{T}\textcolor{red}{E}(\ket{\Psi_{x}^{i-1,T}},\ket{\Psi_{x}^{i,T}}) \\
-             & = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=1}^{N}\textcolor{red}{E}(O_{x}\ket{\Psi^{i}},\ket{\Psi^{i}})
-            = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=1}^{N}\textcolor{red}{2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|}    \\
-             & \leq 2\sum_{i=1}^{T}\textcolor{red}{\frac{1}{\sqrt{N}}} = 2T\textcolor{red}{\frac{1}{\sqrt{N}}},
+            \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
+             & = \frac{1}{N}\sum_{x=1}^{N}\textcolor{red}{E}(\ket{\Psi_{x}^{0,R}},\ket{\Psi_{x}^{R,R}})
+            \leq \frac{1}{N}\sum_{x=1}^{N}\sum_{i=1}^{R}\textcolor{red}{E}(\ket{\Psi_{x}^{i-1,R}},\ket{\Psi_{x}^{i,R}}) \\
+             & = \frac{1}{N}\sum_{i=1}^{R}\sum_{x=1}^{N}\textcolor{red}{E}(O_{x}\ket{\Psi^{i}},\ket{\Psi^{i}})
+            = \frac{1}{N}\sum_{i=1}^{R}\sum_{x=1}^{N}\textcolor{red}{2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|}    \\
+             & \leq 2\sum_{i=1}^{R}\textcolor{red}{\frac{1}{\sqrt{N}}} = 2R\textcolor{red}{\frac{1}{\sqrt{N}}},
         \end{split}
     \end{equation*}
     where the last inequality needs to notice that
@@ -588,21 +588,21 @@ First, let's calculate the distance changed by oracle. Considering the distance 
     that is $\sum_{x=1}^{N}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|\leq \sqrt{N\sum_{x=1}^{N}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|^{2}}=\sqrt{N}$.
 \end{proof}
 \begin{lemma}
-    The average \textcolor{blue}{angular distance} after $T$ oracle queries is at most
+    The average \textcolor{blue}{angular distance} after $R$ oracle queries is at most
     \begin{equation}
-        \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})\leq 2T\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})}.
+        \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\leq 2R\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})}.
     \end{equation}
 \end{lemma}
 \begin{proof}
     With triangle inequality,
     \begin{equation*}
         \begin{split}
-            \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
-             & = \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{0,T}},\ket{\Psi_{x}^{T,T}})
-            \leq \frac{1}{N}\sum_{x=1}^{N}\sum_{i=1}^{T}\textcolor{blue}{A}(\ket{\Psi_{x}^{i-1,T}},\ket{\Psi_{x}^{i,T}})           \\
-             & = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=1}^{N}\textcolor{blue}{A}(O_{x}\ket{\Psi^{i}},\ket{\Psi^{i}})
-            = \frac{1}{N}\sum_{i=1}^{T}\sum_{x=1}^{N}\textcolor{blue}{\arccos(\left\lvert\cos(2\theta_{x}^{i})\right\rvert)}       \\
-             & \leq 2\sum_{i=1}^{T}\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})} = 2T\textcolor{blue}{arcsin(\frac{1}{\sqrt{N}})},
+            \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
+             & = \frac{1}{N}\sum_{x=1}^{N}\textcolor{blue}{A}(\ket{\Psi_{x}^{0,R}},\ket{\Psi_{x}^{R,R}})
+            \leq \frac{1}{N}\sum_{x=1}^{N}\sum_{i=1}^{R}\textcolor{blue}{A}(\ket{\Psi_{x}^{i-1,R}},\ket{\Psi_{x}^{i,R}})           \\
+             & = \frac{1}{N}\sum_{i=1}^{R}\sum_{x=1}^{N}\textcolor{blue}{A}(O_{x}\ket{\Psi^{i}},\ket{\Psi^{i}})
+            = \frac{1}{N}\sum_{i=1}^{R}\sum_{x=1}^{N}\textcolor{blue}{\arccos(\left\lvert\cos(2\theta_{x}^{i})\right\rvert)}       \\
+             & \leq 2\sum_{i=1}^{R}\textcolor{blue}{\arcsin(\frac{1}{\sqrt{N}})} = 2R\textcolor{blue}{arcsin(\frac{1}{\sqrt{N}})},
         \end{split}
     \end{equation*}
     where the last inequality still needs to notice the monotonicity of $\sin(x)$ in the interval $x\in\left[0,\frac{\pi}{2}\right]$ and notice the equation \ref{Cauchy-Schwarz}. And where has $\theta_{x}^{i}=\arcsin\left\| \mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|$.
@@ -615,54 +615,54 @@ According to the theorem, the distance changed by each oracle query can only add
 
 Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisfied.\footnote{From here on, the properties of the two distance are so far apart that no comparison is made.}
 \begin{lemma}
-    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $T$ queries, given oracle $O_{y}$. Then the average eulidean distance is at least
+    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $R$ queries, given oracle $O_{y}$. Then the average eulidean distance is at least
     \begin{equation}
-        \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})\geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right).
+        \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right).
     \end{equation}
 \end{lemma}
 \begin{proof}
     For a certain $x$, we have
     \begin{equation*}
         \begin{split}
-            E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
-             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\left(\ket{\Psi_{x}^{T}}-\ket{\Psi^{T}}\right)\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\left(\ket{\Psi_{x}^{T}}-\ket{\Psi^{T}}\right)\right\|\right)                                             \\
-             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}}\right\|-\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi^{T}}\right\|-\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{T}}\right\|\right) \\
-             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}}\right\|-\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{T}}\right\|+1-2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|\right)                                                    \\
-             & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|\right),
+            E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
+             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\left(\ket{\Psi_{x}^{R}}-\ket{\Psi^{R}}\right)\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\left(\ket{\Psi_{x}^{R}}-\ket{\Psi^{R}}\right)\right\|\right)                                             \\
+             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{R}}\right\|-\left\|\mathsf{\Pi}_{x}\ket{\Psi^{R}}\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi^{R}}\right\|-\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{R}}\right\|\right) \\
+             & \geq \frac{1}{\sqrt{2}}\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{R}}\right\|-\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{R}}\right\|+1-2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{R}}\right\|\right)                                                    \\
+             & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{R}}\right\|\right),
         \end{split}
     \end{equation*}
     where the last inequality from the success probability being at least $p$. To eliminate the last term, consider a traversal of $x$
     \begin{equation*}
         \begin{split}
-            \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
-             & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{N}\sum_{x=1}^{N}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|\right) \\
+            \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
+             & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{N}\sum_{x=1}^{N}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{R}}\right\|\right) \\
              & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right),
         \end{split}
     \end{equation*}
     where the last inequality uses the equation \ref{Cauchy-Schwarz} again.
 \end{proof}
 \begin{lemma}
-    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $T$ queries, given oracle $O_{y}$. Then the average angular distance is at least
+    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $R$ queries, given oracle $O_{y}$. Then the average angular distance is at least
     \begin{equation}
-        \frac{1}{N}\sum_{x=1}^{N}A(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})\geq \arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}.
+        \frac{1}{N}\sum_{x=1}^{N}A(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\geq \arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}.
     \end{equation}
 \end{lemma}
 \begin{proof}
     For a certain $x$, we have
     \begin{equation*}
         \begin{split}
-            A(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
-             & = \arccos\left(\left\lvert \braket{\Psi_{x}^{T}|\Psi^{T}}\right\rvert\right)                                                                                                                                                                  \\
-             & = \arccos\left(\bra{\Psi_{x}^{T}}(\mathsf{\Pi}_{x}+\mathsf{\Pi}_{x}^{\perp})^{\dagger}(\mathsf{\Pi}_{x}+\mathsf{\Pi}_{x}^{\perp})\ket{\Psi^{T}}\right)                                                                                        \\
-             & = \arccos\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{T}}\right\|\cdot\left\|\mathsf{\Pi}_{x}\ket{\Psi^{T}}\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{T}}\right\|\cdot\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi^{T}}\right\|\right) \\
-             & = \arccos\left(\sin\phi_{x}^{T}\sin\theta_{x}^{T}+\cos\phi_{x}^{T}\cos\theta_{x}^{T}\right)                                                                                                                                                   \\
-             & = \phi_{x}^{T}-\theta_{x}^{T} \geq \arcsin\sqrt{p}-\theta_{x}^{T},
+            A(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
+             & = \arccos\left(\left\lvert \braket{\Psi_{x}^{R}|\Psi^{R}}\right\rvert\right)                                                                                                                                                                  \\
+             & = \arccos\left(\bra{\Psi_{x}^{R}}(\mathsf{\Pi}_{x}+\mathsf{\Pi}_{x}^{\perp})^{\dagger}(\mathsf{\Pi}_{x}+\mathsf{\Pi}_{x}^{\perp})\ket{\Psi^{R}}\right)                                                                                        \\
+             & = \arccos\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{R}}\right\|\cdot\left\|\mathsf{\Pi}_{x}\ket{\Psi^{R}}\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{R}}\right\|\cdot\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi^{R}}\right\|\right) \\
+             & = \arccos\left(\sin\phi_{x}^{R}\sin\theta_{x}^{R}+\cos\phi_{x}^{R}\cos\theta_{x}^{R}\right)                                                                                                                                                   \\
+             & = \phi_{x}^{R}-\theta_{x}^{R} \geq \arcsin\sqrt{p}-\theta_{x}^{R},
         \end{split}
     \end{equation*}
     where has $\phi_{x}^{i}=\arcsin\left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{i}}\right\|$ and still has $\theta_{x}^{i}=\arcsin\left\| \mathsf{\Pi}_{x}\ket{\Psi^{i}}\right\|$, and where the last inequality from the success probability being at least $p$. Just like the last proof, consider a traversal of $x$
     \begin{equation*}
-        \frac{1}{N}\sum_{x=1}^{N}A(\ket{\Psi_{x}^{T}},\ket{\Psi^{T}})
-        \geq \arcsin\sqrt{p}-\frac{1}{N}\sum_{x=1}^{N}\theta_{x}^{T}
+        \frac{1}{N}\sum_{x=1}^{N}A(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
+        \geq \arcsin\sqrt{p}-\frac{1}{N}\sum_{x=1}^{N}\theta_{x}^{R}
         \geq \arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}},
     \end{equation*}
     where the last inequality uses the equation \ref{Cauchy-Schwarz} again.
