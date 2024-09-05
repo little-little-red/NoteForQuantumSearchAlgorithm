@@ -45,7 +45,7 @@
 
 The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the Bloch sphere repersentation gives us a more intuitive way to observe the qubit, a homomorphism from a qubit to the three-dimensional real sphere:
 \begin{equation}\label{BlochSphereRepersentation}
-    \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \sin \frac{\theta}{2}\mathrm{e}^{\mathrm{i}\varphi }\ket{1} \mapsto \vec{n}=(\cos\phi\sin\theta,\sin\phi\cos\theta,\cos\theta)^{T}.
+    \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \sin \frac{\theta}{2}\mathrm{e}^{\mathrm{i}\varphi }\ket{1} \mapsto \vec{n}=(\cos\phi\sin\theta,\sin\phi\sin\theta,\cos\theta)^{T}.
 \end{equation}
 
 Operations on a qubit must preserve the norm, and thus are described by $2\times2$ unitary matrices. By $\det|U|=e^{2i\alpha}$ Then
