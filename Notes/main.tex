@@ -32,11 +32,17 @@
 \title{Notes on quantum search algorithm}
 \author{Zhongwei Jiang, Linfeng Zhao}
 \date{\today}
-
 \begin{document}
-
+%coverpage
+\thispagestyle{empty}
 \maketitle
-
+\newpage
+%contentspage
+\pagenumbering{Roman}
+\tableofcontents
+\newpage
+%maintext
+\pagenumbering{arabic}
 \section{Quantum Computation}
 
 \textit{This section is based on the book\cite{nielsen2010}.}
@@ -45,7 +51,7 @@
 
 \subsubsection{Single-qubit gate}
 
-The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the Bloch sphere repersentation gives us a more intuitive way to observe the qubit, a homomorphism from a qubit to the three-dimensional real sphere:
+The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the Bloch sphere repersentation gives us a more intuitive way to observe the qubit, a isomorphism from a qubit to the three-dimensional real sphere:
 \begin{equation}\label{BlochSphereRepersentation}
     \begin{split}
         \mathbb{C}\mathbb{P}^{1}                                                                                & \to S^{2}                                                               \\
@@ -68,22 +74,23 @@ From Lie group elements, any single-qubit unitary can be written as a product of
     U = e^{i\alpha}\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right),
 \end{equation}
 which $\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
-From the homomorphism \ref{BlochSphereRepersentation}, we can also induce a homomorphism of operations on two spaces:
+From the isomorphism \ref{BlochSphereRepersentation}, we can also induce a isomorphism of operations on two spaces:
 \begin{equation}
     \begin{split}
-        SU(2)                                                       & \to SO(3)
+        SU(2)/\{\pm 1\}                                             & \to SO(3)
         \\
         \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto \exp\left(\theta\vec{n}\cdot\vec{J}\right)
     \end{split}
 \end{equation}
 which $J_{j}$ is the three generators of Lie group $SO(3)$, the former refers to single-qubit gates and the latter to transformations on the Bloch sphere. For visualization and convenience, we let $R_{\vec{n}}(\theta) \coloneqq \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$.
 
-In the following, we use $XYZ$ instead of $\sigma_x\sigma_y\sigma_z$, here are some other single-qubit gate, which are frequently used listed here:
+In the following, we use $XYZ$ instead of $\sigma_x\sigma_y\sigma_z$, here are some other single-qubit gate which are frequently used, they are called Hadamard gate, phase gate, and $\pi/8$ gate:
 \begin{equation}
     H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad
     S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}, \quad
     T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}.
 \end{equation}
+\newpage
 
 
 
@@ -587,23 +594,17 @@ from which we obtain an elegant upper bound on the number of iterations required
 \begin{equation}
     R\leq\left\lceil\frac{\pi}{4}\sqrt{\frac{N}{M}}\right\rceil.
 \end{equation}
-That is, $R=O(\sqrt{N/M})$ Grover iterations must be performed in order to obtain a solution to the search problem with high probability.\footnote{The classical algorithm requires $O(N/M)$ calls to the oracle.}
+That is, $R=O(\sqrt{N/M})$ Grover iterations must be performed in order to obtain a solution to the search problem with high probability, a quadratic improvement over the $O(N/M)$oracle calls required classically.
 
 If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly pick an item from the search space, and then check that it is a solution using the oracle. This approach has a success probability at least one-half, and only requires one consultation with the oracle.
 
 
 
-\subsection{Long algorithm}
-
-\textit{This section is based on the paper\cite{Long_2001}.}
-
-
-
-\section{Bounds for Grover's algorithm}
+\subsection{Bounds for Grover's algorithm}
 
 \textit{This section is based on the paper\cite{2009Exact}.}
 
-\subsection{Principles}
+\subsubsection{Principles}
 
 Oracle is at the heart of grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state which uses $R$ queries to the oracle as
 \begin{equation}
@@ -627,7 +628,9 @@ Taking the distance $E$ as an example, if $\Psi_{x}^{R}$ satisfies the propertie
 \begin{equation}\label{TheOutputWeWant}
     \left\| \mathsf{\Pi}_{x}\ket{\Psi_{x}^{R}} \right\|^{2} \geq p
 \end{equation}
-which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element, we can calculate the number of queries $R$ by dividing $E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
+which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element.
+
+We can calculate the number of queries $R$ by dividing $E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
 \begin{equation}\label{TheNumberForIteration}
     R=\frac{E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})}{E(O_{x}\ket{\gamma},\ket{\gamma})}.
 \end{equation}
@@ -635,7 +638,7 @@ It is important to note that $\ket{\gamma}$ here is not some particular state, w
 
 
 
-\subsection{\label{DistanceByOracle}Distance the oracle changes}
+\subsubsection{\label{DistanceByOracle}Distance the oracle changes}
 
 First, let's calculate the distance changed by oracle. Considering the distance of the state before and after $R$ oracle queries, we have
 \begin{lemma}
@@ -686,7 +689,7 @@ According to the theorem, the distance changed by each oracle query can only add
 
 
 
-\subsection{\label{DistanceWhenWeNeed}Distance when the output is we need}
+\subsubsection{\label{DistanceWhenWeNeed}Distance when the output is we need}
 
 Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisfied.\footnote{From here on, the properties of the two distance are so far apart that no comparison is made.}
 \begin{lemma}
@@ -745,7 +748,7 @@ Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisf
 
 
 
-\subsection{Lower bound of grover iterations}
+\subsubsection{Lower bound of grover iterations}
 
 
 
@@ -762,8 +765,13 @@ From section \ref{DistanceByOracle} and section \ref{DistanceWhenWeNeed}, we obt
         R =\frac{\arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}}{2\arcsin\frac{1}{\sqrt{N}}}
     \end{equation}
 \end{theorem}
-In the case of euclidean distances, we conclude that Grover's algorithm is asymptotically optimal, and in the case of  angular distances, that Grover's algorithm is exactly optimal.\footnote{This quote is from the original paper\cite{2009Exact}. I did not understand the complexity of other algorithms, so I put it here without modification.}
+In the case of euclidean distances, we conclude that Grover's algorithm is asymptotically optimal, and in the case of  angular distances, that Grover's algorithm is exactly optimal.
 
+
+
+\subsection{Long algorithm}
+
+\textit{This section is based on the paper\cite{Long_2001}.}
 %-----------------------bib---------------------------
 
 \bibliographystyle{plain}
