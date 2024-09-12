@@ -59,6 +59,7 @@ The number of qubits in a quantum state depends on the number of classical bits 
         \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \sin \frac{\theta}{2}\mathrm{e}^{\mathrm{i}\varphi }\ket{1} & \mapsto \vec{n}=(\cos\phi\sin\theta,\sin\phi\sin\theta,\cos\theta)^{T}.
     \end{split}
 \end{equation}
+where $\theta\in\left[0,\pi\right]$ and $\psi\in\left[0,2\pi\right]$.
 
 Operations on a qubit must preserve the norm, and thus are described by $2\times2$ unitary matrices. By $\det|U|=e^{2i\alpha}$ Then
 \begin{equation}
@@ -72,7 +73,7 @@ They're only off by one global phase, so we usually ignore the global phase and 
 \end{equation}
 From Lie group elements, any single-qubit unitary can be written as a product of exponentials of Pauli matrices by a global phase:
 \begin{equation}
-    U = e^{i\alpha}\exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right),
+    U = e^{i\alpha}\exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right),
 \end{equation}
 which $\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
 From the isomorphism \ref{BlochSphereRepersentation}, we can also induce a isomorphism of operations on two spaces:
@@ -80,10 +81,10 @@ From the isomorphism \ref{BlochSphereRepersentation}, we can also induce a isomo
     \begin{split}
         SU(2)/\{\pm 1\}                                             & \to SO(3)
         \\
-        \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto \exp\left(\theta\vec{n}\cdot\vec{J}\right)
+        \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto \exp\left(\omega\vec{n}\cdot\vec{J}\right)
     \end{split}
 \end{equation}
-which $J_{j}$ is the three generators of Lie group $SO(3)$, the former refers to single-qubit gates and the latter to transformations on the Bloch sphere. For visualization and convenience, we let $R_{\vec{n}}(\theta) \coloneqq \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)$.
+which $\omega\in\left[0,\pi\right]$ and $J_{j}$ is the three generators of Lie group $SO(3)$, the former refers to single-qubit gates and the latter to transformations on the Bloch sphere. For visualization and convenience, we let $R_{\vec{n}}(\omega) \coloneqq \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right)$.
 
 In the following, we use $XYZ$ instead of $\sigma_x\sigma_y\sigma_z$, here are some other single-qubit gate which are frequently used, they are called Hadamard gate, phase gate, and $\pi/8$ gate:
 \begin{equation}
@@ -135,37 +136,37 @@ Here we list some properties of single-qubit gates:
 \begin{corollary}
     The element of Lie group $SU(2)$ can be changed into the following form,
     \begin{equation}
-        R_{\vec{n}}(\theta) \coloneqq \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)=\cos \left(\frac{\theta}{2}\right)I-i\sin \left(\frac{\theta}{2}\right)(\vec{n}\cdot\vec{\sigma}).
+        R_{\vec{n}}(\omega) \coloneqq \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right)=\cos \left(\frac{\omega}{2}\right)I-i\sin \left(\frac{\omega}{2}\right)(\vec{n}\cdot\vec{\sigma}).
     \end{equation}
 \end{corollary}
 \begin{proof}
     Considering the Taylor expansion
     \begin{equation}
         \begin{split}
-            \exp\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)
-             & = \sum_{k=0}^{\infty}\frac{1}{k!}\left(-i\frac{\theta}{2}\vec{n}\cdot\vec{\sigma}\right)^{k}                                                                                                                          \\
-             & = \sum_{k=0}^{\infty}\frac{1}{(2k)!}\left(-i\frac{\theta}{2}\right)^{2k}(\vec{n}\cdot\vec{\sigma})^{2k} + \sum_{k=0}^{\infty}\frac{1}{(2k+1)!}\left(-i\frac{\theta}{2}\right)^{2k+1}(\vec{n}\cdot\vec{\sigma})^{2k+1} \\
-             & = \cos \left(\frac{\theta}{2}\right)I-i\sin \left(\frac{\theta}{2}\right)(\vec{n}\cdot\vec{\sigma}),
+            \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right)
+             & = \sum_{k=0}^{\infty}\frac{1}{k!}\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right)^{k}                                                                                                                          \\
+             & = \sum_{k=0}^{\infty}\frac{1}{(2k)!}\left(-i\frac{\omega}{2}\right)^{2k}(\vec{n}\cdot\vec{\sigma})^{2k} + \sum_{k=0}^{\infty}\frac{1}{(2k+1)!}\left(-i\frac{\omega}{2}\right)^{2k+1}(\vec{n}\cdot\vec{\sigma})^{2k+1} \\
+             & = \cos \left(\frac{\omega}{2}\right)I-i\sin \left(\frac{\omega}{2}\right)(\vec{n}\cdot\vec{\sigma}),
         \end{split}
     \end{equation}
     where we have $(\vec{n}\cdot\vec{\sigma})^{2} = I$ from the theorem \ref{ProductOfPauli}.
 \end{proof}
 \begin{corollary}
-    If a rotation through an angle $2\theta_{1}$ about an axis $\vec{n_{1}}$ is followed by a rotation through an angle $2\theta_{2}$ about an axis $\vec{n_{2}}$, then the overall rotation is through an angle $\theta_{12}$ about an axis $\vec{n_{12}}$ given by
+    If a rotation through an angle $2\omega_{1}$ about an axis $\vec{n_{1}}$ is followed by a rotation through an angle $2\omega_{2}$ about an axis $\vec{n_{2}}$, then the overall rotation is through an angle $\omega_{12}$ about an axis $\vec{n_{12}}$ given by
     \begin{equation*}
         \begin{split}
-            \cos\theta_{12}             & = \cos\theta_{1}\cos\theta_{2}-\sin\theta_{1}\sin\theta_{2}\vec{n_{1}}\cdot\vec{n_{2}}                                                      \\
-            \sin\theta_{12}\vec{n_{12}} & = \sin\theta_{1}\cos\theta_{2}\vec{n_{2}}+\cos\theta_{1}\sin\theta_{2}\vec{n_{2}}+\sin\theta_{1}\sin\theta_{2}\vec{n_{1}}\times\vec{n_{2}}.
+            \cos\omega_{12}             & = \cos\omega_{1}\cos\omega_{2}-\sin\omega_{1}\sin\omega_{2}\vec{n_{1}}\cdot\vec{n_{2}}                                                      \\
+            \sin\omega_{12}\vec{n_{12}} & = \sin\omega_{1}\cos\omega_{2}\vec{n_{2}}+\cos\omega_{1}\sin\omega_{2}\vec{n_{2}}+\sin\omega_{1}\sin\omega_{2}\vec{n_{1}}\times\vec{n_{2}}.
         \end{split}
     \end{equation*}
 \end{corollary}
 \begin{proof}
-    We know $R_{\vec{n_{1}}}(2\theta_{1})=\cos\theta I-i\sin\theta(\vec{n_{1}}\cdot\vec{\sigma})$ and the same as index $2$, so the product of two rotations is
+    We know $R_{\vec{n_{1}}}(2\omega_{1})=\cos\omega I-i\sin\omega(\vec{n_{1}}\cdot\vec{\sigma})$ and the same as index $2$, so the product of two rotations is
     \begin{equation*}
         \begin{split}
-              & R_{\vec{n_{1}}}(2\theta_{1})R_{\vec{n_{2}}}(2\theta_{2})                                                                                                                                                                                       \\
-            = & \cos\theta_{1}\cos\theta_{2}I-i\sin\theta_{1}\cos\theta_{2}(\vec{n_{1}}\cdot\vec{\sigma})-i\cos\theta_{1}\sin\theta_{2}(\vec{n_{2}}\cdot\vec{\sigma})-\sin\theta_{1}\sin\theta_{2}(\vec{n_{1}}\cdot\vec{\sigma})(\vec{n_{2}}\cdot\vec{\sigma}) \\
-            = & \cos\theta_{12}I-i\sin\theta_{12}(\vec{n_{12}}\cdot\vec{\sigma}),
+              & R_{\vec{n_{1}}}(2\omega_{1})R_{\vec{n_{2}}}(2\omega_{2})                                                                                                                                                                                       \\
+            = & \cos\omega_{1}\cos\omega_{2}I-i\sin\omega_{1}\cos\omega_{2}(\vec{n_{1}}\cdot\vec{\sigma})-i\cos\omega_{1}\sin\omega_{2}(\vec{n_{2}}\cdot\vec{\sigma})-\sin\omega_{1}\sin\omega_{2}(\vec{n_{1}}\cdot\vec{\sigma})(\vec{n_{2}}\cdot\vec{\sigma}) \\
+            = & \cos\omega_{12}I-i\sin\omega_{12}(\vec{n_{12}}\cdot\vec{\sigma}),
         \end{split}
     \end{equation*}
     where we have $(\vec{n_{1}}\cdot\vec{\sigma})(\vec{n_{2}}\cdot\vec{\sigma})=i(\vec{n_{1}}\times\vec{n_{2}})\cdot\vec{\sigma}+(\vec{n_{1}}\cdot\vec{n_{2}})\cdot\vec{\sigma}$ from Theorem \ref{ProductOfPauli}.
@@ -361,26 +362,26 @@ We are more concerned with the error of the approximation in the measurement. co
 \end{equation}
 This makes it possible that if we want the probability difference between the approximate line and the ideal line on a certain outcome to be within a tolerance $\Delta > 0$, we only need to ensure that $E(U_{j},V_{j}) \leq \Delta/(2m)$.
 
-From the decomposition given by corollary \ref{cor:DecompositionByTwoAxis}, we can further care about the degree of approximation of $R_{\vec{n}}(\theta)$. Let's start by introducing a neat lemma :
+From the decomposition given by corollary \ref{cor:DecompositionByTwoAxis}, we can further care about the degree of approximation of $R_{\vec{n}}(\omega)$. Let's start by introducing a neat lemma :
 \begin{lemma}\label{AngleCoverR}
-    Considering $\alpha$, $\theta \in \mathbb{R} /2\pi\mathbb{Z}$, if $\theta/\pi \in \mathbb{R} \backslash \mathbb{Q}$ , we can find a subsequences $\{x_n\}$ of sequences $\{n\}$ makes $\lim\limits_{n\to\infty}x_n\theta = \alpha$.
+    Considering $\alpha$, $\omega \in \mathbb{R} /2\pi\mathbb{Z}$, if $\omega/\pi \in \mathbb{R} \backslash \mathbb{Q}$ , we can find a subsequences $\{x_n\}$ of sequences $\{n\}$ makes $\lim\limits_{n\to\infty}x_n\omega = \alpha$.
 \end{lemma}
 \begin{proof}
-    $\forall \epsilon>0$, $\exists N=\frac{2\pi}{\epsilon}$, when $n>N$, we can find $|j\theta-k\theta|\leq\frac{2\pi}{n}$ which $j,k \in \{n\},j>k$, let $x_{n} = (j-k)\left\lfloor\frac{\alpha}{|j\theta-k\theta|}\right\rfloor$, so we have $|x_{n}\theta-\alpha|<|j\theta-k\theta|\leq\frac{2\pi}{n}<\epsilon$.
+    $\forall \epsilon>0$, $\exists N=\frac{2\pi}{\epsilon}$, when $n>N$, we can find $|j\omega-k\omega|\leq\frac{2\pi}{n}$ which $j,k \in \{n\},j>k$, let $x_{n} = (j-k)\left\lfloor\frac{\alpha}{|j\omega-k\omega|}\right\rfloor$, so we have $|x_{n}\omega-\alpha|<|j\omega-k\omega|\leq\frac{2\pi}{n}<\epsilon$.
 \end{proof}
 Further we have\footnote{The construction of $x_{n}$ in this part is only to prove the existence, without considering the complexity. There are actually far less complex constructs.}:
 \begin{equation}
     \begin{split}
-          & \ E(R_{\vec{n}}(\alpha),R_{\vec{n}}(\theta)^{x_{n}})              \\
-        = & \ E(R_{\vec{n}}(\alpha),R_{\vec{n}}(\alpha+(x_{n}\theta-\alpha))) \\
-        = & \ |1-\exp((x_{n}\theta-\alpha)/2)|\leq\ \epsilon/2
+          & \ E(R_{\vec{n}}(\alpha),R_{\vec{n}}(\omega)^{x_{n}})              \\
+        = & \ E(R_{\vec{n}}(\alpha),R_{\vec{n}}(\alpha+(x_{n}\omega-\alpha))) \\
+        = & \ |1-\exp((x_{n}\omega-\alpha)/2)|\leq\ \epsilon/2
     \end{split}
 \end{equation}
-According the proof, we just need to find the gate that has the Angle that the theorem requires. Fortunately, $THTH$ gate has the angel we need. It is a rotation of the Bloch sphere about an axis along $\vec{n} = (\cos\frac{\pi}{8},\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and through an angle $\theta$ defined by $\cos\frac{\theta}{2} = \cos^{2}\frac{\pi}{8}$, so we just let $R_{\vec{n}}(\theta) = THTH$.
+According the proof, we just need to find the gate that has the Angle that the theorem requires. Fortunately, $THTH$ gate has the angel we need. It is a rotation of the Bloch sphere about an axis along $\vec{n} = (\cos\frac{\pi}{8},\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and through an angle $\omega$ defined by $\cos\frac{\omega}{2} = \cos^{2}\frac{\pi}{8}$, so we just let $R_{\vec{n}}(\omega) = THTH$.
 
-From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operator $U$, we still need to approximate the rotation of the other axis, but even more fortunate is that $HR_{\vec{n}}(\theta)H$ is exactly what we need, has axis $\vec{m} = (\cos\frac{\pi}{8},-\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and the Angle, like $R_{\vec{n}}(\theta)$, is an irrational multiple of $\pi$. After layers and layers of preparation, let's list the final approximation with suitable positive integers $j_{n}$ to U:
+From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operator $U$, we still need to approximate the rotation of the other axis, but even more fortunate is that $HR_{\vec{n}}(\omega)H$ is exactly what we need, has axis $\vec{m} = (\cos\frac{\pi}{8},-\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and the Angle, like $R_{\vec{n}}(\omega)$, is an irrational multiple of $\pi$. After layers and layers of preparation, let's list the final approximation with suitable positive integers $j_{n}$ to U:
 \begin{equation}\label{FinalApproximation}
-    E(U,\prod_{j=1}^{2k}R_{\vec{n}}(\theta)^{j_{n}}H) \leq k\epsilon
+    E(U,\prod_{j=1}^{2k}R_{\vec{n}}(\omega)^{j_{n}}H) \leq k\epsilon
 \end{equation}
 \begin{theorem}
     Given any single qubit unitary operator $U$ and any $\epsilon > 0$, it is possible to approximate $U$ to within $\epsilon$ \footnote{The difference between Equation \ref{FinalApproximation} and here by one coefficient can be solved by the setting of $\epsilon$ in the proof of Theorem \ref{AngleCoverR}, but it does not matter. }using a circuit composed of $H$ gates and $T$ gates alone.
@@ -511,11 +512,11 @@ The angular error is at most $\theta/2\approx\sqrt{M/N}$.
 
 Let's construct the reflection about $\ket{\alpha}$, we call it oracle. We know that states in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$ can be decomposed into
 \begin{equation}
-    \ket{x}=\ket{\beta}\braket{\beta|x}+\ket{\alpha}\braket{\alpha|x}
+    \ket{x}=\ket{\alpha}\braket{\alpha|x}+\ket{\beta}\braket{\beta|x}
 \end{equation}
 and we wish
 \begin{equation}
-    O\ket{x}=\ket{\beta}\braket{\beta|x}-\ket{\alpha}\braket{\alpha|x}.
+    O\ket{x}=\ket{\alpha}\braket{\alpha|x}-\ket{\beta}\braket{\beta|x}.
 \end{equation}
 But we don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$. To construct this, we need a special gate\footnote{Note that the mapping $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$ holds only if the controlled qubit is $\ket{-}$.}
 \begin{equation}
@@ -535,8 +536,8 @@ which gives us a operation $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$. Then 
 such that $U_{\omega}$ satisfies the properties we need:
 \begin{equation}
     \begin{split}
-        U_{\omega}\ket{\beta}  & =\ket{\beta}    \\
-        U_{\omega}\ket{\alpha} & =-\ket{\alpha}.
+        U_{\omega}\ket{\beta}  & =-\ket{\beta}  \\
+        U_{\omega}\ket{\alpha} & =\ket{\alpha}.
     \end{split}
 \end{equation}
 So the $U_{\omega}$ is the Oracle.
@@ -547,17 +548,17 @@ So the $U_{\omega}$ is the Oracle.
 
 Then, let's construct the reflection about $\ket{\psi}$. Same as the oracle, we decompose states into
 \begin{equation}
-    \ket{x}=\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}+\ket{\psi}\braket{\psi|x}
+    \ket{x}=\ket{\psi}\braket{\psi|x}+\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}
 \end{equation}
 which $\ket{\psi_{\perp}}=\sqrt{\frac{N-M}{N}}\ket{\alpha}-\sqrt{\frac{M}{N}}\ket{\beta}$, and we wish
 \begin{equation}
-    GO^{-1}\ket{x}=\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}-\ket{\psi}\braket{\psi|x}.
+    GO^{-1}\ket{x}=\ket{\psi}\braket{\psi|x}-\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}.
 \end{equation}
 But this time, we know $\ket{\psi}$ specifically. Operation $2\ket{\psi}\bra{\psi}-I$ is what we need which satisfies the properties:
 \begin{equation}
     \begin{split}
-        (2\ket{\psi}\bra{\psi}-I)\ket{\psi}         & =-\ket{\psi}         \\
-        (2\ket{\psi}\bra{\psi}-I)\ket{\psi_{\perp}} & =\ket{\psi_{\perp}}.
+        (2\ket{\psi}\bra{\psi}-I)\ket{\psi}         & =\ket{\psi}           \\
+        (2\ket{\psi}\bra{\psi}-I)\ket{\psi_{\perp}} & =-\ket{\psi_{\perp}}.
     \end{split}
 \end{equation}
 So we get the construction of the Grover iteration:
