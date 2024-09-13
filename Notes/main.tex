@@ -133,7 +133,7 @@ Here we list some properties of single-qubit gates:
         \sigma_{j}\sigma_{k} = i\epsilon_{jk}^{l}\sigma_{l}+\delta_{jk}I.
     \end{equation}
 \end{theorem}
-\begin{corollary}
+\begin{corollary}\label{cor:CompositionOfRotation}
     The element of Lie group $SU(2)$ can be changed into the following form,
     \begin{equation}
         R_{\vec{n}}(\omega) \coloneqq \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right)=\cos \left(\frac{\omega}{2}\right)I-i\sin \left(\frac{\omega}{2}\right)(\vec{n}\cdot\vec{\sigma}).
@@ -474,7 +474,7 @@ which use $\ket{0}$ to refer to $\ket{0}^{\otimes n}$ for convenience. There is
     \quad\text{and}\quad
     \ket{\psi}=\sqrt{\frac{N-M}{N}}\ket{\alpha}+\sqrt{\frac{M}{N}}\ket{\beta}.
 \end{equation}
-We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operation of turning some non-trivial Angle is hard, so we consider the operation reflecting across some axis. Define two operations here, $O$ is a reflection about $\ket{\alpha}$ and $GO^{-1}$ is a reflection about $\ket{\psi}$.
+We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operation of turning some non-trivial Angle is hard, so we consider the operation reflecting across some axis. Define two operations here, $O$ is a reflection about $\ket{\alpha}$ and $W$ is a reflection about $\ket{\psi}$.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -500,7 +500,7 @@ We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operat
     \label{fig:grover}
 \end{figure}
 
-Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in the Figure \ref{fig:grover},  operation $G$ gives us a rotation of $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
+Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in the Figure \ref{fig:grover},  operation $G=WO$ gives us a rotation of $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
 \begin{equation}
     G^{R}\ket{\psi}=\cos(\frac{2R+1}{2}\theta)\ket{\alpha}+\sin(\frac{2R+1}{2}\theta)\ket{\beta}\approx\ket{\beta}.
 \end{equation}
@@ -527,20 +527,20 @@ But we don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$. To constru
 \end{equation}
 which gives us a operation $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$. Then we just need to construct the mapping
 \begin{equation}
-    \omega(x)=
+    \zeta(x)=
     \begin{cases}
         1 & x\in T    \\
         0 & x\notin T
     \end{cases}
 \end{equation}
-such that $U_{\omega}$ satisfies the properties we need:
+such that $U_{\zeta}$ satisfies the properties we need:
 \begin{equation}
     \begin{split}
-        U_{\omega}\ket{\beta}  & =-\ket{\beta}  \\
-        U_{\omega}\ket{\alpha} & =\ket{\alpha}.
+        U_{\zeta}\ket{\beta}  & =-\ket{\beta}  \\
+        U_{\zeta}\ket{\alpha} & =\ket{\alpha}.
     \end{split}
 \end{equation}
-So the $U_{\omega}$ is the Oracle.
+So the $U_{\zeta}$ is the Oracle.
 
 
 
@@ -550,9 +550,9 @@ Then, let's construct the reflection about $\ket{\psi}$. Same as the oracle, we 
 \begin{equation}
     \ket{x}=\ket{\psi}\braket{\psi|x}+\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}
 \end{equation}
-which $\ket{\psi_{\perp}}=\sqrt{\frac{N-M}{N}}\ket{\alpha}-\sqrt{\frac{M}{N}}\ket{\beta}$, and we wish
+which $\ket{\psi_{\perp}}=\sqrt{\frac{M}{N}}\ket{\alpha}-\sqrt{\frac{N-M}{N}}\ket{\beta}$, and we wish
 \begin{equation}
-    GO^{-1}\ket{x}=\ket{\psi}\braket{\psi|x}-\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}.
+    W\ket{x}=\ket{\psi}\braket{\psi|x}-\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}.
 \end{equation}
 But this time, we know $\ket{\psi}$ specifically. Operation $2\ket{\psi}\bra{\psi}-I$ is what we need which satisfies the properties:
 \begin{equation}
@@ -563,7 +563,7 @@ But this time, we know $\ket{\psi}$ specifically. Operation $2\ket{\psi}\bra{\ps
 \end{equation}
 So we get the construction of the Grover iteration:
 \begin{equation}
-    G=(2\ket{\psi}\bra{\psi}-I)O.
+    G=WO=(2\ket{\psi}\bra{\psi}-I)U_{\zeta}.
 \end{equation}
 After constructing each sub-operation, the circuit of the algorithm is given here\footnote{The oracle workspace are omitted here.}:
 \begin{equation}
@@ -775,6 +775,22 @@ In the case of euclidean distances, we conclude that Grover's algorithm is asymp
 \section{Long algorithm}
 
 \textit{This section is based on the paper\cite{Long_2001}.}
+
+\subsection{principles}
+
+Although the grover's algorithm is already accurate enough when the number of elements is large, for instance in deciphering the DES code where $N = 256$ the deviation is only $3\times 10^{-9}$. But in problems where certainly is vital, especially when the dimension is not so big, using a searching algorithm with certainty becomes important. Let's make some improvements to the grover's algorithm.
+
+In the grover's algorithm we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, but $SU(2)$ has three degrees of freedom, so we may as well extend $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
+\begin{equation}
+    \begin{split}
+        I_{W} & = I+(e^{-i\phi}-1)\ket{\psi_{\perp}}\bra{\psi_{\perp}} = e^{-i\phi}(I+(e^{i\phi}-1)\ket{\psi}\bra{\psi})                   \\
+        I_{O} & = I+(e^{i\phi}-1)\ket{\beta}\bra{\beta}                                                                                    \\
+        Q     & = I_{W}I_{O} = e^{-i\phi}H^{\otimes n}(I+(e^{i\phi}-1)\ket{0}\bra{0})H^{\otimes n}(I+(e^{i\phi}-1)\ket{\beta}\bra{\beta}).
+    \end{split}
+\end{equation}
+Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should have the axis of rotation at the same angle as $\ket{\psi}$ and $\ket{\beta}$. From corollary \ref{cor:CompositionOfRotation}, if the angle of $I_{O}$ is $\phi$, so the angle of $I_{W}$ is $-\phi$. As a generalization of the grover's algorithm, it can be seen that if we set $\phi=\pi$, then $Q$ degenerates to $G$.
+
+.
 
 
 
