@@ -298,9 +298,9 @@ Ultimately we will show that any unitary operation can be composed to an arbitra
 
 \section{Universal Gate Set}
 
-\subsection{\label{SingleAndCnot}Single-qubit and CNOT gates are universal}
+\subsection{\label{subsec:SingleAndCnot}Single-qubit and CNOT gates are universal}
 
-In the section \ref{CtrlGate}, we showed that $C^{n}(U)$ gate can be decomposed into a combination of single-qubit gates and CNOT gates. In this section \ref{SingleAndCnot}, we will show that any unitary gate can be combined from $C^{n}(U)$ gate.
+In the section \ref{CtrlGate}, we showed that $C^{n}(U)$ gate can be decomposed into a combination of single-qubit gates and CNOT gates. In this section \ref{subsec:SingleAndCnot}, we will show that any unitary gate can be combined from $C^{n}(U)$ gate.
 
 First, we introduce the lemma:
 \begin{lemma}
@@ -379,7 +379,7 @@ Further we have\footnote{The construction of $x_{n}$ in this part is only to pro
 \end{equation}
 According the proof, we just need to find the gate that has the Angle that the theorem requires. Fortunately, $THTH$ gate has the angel we need. It is a rotation of the Bloch sphere about an axis along $\vec{n} = (\cos\frac{\pi}{8},\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and through an angle $\omega$ defined by $\cos\frac{\omega}{2} = \cos^{2}\frac{\pi}{8}$, so we just let $R_{\vec{n}}(\omega) = THTH$.
 
-From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operator $U$, we still need to approximate the rotation of the other axis, but even more fortunate is that $HR_{\vec{n}}(\omega)H$ is exactly what we need, has axis $\vec{m} = (\cos\frac{\pi}{8},-\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and the Angle, like $R_{\vec{n}}(\omega)$, is an irrational multiple of $\pi$. After layers and layers of preparation, let's list the final approximation with suitable positive integers $j_{n}$ to U:
+From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operator $U$, we still need to approximate the rotation of the other axis, but even more fortunate is that $HR_{\vec{n}}(\omega)H$ is exactly what we need, has axis $\vec{m} = (\cos\frac{\pi}{8},-\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and the angle $\omega$, like $R_{\vec{n}}(\omega)$, is an irrational multiple of $\pi$. After layers and layers of preparation, let's list the final approximation with suitable positive integers $j_{n}$ to U:
 \begin{equation}\label{FinalApproximation}
     E(U,\prod_{j=1}^{2k}R_{\vec{n}}(\omega)^{j_{n}}H) \leq k\epsilon
 \end{equation}
@@ -456,7 +456,7 @@ Before discussing the algorithm, let's make some basic assumptions about quantum
 
 \textit{This section is based on the book\cite{nielsen2010}.}
 
-\subsection{Principles}
+\subsection{\label{subsec:GroverMainIdea}Main idea}
 
 In the search algorithm, we have the $N=2^{n}$ elements in the search space $S=\{0,1\}^{n}$ and the target element $T\subseteq S$ which has $M$ elements. The output of the algorithm should be the state containing all the target elements, so we let
 \begin{equation}
@@ -500,7 +500,7 @@ We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operat
     \label{fig:grover}
 \end{figure}
 
-Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in the Figure \ref{fig:grover},  operation $G=WO$ gives us a rotation of $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
+Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in the Figure \ref{fig:grover},  operation $G=WO$ gives us a rotation of angle $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
 \begin{equation}
     G^{R}\ket{\psi}=\cos(\frac{2R+1}{2}\theta)\ket{\alpha}+\sin(\frac{2R+1}{2}\theta)\ket{\beta}\approx\ket{\beta}.
 \end{equation}
@@ -602,7 +602,7 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 \textit{This section is based on the paper\cite{2009Exact}.}
 
-\subsection{Principles}
+\subsection{Main idea}
 
 Oracle is at the heart of grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state which uses $R$ queries to the oracle as
 \begin{equation}
@@ -759,13 +759,13 @@ From section \ref{DistanceByOracle} and section \ref{DistanceWhenWeNeed}, we obt
 \begin{theorem}
     The unordered search problem with success probability $p>0$ requires at least $R$ queries, where
     \begin{equation}
-        R =\frac{\sqrt{N}}{2\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right)
+        R =\frac{\sqrt{N}}{2\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right).
     \end{equation}
 \end{theorem}
 \begin{theorem}
     The unordered search problem with success probability $p>0$ requires at least $R$ queries, where
     \begin{equation}
-        R =\frac{\arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}}{2\arcsin\frac{1}{\sqrt{N}}}
+        R =\frac{\arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}}{2\arcsin\frac{1}{\sqrt{N}}}.
     \end{equation}
 \end{theorem}
 In the case of euclidean distances, we conclude that Grover's algorithm is asymptotically optimal, and in the case of  angular distances, that Grover's algorithm is exactly optimal.
@@ -776,11 +776,11 @@ In the case of euclidean distances, we conclude that Grover's algorithm is asymp
 
 \textit{This section is based on the paper\cite{Long_2001}.}
 
-\subsection{principles}
+\subsection{\label{subsec:LongMainIdea}Main idea}
 
 Although the grover's algorithm is already accurate enough when the number of elements is large, for instance in deciphering the DES code where $N = 256$ the deviation is only $3\times 10^{-9}$. But in problems where certainly is vital, especially when the dimension is not so big, using a searching algorithm with certainty becomes important. Let's make some improvements to the grover's algorithm.
 
-In the grover's algorithm we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, but $SU(2)$ has three degrees of freedom, so we may as well extend $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
+In the grover's algorithm\footnote{The notation of section \ref{subsec:GroverMainIdea} is followed here.} we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, but $SU(2)$ has three degrees of freedom, so we may as well extend $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
 \begin{equation}
     \begin{split}
         I_{W} & = I+(e^{-i\phi}-1)\ket{\psi_{\perp}}\bra{\psi_{\perp}} = e^{-i\phi}(I+(e^{i\phi}-1)\ket{\psi}\bra{\psi})                   \\
@@ -788,7 +788,7 @@ In the grover's algorithm we construct rotations in the space spanned by $\ket{\
         Q     & = I_{W}I_{O} = e^{-i\phi}H^{\otimes n}(I+(e^{i\phi}-1)\ket{0}\bra{0})H^{\otimes n}(I+(e^{i\phi}-1)\ket{\beta}\bra{\beta}).
     \end{split}
 \end{equation}
-Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should have the axis of rotation at the same angle as $\ket{\psi}$ and $\ket{\beta}$. From corollary \ref{cor:CompositionOfRotation}, if the angle of $I_{O}$ is $\phi$, so the angle of $I_{W}$ is $-\phi$. As a generalization of the grover's algorithm, it can be seen that if we set $\phi=\pi$, then $Q$ degenerates to $G$.
+Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should have the axis of rotation at the same angle as $\ket{\psi}$ and $\ket{\beta}$. From corollary \ref{cor:CompositionOfRotation}, if the angle of $I_{O}$ is $-\phi$, the angle of $I_{W}$ has to be $\phi$. As a generalization of the grover's algorithm, it can be seen that if we set $\phi=\pi$, then $Q$ degenerates to $G$.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\columnwidth]{figures/long.png}
@@ -796,7 +796,7 @@ Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should 
     \label{fig:long}
 \end{figure}
 
-.
+As shown in the Figure \ref{fig:long}, $I_{O}$ gives us a rotation of angle $-\phi$ about axis $\ket{\alpha}\to(0,0,1)^{T}$ and $I_{W}$ gives us a rotation of angle $\phi$ about axis $\ket{\psi}\to(\sin\theta,0,\cos\theta)^{T}$, their produt $Q=I_{W}I_{O}$ gives us a rotation of angle $\omega=4\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2})$ about axis $\ket{q}\to k(\cos\frac{\phi}{2},\sin\frac{\phi}{2},\cos\frac{\phi}{2}\tan\frac{\theta}{2})^{T}$, where $k$ is the normalization factor.
 
 
 %-----------------------bib---------------------------

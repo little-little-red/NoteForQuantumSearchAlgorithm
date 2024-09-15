@@ -1,3 +1,9 @@
+"""
+long_algorithm.py
+
+The colors part needs to be manually adjusted as constant N changes, which the authors did not bother to automate.
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import qutip as qt
@@ -79,8 +85,9 @@ for _ in t:
     )
     psi_O_trans = IW_trans * psi_O
     bloch.add_states(psi_O_trans, kind="point", colors="b", alpha=0.7)
-    psi_Q_trans = qt.Qobj(fractional_matrix_power((I_W * I_O).full(), _)) * psi
-    bloch.add_states(psi_Q_trans, kind="point", colors="r", alpha=0.7)
+    for idx in range(0, j):
+        psis_trans = qt.Qobj(fractional_matrix_power((I_W * I_O).full(), _)) * psis[idx]
+        bloch.add_states(psis_trans, kind="point", colors="r", alpha=0.7)
 
 
 # states labels
@@ -93,7 +100,10 @@ bloch.add_annotation(
 )
 bloch.add_annotation(vec_psi, r"$\left|\psi\right\rangle$")
 bloch.add_annotation(vec_psi_O, r"$I_{O}\left|\psi\right\rangle$")
-for idx in range(1, j):
+bloch.add_annotation(
+    vec_psis[1], r"$I_{W}I_{O}\left|\psi\right\rangle=Q\left|\psi\right\rangle$"
+)
+for idx in range(2, j):
     bloch.add_annotation(
         vec_psis[idx], r"$Q^{" + str(idx) + r"}\left|\psi\right\rangle$"
     )
@@ -118,12 +128,13 @@ bloch.add_points(np.array([vec_aux_phi, vec_psi_O]).T, meth="l", colors="b", alp
 bloch.add_points(
     np.array([vec_aux_phi, vec_psis[1]]).T, meth="l", colors="b", alpha=0.3
 )
-bloch.add_points(np.array([vec_psi, vec_aux_axis]).T, meth="l", colors="r", alpha=0.3)
-bloch.add_points(
-    np.array([vec_psis[1], vec_aux_axis]).T, meth="l", colors="r", alpha=0.3
-)
-
+for idx in range(0, j):
+    bloch.add_points(
+        np.array([vec_psis[idx], vec_aux_axis]).T, meth="l", colors="r", alpha=0.3
+    )
+bloch.add_points(np.array([vec_beta, vec_aux_axis]).T, meth="l", colors="r", alpha=0.3)
 
 # show
+bloch.view = [-78, -4]
 bloch.show()
 plt.show()
