@@ -1,7 +1,7 @@
 """
 long_algorithm.py
 
-The colors part needs to be manually adjusted as constant N changes, which the authors did not bother to automate.
+N must be greater than 4.
 """
 
 import matplotlib.pyplot as plt
@@ -33,18 +33,22 @@ I_W = basictrans * qt.Qobj([[1, 0], [0, np.exp(-1j * phi)]]) * basictrans_inv
 Q = I_W * I_O
 
 # shaft of rotation
-omega, axis = Q.eigenstates()
+omega, axiss = Q.eigenstates()
+if 2 * abs((beta.dag() * axiss[0])) ** 2 > 1:
+    axis = axiss[0]
+else:
+    axis = axiss[1]
 
 # iterational states
 psi_O = I_O * psi
 psis = [psi]
-for _ in range(j - 1):
+for idx in range(j - 1):
     psis.append(Q * psis[-1])
 
 # auxiliar states
 aux_alpha = np.sqrt(np.cos(theta)) * alpha
 aux_psi = np.sqrt(np.cos(2 * np.arcsin(np.sin(theta) * np.sin(phi / 2)))) * psi
-aux_axis = np.sqrt(2 * abs((beta.dag() * axis[0])) ** 2 - 1) * axis[0]
+aux_axis = np.sqrt(2 * abs((beta.dag() * axis)) ** 2 - 1) * axis
 
 # Initialize the Bloch sphere
 bloch = qt.Bloch()
@@ -66,13 +70,14 @@ vec_psi = bloch.vectors[-1]
 vec_psis = [vec_psi]
 bloch.add_states(psi_O, alpha=0.7)
 vec_psi_O = bloch.vectors[-1]
+bloch.add_states(beta, alpha=0.7)
+vec_beta = bloch.vectors[-1]
+bloch.add_states(axis, alpha=0.7)
+vec_axis = bloch.vectors[-1]
 for _ in range(1, j):
     bloch.add_states(psis[_], alpha=0.7)
     vec_psis.append(bloch.vectors[-1])
-bloch.add_states(beta, alpha=0.7)
-vec_beta = bloch.vectors[-1]
-bloch.add_states(axis[0], alpha=0.7)
-vec_axis = bloch.vectors[-1]
+
 
 # State of transition
 t = np.linspace(0, 1, 15)
@@ -110,14 +115,16 @@ for idx in range(2, j):
 bloch.add_annotation(vec_axis, r"$\left|q\right\rangle$")
 
 # colors
-bloch.vector_color = [
+colors = [
     "g",  # alpha
     "b",  # psi
     "#0000BF",  # psi_O
-    "#000080",  #
     "#000000",  # beta
     "r",  # axis
 ]
+for idx in range(1, j):
+    colors.append("#000080")
+bloch.vector_color = colors
 
 # lines
 bloch.add_points(np.array([vec_aux_alpha, vec_psi]).T, meth="l", colors="g", alpha=0.3)

@@ -3,13 +3,13 @@
 
 %-----------------------package---------------------------
 \usepackage{amssymb}
-\usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{bm}
+\usepackage{booktabs}
 \usepackage{braket}
 \usepackage{cancel}
 \usepackage{xcolor}
-\usepackage{graphicx}%需要在epstopdf之前
+\usepackage{graphicx}
 \usepackage{epstopdf}
 \usepackage{enumerate}
 \usepackage[perpage]{footmisc}
@@ -17,10 +17,12 @@
 \usepackage{mathtools}
 \usepackage{subcaption}
 \usepackage{times}
+\usepackage{tikz}
 \usepackage{titlesec}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{verbatim}
-\usepackage{quantikz}
+\usetikzlibrary{quantikz2}
+\usetikzlibrary{3d}
 
 %-----------------------settings---------------------------
 \allowdisplaybreaks[3]
@@ -55,11 +57,11 @@
 The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the Bloch sphere repersentation gives us a more intuitive way to observe the qubit, a isomorphism from a qubit to the three-dimensional real sphere:
 \begin{equation}\label{BlochSphereRepersentation}
     \begin{split}
-        \mathbb{C}\mathbb{P}^{1}                                                                                & \to S^{2}                                                               \\
-        \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \sin \frac{\theta}{2}\mathrm{e}^{\mathrm{i}\varphi }\ket{1} & \mapsto \vec{n}=(\cos\phi\sin\theta,\sin\phi\sin\theta,\cos\theta)^{T}.
+        \mathbb{C}\mathbb{P}^{1}                                                                              & \to S^{2}                                                                            \\
+        \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \mathrm{e}^{\mathrm{i}\varphi}\sin\frac{\theta}{2}\ket{1} & \mapsto \vec{n}_{\psi}=(\cos\varphi\sin\theta,\sin\varphi\sin\theta,\cos\theta)^{T}.
     \end{split}
 \end{equation}
-where $\theta\in\left[0,\pi\right]$ and $\psi\in\left[0,2\pi\right]$.
+where $\theta\in\left[0,\pi\right]$ and $\varphi\in\left[0,2\pi\right]$.
 
 Operations on a qubit must preserve the norm, and thus are described by $2\times2$ unitary matrices. By $\det|U|=e^{2i\alpha}$ Then
 \begin{equation}
@@ -527,20 +529,20 @@ But we don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$. To constru
 \end{equation}
 which gives us a operation $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$. Then we just need to construct the mapping
 \begin{equation}
-    \zeta(x)=
+    S(x)=
     \begin{cases}
         1 & x\in T    \\
         0 & x\notin T
     \end{cases}
 \end{equation}
-such that $U_{\zeta}$ satisfies the properties we need:
+such that $U_{S}$ satisfies the properties we need:
 \begin{equation}
     \begin{split}
-        U_{\zeta}\ket{\beta}  & =-\ket{\beta}  \\
-        U_{\zeta}\ket{\alpha} & =\ket{\alpha}.
+        U_{S}\ket{\beta}  & =-\ket{\beta}  \\
+        U_{S}\ket{\alpha} & =\ket{\alpha}.
     \end{split}
 \end{equation}
-So the $U_{\zeta}$ is the Oracle.
+So the $U_{S}$ is the Oracle.
 
 
 
@@ -563,7 +565,7 @@ But this time, we know $\ket{\psi}$ specifically. Operation $2\ket{\psi}\bra{\ps
 \end{equation}
 So we get the construction of the Grover iteration:
 \begin{equation}
-    G=WO=(2\ket{\psi}\bra{\psi}-I)U_{\zeta}.
+    G=WO=(2\ket{\psi}\bra{\psi}-I)U_{S}.
 \end{equation}
 After constructing each sub-operation, the circuit of the algorithm is given here\footnote{The oracle workspace are omitted here.}:
 \begin{equation}
@@ -796,7 +798,117 @@ Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should 
     \label{fig:long}
 \end{figure}
 
-As shown in the Figure \ref{fig:long}, $I_{O}$ gives us a rotation of angle $-\phi$ about axis $\ket{\alpha}\to(0,0,1)^{T}$ and $I_{W}$ gives us a rotation of angle $\phi$ about axis $\ket{\psi}\to(\sin\theta,0,\cos\theta)^{T}$, their produt $Q=I_{W}I_{O}$ gives us a rotation of angle $\omega=4\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2})$ about axis $\ket{q}\to k(\cos\frac{\phi}{2},\sin\frac{\phi}{2},\cos\frac{\phi}{2}\tan\frac{\theta}{2})^{T}$, where $k$ is the normalization factor.
+As shown in the Figure \ref{fig:long}, $I_{O}$ gives us a rotation of angle $-\phi$ about axis $\vec{r}_{\alpha}=(0,0,1)^{T}$ and $I_{W}$ gives us a rotation of angle $\phi$ about axis $\vec{r}_{\psi}=(\sin\theta,0,\cos\theta)^{T}$, their produt $Q=I_{W}I_{O}$ gives us a rotation of angle
+\begin{equation}
+    \omega=4\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2})
+\end{equation}
+about axis
+\begin{equation}
+    \vec{r}_{q}= k(\cos\frac{\phi}{2},\sin\frac{\phi}{2},\cos\frac{\phi}{2}\tan\frac{\theta}{2})^{T},
+\end{equation}
+where $k$ is the normalization factor.
+
+A naive thought is whether we can find a suitable $\phi$ such that $\ket{\psi}$ can turn to $\ket{\beta}$ exactly. The angle we need to rotate about axis $\ket{q}$ is
+\begin{equation}\label{eq:LongDeltaAngle}
+    \Delta\varphi=\frac{\braket{q_{\perp}|\beta}}{\braket{q_{\perp}|\psi}},
+\end{equation}
+we wish $j=\frac{\Delta\varphi}{\omega}$ is an integer, so that we have $Q^{j}\ket{\psi}=\ket{\beta}$.
+
+\subsection{The right angle\label{subsec:RightAngle}}
+
+In fact, use equation \ref{eq:LongDeltaAngle} to calculate the angle $\Delta\varphi$ is complicated, so we may as well calculate it with bloch vectors.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        % grid
+        \draw[dashed, gray] (-2,0,-2) -- (2,0,-2);
+        \draw[dashed, gray] (-2,0,-1) -- (2,0,-1);
+        \draw[dashed, gray] (-2,0,0) -- (2,0,0);
+        \draw[dashed, gray] (-2,0,1) -- (2,0,1);
+        \draw[dashed, gray] (-2,0,2) -- (2,0,2);
+        \draw[dashed, gray] (-2,0,-2) -- (-2,0,2);
+        \draw[dashed, gray] (-1,0,-2) -- (-1,0,2);
+        \draw[dashed, gray] (0,0,-2) -- (0,0,2);
+        \draw[dashed, gray] (1,0,-2) -- (1,0,2);
+        \draw[dashed, gray] (2,0,-2) -- (2,0,2);
+
+        % vectors
+        \draw[->, thick, red] (0,0,0) -- (0,2,0) node[anchor=south]{$\vec{r}_q$};% q
+        \draw[->, thick, blue] (0,0,0) -- (1,1.414,-1) node[anchor=west]{$\vec{r}_\psi$};% psi
+        \draw[->, thick, blue] (0,0,0) -- (1,0,-1) node[anchor=west]{$\vec{r}_\psi^{'}$};% psi_aux
+        \draw[->, thick, black] (0,0,0) -- (0,1.414,1.414) node[anchor=south]{$\vec{r}_\beta$};% beta
+        \draw[->, thick, black] (0,0,0) -- (0,0,1.414) node[anchor=west]{$\vec{r}_\beta^{'}$};% beta_aux
+
+        % perp
+        \draw[thin, black] (0,0.25,0) -- (0.25,0.25,0);
+        \draw[thin, black] (0.25,0,0) -- (0.25,0.25,0);
+
+        % lines
+        \draw[dashed, blue] (1,1.414,-1) -- (1,0,-1);
+        \draw[dashed, black] (0,1.414,1.414) -- (0,0,1.414);
+
+        % angles
+        \draw[canvas is xz plane at y=0] (0.353,-0.353) arc[start angle=-45,end angle=90,radius=0.5];
+
+        % angles label
+        \node at (0.8,0,0.5) {$\Delta\varphi$};
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:AuxLong}
+\end{figure}
+
+As shown in the Figure \ref{fig:AuxLong}, we can calculate the angle between the projections of $\vec{r}_{\psi}$ and $\vec{r}_{\beta}$ on the plane perpendicular to $\vec{r}_{q}$, we call these projections
+\begin{equation}
+    \begin{split}
+        \vec{r}_{\psi}^{'}  & =\vec{r}_{\psi}-(\vec{r}_{\psi}\cdot\vec{r}_{q})\vec{r}_{q}    \\
+        \vec{r}_{\beta}^{'} & =\vec{r}_{\beta}-(\vec{r}_{\beta}\cdot\vec{r}_{q})\vec{r}_{q},
+    \end{split}
+\end{equation}
+so that we can express $\Delta\varphi$ in a simpler form
+\begin{equation}
+    \Delta\varphi=\arccos\frac{\vec{r}_{\psi}^{'}\cdot\vec{r}_{\beta}^{'}}{\|\vec{r}_{\psi}^{'}\|\|\vec{r}_{\beta}^{'}\|}.
+\end{equation}
+After some boring calculations, we can get
+\begin{equation}
+    \Delta\varphi=2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta}{2}).
+\end{equation}
+
+After calculate each part we need, let's find the right angle $\phi$! Though section \ref{subsec:LongMainIdea}, The iterations $j=\frac{\Delta\varphi}{\omega}$ must be an integer. For equation $\Delta\varphi=j\omega$, consider both ends of the equation separately, we have
+\begin{equation}
+    \begin{split}
+        \Delta\varphi & = 2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta}{2})                            \\
+                      & = 2\left(\frac{\pi}{2}-\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2})\right) \\
+        j\omega       & = 4j\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2}),
+    \end{split}
+\end{equation}
+so that we have
+\begin{equation}
+    \sin\frac{\phi}{2} = \frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta}{2}},
+\end{equation}
+notice that $\phi$ has a real solution only when $\theta/2\geq\pi/(4j+2)$, may as well let $j=\left\lceil(\pi-\theta)/(2\theta) \right\rceil$, so we worked out the right angle $\phi$
+\begin{equation}
+    \phi=2\arcsin\left(\frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta}{2}}\right).
+\end{equation}
+
+Let's finish by some examples of $j$ and $\phi$:
+\begin{table}[h!]
+    \centering
+    \begin{equation*}
+        \begin{array}{ccccccccccc}
+            \toprule
+            N        & 2   & 4 & 8        & 100      & 1000     & 10^{4}   & 10^{6}  & 10^{8}   & 10^{10}  & 2^{56} \\
+            \midrule
+            j        & 1   & 1 & 2        & 3        & 8        & 25       & 79      & 785      & 7854     & 78540  \\
+            \phi/\pi & 0.5 & 1 & 0.677007 & 0.698709 & 0.748018 & 0.854022 & 0.90089 & 0.989752 & 0.992688 & 0.9973 \\
+            \bottomrule
+        \end{array}
+    \end{equation*}
+    \caption{}
+    \label{tab:examples}
+\end{table}
+
+Can be seen as $N$ increases, the angle $\phi$ approaches $\pi$. At this point, the Long's algorithm is also slightly closer to Grover's algorithm.
+
 
 
 %-----------------------bib---------------------------
