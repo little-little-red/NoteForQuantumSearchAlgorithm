@@ -31,7 +31,7 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \numberwithin{equation}{section}
 
-%-----------------------maintext---------------------------
+%-----------------------main text---------------------------
 \title{Notes on quantum search algorithm}
 \author{Zhongwei Jiang, Linfeng Zhao}
 \date{\today}
@@ -54,7 +54,7 @@
 
 \subsection{Single-qubit gate}
 
-The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the Bloch sphere repersentation gives us a more intuitive way to observe the qubit, a isomorphism from a qubit to the three-dimensional real sphere:
+The number of qubits in a quantum state depends on the number of classical bits in its dimension, so we usually call a vector $\ket{\psi} = a\ket{0} + b\ket{1}$ parameterized by two complex numbers $a$ and $b$ satisfying $|a|^2 + |b|^2 = 1$ a qubit. According to the constraints and phase redundancy, the Bloch sphere representation gives us a more intuitive way to observe the qubit, an isomorphism from a qubit to the three-dimensional real sphere:
 \begin{equation}\label{BlochSphereRepersentation}
     \begin{split}
         \mathbb{C}\mathbb{P}^{1}                                                                              & \to S^{2}                                                                            \\
@@ -63,7 +63,7 @@ The number of qubits in a quantum state depends on the number of classical bits 
 \end{equation}
 where $\theta\in\left[0,\pi\right]$ and $\varphi\in\left[0,2\pi\right]$.
 
-Operations on a qubit must preserve the norm, and thus are described by $2\times2$ unitary matrices. By $\det|U|=e^{2i\alpha}$ Then
+Operations on a qubit must preserve the norm and thus are described by $2\times2$ unitary matrices. By $\det|U|=e^{2i\alpha}$ Then
 \begin{equation}
     e^{-i\alpha}U\in SU(2)
 \end{equation}
@@ -78,7 +78,7 @@ From Lie group elements, any single-qubit unitary can be written as a product of
     U = e^{i\alpha}\exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right),
 \end{equation}
 which $\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
-From the isomorphism \ref{BlochSphereRepersentation}, we can also induce a isomorphism of operations on two spaces:
+From the isomorphism \ref{BlochSphereRepersentation}, we can also induce an isomorphism of operations on two spaces:
 \begin{equation}
     \begin{split}
         SU(2)/\{\pm 1\}                                             & \to SO(3)
@@ -86,9 +86,9 @@ From the isomorphism \ref{BlochSphereRepersentation}, we can also induce a isomo
         \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto \exp\left(\omega\vec{n}\cdot\vec{J}\right)
     \end{split}
 \end{equation}
-which $\omega\in\left[0,\pi\right]$ and $J_{j}$ is the three generators of Lie group $SO(3)$, the former refers to single-qubit gates and the latter to transformations on the Bloch sphere. For visualization and convenience, we let $R_{\vec{n}}(\omega) \coloneqq \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right)$.
+which $\omega\in\left[0,\pi\right]$ and $J_{j}$ are the three generators of Lie group $SO(3)$, the former refers to single-qubit gates and the latter to transformations on the Bloch sphere. For visualization and convenience, we let $R_{\vec{n}}(\omega) \coloneqq \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right)$.
 
-In the following, we use $XYZ$ instead of $\sigma_x\sigma_y\sigma_z$, here are some other single-qubit gate which are frequently used, they are called Hadamard gate, phase gate, and $\pi/8$ gate:
+In the following, we use $XYZ$ instead of $\sigma_x\sigma_y\sigma_z$, here are some other single-qubit gates which are frequently used, they are called Hadamard gate, phase gate, and $\pi/8$ gate:
 \begin{equation}
     H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad
     S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}, \quad
@@ -130,7 +130,7 @@ Here we list some properties of single-qubit gates:
     and $ABC=I$.
 \end{proof}
 \begin{theorem}\label{ProductOfPauli}
-    We have the product of pauli matrices,
+    We have the product of Pauli matrices,
     \begin{equation}
         \sigma_{j}\sigma_{k} = i\epsilon_{jk}^{l}\sigma_{l}+\delta_{jk}I.
     \end{equation}
@@ -178,7 +178,7 @@ Here we list some properties of single-qubit gates:
 
 \subsection{\label{CtrlGate}Controlled operation}
 
-Analogous to the if statement of a classical circuit, we can use controlled-NOT gate to control target qubit with control qubit, its matrix form and circuit are shown as follows:
+Analogous to the if statement of a classical circuit, we can use the controlled-NOT gate to control the target qubit with the control qubit, its matrix form and circuit are shown as follows:
 \begin{equation}
     CNOT = \begin{pmatrix} I & 0 \\ 0 & X \end{pmatrix}
 \end{equation}
@@ -188,7 +188,7 @@ Analogous to the if statement of a classical circuit, we can use controlled-NOT 
         & \targ{} &
     \end{quantikz}
 \end{equation}
-CNOT gate makes the state of the target qubit be flipped when the control qubit is 1 and remain unchanged when the control qubit is 0. That is $\ket{c}\ket{t}\rightarrow\ket{c}X^{c}\ket{t}$. We will also use two deformations of CNOT gates:
+CNOT gate makes the state of the target qubit be flipped when the control qubit is 1 and remains unchanged when the control qubit is 0. That is $\ket{c}\ket{t}\rightarrow\ket{c}X^{c}\ket{t}$. We will also use two deformations of CNOT gates:
 \begin{equation}
     \begin{quantikz}
         & \targ{} & \ghost{H} \\
@@ -214,7 +214,7 @@ We expect to extend this control from $X$ to an arbitrary single-qubit gate $U$.
         & \gate{U} &
     \end{quantikz}
 \end{equation}
-We wish to decompose this into a combination of single quantum bit gates and CNOT gates. With the theorem\ref{DecToAXBXC}, we can divide the controlled-U gate into several parts, looking first at the global phase part, which obviously has:
+We wish to decompose this into combining single quantum bit gates and CNOT gates. With the theorem\ref{DecToAXBXC}, we can divide the controlled-U gate into several parts, looking first at the global phase part, which has:
 \begin{equation}
     \begin{quantikz}[row sep=0.4cm]
         & \ctrl{1} & \ghost{phase} \\
@@ -239,11 +239,11 @@ Looking at the $AXBXC$ part again, we have the expectation that if the control q
         & \gate{A} & \targ{} & \gate{B} & \targ{} & \gate{C} &
     \end{quantikz}
 \end{equation}
-This construction also satisfies:if the control qubit is $\ket{1}$, then we apply $AXBXC$ to the target qubit.
+This construction also satisfies: if the control qubit is $\ket{1}$, we apply $AXBXC$ to the target qubit.
 
 So we have that:
 \begin{theorem}
-    The controlled-U gate can be decomposed with CNOT gates and single qubit gates into this form:
+    The controlled-U gate can be decomposed with CNOT gates and single-qubit gates into this form:
     \begin{equation}
         \begin{quantikz}
             & \ctrl{1} & \ghost{X} \\
@@ -255,7 +255,7 @@ So we have that:
     \end{equation}
 \end{theorem}
 
-Considering the case of multiple control Qubits, first look at the case of two control Qubits, you can construct: if $V$ is a single qubit gate satisfying $V^2=U$, we have:
+Considering the case of multiple control qubits, first look at the case of two control qubits, you can construct: if $V$ is a single qubit gate satisfying $V^2=U$, we have:
 \begin{equation}
     \begin{quantikz}
         & \ctrl{1} & \ghost{} \\
@@ -268,7 +268,7 @@ Considering the case of multiple control Qubits, first look at the case of two c
     \end{quantikz}
 \end{equation}
 
-Then we can extend this to the case of $n$ control qubits, there are many kinds of construction methods, here we use recursive method to construct:
+Then we can extend this to the case of $n$ control qubits, there are many kinds of construction methods, and we use the recursive method to construct:
 \begin{equation}
     \begin{quantikz}[row sep=0.3cm]
         & \ctrl{1} & \ghost{} \\
@@ -283,7 +283,7 @@ Then we can extend this to the case of $n$ control qubits, there are many kinds 
     \end{quantikz}
 \end{equation}
 
-Ultimately we will show that any unitary operation can be composed to an arbitrarily good approximation from just H, S, T, CNOT gates. Here is the construction of the Toffoli gate:
+Ultimately we will show that any unitary operation can be composed to an arbitrarily good approximation from just H, S, T, CNOT gates. Here is the construction of the Toffoli Gate:
 \begin{equation}
     \begin{quantikz}[row sep=0.4cm]
         & \ctrl{1} & \ghost{} \\
@@ -306,11 +306,11 @@ In the section \ref{CtrlGate}, we showed that $C^{n}(U)$ gate can be decomposed 
 
 First, we introduce the lemma:
 \begin{lemma}
-    Any D-dimensional unitary transformation U can always be decomposed into the product of $d(d-1)/2$ two-level unitary transformations under natural basis.
+    Any D-dimensional unitary transformation U can always be decomposed into the product of $d(d-1)/2$ two-level unitary transformations under a natural basis.
 \end{lemma}
-So exists two-level unitary transformations $ V_{j} $ made $U = \prod\limits_{j=1}^{d(d-1)/2}V_{j}$\footnote{Unless otherwise specified, the conjunction sign in this document is calculated according to the composite order of the map, that is $\prod\limits_{j=1}^{n}a_{j} = a_{n}a_{n-1}\cdots a_{1}$. }. Two-level unitary transformations are unitary matrices which act non-trivially only on two-or-fewer vector components.The proof idea of this theorem is simple\footnote{Each single-qubit gates has $d(d-1)/2$ degrees of freedom and each two-level unitary transformations turn one of single-qubit gates elements into zero in order. So exists two-level unitary transformations $ V_{j} $ made $\left( \prod\limits_{j=1}^{d(d-1)/2}V_{j} \right) U = I $. },  let's focus on the two-level unitary transformations $V$.
+So exists two-level unitary transformations $ V_{j} $ made $U = \prod\limits_{j=1}^{d(d-1)/2}V_{j}$\footnote{Unless otherwise specified, the conjunction sign in this document is calculated according to the composite order of the map, that is $\prod\limits_{j=1}^{n}a_{j} = a_{n}a_{n-1}\cdots a_{1}$. }. Two-level unitary transformations are unitary matrices that act non-trivially only on two or fewer vector components. The proof idea of this theorem is simple \footnote{Each single-qubit gates has $d(d-1)/2$ degrees of freedom and each two-level unitary transformation turn one of single-qubit gate elements into zero in order. So exists two-level unitary transformations $ V_{j} $ made $\left( \prod\limits_{j=1}^{d(d-1)/2}V_{j} \right) U = I $. },  let's focus on the two-level unitary transformations $V$.
 
-Consider the binary expansion of the two bases $\ket{s}$ and $\ket{t}$ on which $V$ operates, where $s=s_{1}\ldots s_{n}$ and $t=t_{1}\ldots t_{n}$. We can use Toffoli gate to turn $s_{j}$ into $t_{j}$, after $n-1$ steps $\ket{s_{1}\ldots s_{k-1} s_{k} s_{k+1} \ldots s_{n}}$ into $\ket{t_{1}\ldots t_{k-1} s_{k} t_{k+1} \ldots t_{n}}$. It puts $\ket{s}$ and $\ket{t}$in the same qubit and makes $V$ into a $C^{n}(\widetilde{V})$ gate which $\widetilde{V}$ is the non-trivial $2\times 2$ unitary submatrix of $V$.
+Consider the binary expansion of the two bases $\ket{s}$ and $\ket{t}$ on which $V$ operates, where $s=s_{1}\ldots s_{n}$ and $t=t_{1}\ldots t_{n}$. We can use Toffoli gate to turn $s_{j}$ into $t_{j}$, after $n-1$ steps $\ket{s_{1}\ldots s_{k-1} s_{k} s_{k+1} \ldots s_{n}}$ into $\ket{t_{1}\ldots t_{k-1} s_{k} t_{k+1} \ldots t_{n}}$. It puts $\ket{s}$ and $\ket{t}$in the same qubit and makes $V$ into a $C^{n}(\widetilde{V})$ gate which $\widetilde{V}$ is the non-trivial $2\times 2$ unitary sub-matrix of $V$.
 
 Let's take an example to illustrate this lemma, consider the $U$ gate:
 \begin{equation}
@@ -338,14 +338,13 @@ So we have:
 
 \subsection{Approximate universal operators with a discrete set}
 
-It is hard to implement all single-qubit, so we consider to approximate it with a discrete set which we can implement. We introduce the induced norm of operators to measure the degree of approximation:
+It is hard to implement all single-qubit gates, so we consider approximating it with a discrete set that we can implement. We introduce the induced norm of operators to measure the degree of approximation:
 \begin{equation}
     E(U,V) = \left\| U-V \right\| \coloneqq \sup\limits_{\substack{\ket{\psi} \in \mathbb{C}^{n} \\ \left\| \ket{\psi} \right\| = 1}} \left\| (U-V)\ket{\psi} \right\|
 \end{equation}
-Where $U$ is the target unitary operator
-that we wish to implement, $V$ is the unitary operator that is actually implemented in practice, and $E(U,V)$ is the error when $V$ is implemented instead of $U$. It is natural that:
+Where $U$ is the target unitary operator that we wish to implement, $V$ is the unitary operator that is implemented in practice, and $E(U,V)$ is the error when $V$ is implemented instead of $U$. It is natural that:
 \begin{theorem}
-    in the approximation of $m$ gates, the error add at most linearly:
+    In the approximation of $m$ gates, the error is added at most linearly:
     \begin{equation}
         E\left(\prod\limits_{j=1}^{m}U_{j},\prod\limits_{j=1}^{m}V_{j}\right) \leq \sum_{j=1}^{m} E(U_{j},V_{j})
     \end{equation}
@@ -358,7 +357,7 @@ that we wish to implement, $V$ is the unitary operator that is actually implemen
 \end{proof}
 
 
-We are more concerned with the error of the approximation in the measurement. considering $M$ is a POVM element in an arbitrary measurement POVM, and $P_{U}$(or $P_{V}$) is the probability of obtaining this outcome if $U$(or $V$) were performed with the state $\ket{\psi}$, We can prove\footnote{Let $\ket{\Delta} = (U-V)\ket{\psi}$, notice that $\bra{\psi}U^{\dagger}MU\ket{\psi} - \bra{\psi}V^{\dagger}MV\ket{\psi} = \bra{\psi}U^{\dagger}M\ket{\Delta} + \bra{\Delta}MV\ket{\psi}$. } that:
+We are more concerned with the error of the approximation in the measurement. Considering $M$ is a POVM element in an arbitrary measurement POVM, and $P_{U}$(or $P_{V}$) is the probability of obtaining this outcome if $U$(or $V$) were performed with the state $\ket{\psi}$, We can prove\footnote{Let $\ket{\Delta} = (U-V)\ket{\psi}$, notice that $\bra{\psi}U^{\dagger}MU\ket{\psi} - \bra{\psi}V^{\dagger}MV\ket{\psi} = \bra{\psi}U^{\dagger}M\ket{\Delta} + \bra{\Delta}MV\ket{\psi}$. } that:
 \begin{equation}
     \left| P_{U} - P_{V} \right| \leq 2E(U,V)
 \end{equation}
@@ -366,12 +365,12 @@ This makes it possible that if we want the probability difference between the ap
 
 From the decomposition given by corollary \ref{cor:DecompositionByTwoAxis}, we can further care about the degree of approximation of $R_{\vec{n}}(\omega)$. Let's start by introducing a neat lemma :
 \begin{lemma}\label{AngleCoverR}
-    Considering $\alpha$, $\omega \in \mathbb{R} /2\pi\mathbb{Z}$, if $\omega/\pi \in \mathbb{R} \backslash \mathbb{Q}$ , we can find a subsequences $\{x_n\}$ of sequences $\{n\}$ makes $\lim\limits_{n\to\infty}x_n\omega = \alpha$.
+    Considering $\alpha$, $\omega \in \mathbb{R} /2\pi\mathbb{Z}$, if $\omega/\pi \in \mathbb{R} \backslash \mathbb{Q}$ , we can find a sub-sequences $\{x_n\}$ of sequences $\{n\}$ makes $\lim\limits_{n\to\infty}x_n\omega = \alpha$.
 \end{lemma}
 \begin{proof}
     $\forall \epsilon>0$, $\exists N=\frac{2\pi}{\epsilon}$, when $n>N$, we can find $|j\omega-k\omega|\leq\frac{2\pi}{n}$ which $j,k \in \{n\},j>k$, let $x_{n} = (j-k)\left\lfloor\frac{\alpha}{|j\omega-k\omega|}\right\rfloor$, so we have $|x_{n}\omega-\alpha|<|j\omega-k\omega|\leq\frac{2\pi}{n}<\epsilon$.
 \end{proof}
-Further we have\footnote{The construction of $x_{n}$ in this part is only to prove the existence, without considering the complexity. There are actually far less complex constructs.}:
+Further, we have\footnote{The construction of $x_{n}$ in this part is only to prove the existence, without considering the complexity. There are far less complex constructs.}:
 \begin{equation}
     \begin{split}
           & \ E(R_{\vec{n}}(\alpha),R_{\vec{n}}(\omega)^{x_{n}})              \\
@@ -379,7 +378,7 @@ Further we have\footnote{The construction of $x_{n}$ in this part is only to pro
         = & \ |1-\exp((x_{n}\omega-\alpha)/2)|\leq\ \epsilon/2
     \end{split}
 \end{equation}
-According the proof, we just need to find the gate that has the Angle that the theorem requires. Fortunately, $THTH$ gate has the angel we need. It is a rotation of the Bloch sphere about an axis along $\vec{n} = (\cos\frac{\pi}{8},\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and through an angle $\omega$ defined by $\cos\frac{\omega}{2} = \cos^{2}\frac{\pi}{8}$, so we just let $R_{\vec{n}}(\omega) = THTH$.
+According to the proof, we just need to find the gate that has the Angle that the theorem requires. Fortunately, the $THTH$ gate has the angel we need. It is a rotation of the Bloch sphere about an axis along $\vec{n} = (\cos\frac{\pi}{8},\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and through an angle $\omega$ defined by $\cos\frac{\omega}{2} = \cos^{2}\frac{\pi}{8}$, so we just let $R_{\vec{n}}(\omega) = THTH$.
 
 From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operator $U$, we still need to approximate the rotation of the other axis, but even more fortunate is that $HR_{\vec{n}}(\omega)H$ is exactly what we need, has axis $\vec{m} = (\cos\frac{\pi}{8},-\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and the angle $\omega$, like $R_{\vec{n}}(\omega)$, is an irrational multiple of $\pi$. After layers and layers of preparation, let's list the final approximation with suitable positive integers $j_{n}$ to U:
 \begin{equation}\label{FinalApproximation}
@@ -395,11 +394,11 @@ From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operator $
 
 It makes no sense to talk about its existence without giving its size,  so let's estimate the number of gates needed for the approximation in the previous section. For convenience of stating the theorem, we say that $S$ is an $\epsilon$-net in $W$, if every point in $W$ is within a distance $\epsilon$ of some point in $S$, where $S$, $W\in SU(2)$ and $\epsilon>0$ and the distance is $D(U,V)\coloneqq\mathrm{tr}|U-V|$. And we define $\mathcal{G}_{l}$ to be the set of all words of length at most $l$.
 \begin{theorem}[Solovay-Kitaev theorem]
-    Let $\mathcal{G}$ be a fitite set of elements in $SU(2)$ conatining its own inverses, such that $\left\langle\mathcal{G}\right\rangle$ is dense in $SU(2)$. Let $\epsilon > 0$ be given. Then $\mathcal{G}_{l}$ is an $\epsilon$-net in $SU(2)$ for $l=O(\ln^{c}(1/\epsilon))$, where $c=\ln5/\ln(3/2)$.
+    Let $\mathcal{G}$ be a finite set of elements in $SU(2)$ containing its own inverses, such that $\left\langle\mathcal{G}\right\rangle$ is dense in $SU(2)$. Let $\epsilon > 0$ be given. Then $\mathcal{G}_{l}$ is an $\epsilon$-net in $SU(2)$ for $l=O(\ln^{c}(1/\epsilon))$, where $c=\ln5/\ln(3/2)$.
 \end{theorem}
-According to the theorem, we can konw that to approximate a circuit containing $m$ single qubit unitaries to an accuracy $\epsilon$ requires $O(m\ln^{c}(m/\epsilon))$ gates from the discrete set. The proof of this theorem is quite long, so only the main ideas are given here. Let's first introduce the lamma:
+According to the theorem, we can know that to approximate a circuit containing $m$ single-qubit unitary operations to an accuracy $\epsilon$ requires $O(m\ln^{c}(m/\epsilon))$ gates from the discrete set. The proof of this theorem is quite long, so only the main ideas are given here. Let's first introduce the lemma:
 \begin{lemma}
-    Let $\mathcal{G}$ be a fitite set of elements in $SU(2)$ conatining its own inverses, such that $\left\langle\mathcal{G}\right\rangle$ is dense in $SU(2)$. For some $\epsilon>0$ and any $k\in\mathbb{N}$, if $\mathcal{G}_{l}$ is an $\epsilon^{2}$-net for $S_{\epsilon}$, then $\mathcal{G}_{5^{k}l}$ is an $\epsilon(k)^{2}$-net for $S_{\epsilon(k)}$. where $\epsilon(k)=(C\epsilon)^{(3/2)^{k}}/C$, $\epsilon(k)^{2}<\epsilon(k+1)$ and $S_{\epsilon}\coloneqq \{U\in SU(2)|D(U,I)\leq \epsilon\}$.
+    Let $\mathcal{G}$ be a finite set of elements in $SU(2)$ containing its own inverses, such that $\left\langle\mathcal{G}\right\rangle$ is dense in $SU(2)$. For some $\epsilon>0$ and any $k\in\mathbb{N}$, if $\mathcal{G}_{l}$ is an $\epsilon^{2}$-net for $S_{\epsilon}$, then $\mathcal{G}_{5^{k}l}$ is an $\epsilon(k)^{2}$-net for $S_{\epsilon(k)}$. where $\epsilon(k)=(C\epsilon)^{(3/2)^{k}}/C$, $\epsilon(k)^{2}<\epsilon(k+1)$ and $S_{\epsilon}\coloneqq \{U\in SU(2)|D(U,I)\leq \epsilon\}$.
 \end{lemma}
 \begin{proof}
     We know the element of $SU(2)$ can be written as $U=\exp(-i\vec{a}\cdot\vec{\sigma}/2)$, we write $U=u(\vec{a})$.And introduce the symbol $[U,V]_{gp}=UVU^{\dagger}V^{\dagger}$. With constant $d$, we have two conclusions:
@@ -421,9 +420,9 @@ According to the theorem, we can konw that to approximate a circuit containing $
     \end{equation}
     that is, $\mathcal{G}_{5l}$ is an $\epsilon(1)^{2}$-net for $S_{\epsilon(1)}$. Recursively, $\mathcal{G}_{5^{k}l}$ is an $\epsilon(k)^{2}$-net for $S_{\epsilon(k)}$.
 \end{proof}
-For $U\in SU(2)$ we can find $U_{0}$ make $D(U_{0},U)<\epsilon(0)^{2}<\epsilon(1)$, so we have a first order approximation $U_{0}$ of $U$.  We can go on to approximate their difference $V=UU_{0}^{\dagger}$, With the lemma, we can find $U_{1}$ make $D(U_{1},V)<\epsilon(1)^{2}<\epsilon(2)$, so we have a second order approximation $U_{1}U_{0}$ of $U$. Continue in this way, we can approximate to the accuracy we want which $\epsilon(k+1)<\epsilon$.
+For $U\in SU(2)$ we can find $U_{0}$ make $D(U_{0},U)<\epsilon(0)^{2}<\epsilon(1)$, so we have a first order approximation $U_{0}$ of $U$.  We can go on to approximate their difference $V=UU_{0}^{\dagger}$, With the lemma, we can find $U_{1}$ make $D(U_{1},V)<\epsilon(1)^{2}<\epsilon(2)$, so we have a second order approximation $U_{1}U_{0}$ of $U$. Continue in this way, we can approximate the accuracy we want which $\epsilon(k+1)<\epsilon$.
 
-Although the approximation of a set of single-qubit gates is polynomial, approximating arbitrary unitary gates is actually hard. Considering the normalization of $n$ qubit states $\left\|\ket{\psi}\right\|=1$ gives that the state space is an unit $(2^{n+1}-1)$-dimensional unit sphere. Given the error $\epsilon$, a state approximation gives an $(2^{n+1}-2)$-dimensional sphere of radius $\epsilon$. So in order to cover the state space, we need about\footnote{$O$ is for upper bounds, $\Omega$ is for lower bounds and $\Theta$ is for tight bounds. }
+Although the approximation of a set of single-qubit gates is polynomial, approximating arbitrary unitary gates is hard. Considering the normalization of $n$ qubit states $\left\|\ket{\psi}\right\|=1$ gives that the state space is an unit $(2^{n+1}-1)$-dimensional unit sphere. Given the error $\epsilon$, a state approximation gives an $(2^{n+1}-2)$-dimensional sphere of radius $\epsilon$. So to cover the state space, we need about\footnote{$O$ is for upper bounds, $\Omega$ is for lower bounds and $\Theta$ is for tight bounds. }
 \begin{equation}
     \frac{S_{2^{n+1}-1}(1)}{V_{2^{n+1}-2}(\epsilon)} = \frac{\sqrt{\pi}\Gamma(2^{n}-\frac{1}{2})(2^{n+1}-1)}{\Gamma(2^{n})\epsilon^{2^{n+1}-1}}=\Omega(\epsilon^{-2^{n+1}+1})
 \end{equation}
@@ -447,7 +446,7 @@ Before discussing the algorithm, let's make some basic assumptions about quantum
     \item A quantum circuit operates on $n$ qubits, so the state space is $2^{n}$-dimensional complex Hilbert space.
     \item It is assumed that any computational basis state $\ket{x_{1},\cdots,x_{n}}$ can be prepared in at most $n$ steps.
     \item Gates can be applied to any subset of qubits as desired, and a universal family of gates can be implemented.
-    \item Measurements may be performed in the computational basis of one or more of the qubits in the computer.
+    \item Measurements may be performed on the computational basis of one or more of the qubits in the computer.
 \end{itemize}
 
 
@@ -476,7 +475,7 @@ which use $\ket{0}$ to refer to $\ket{0}^{\otimes n}$ for convenience. There is
     \quad\text{and}\quad
     \ket{\psi}=\sqrt{\frac{N-M}{N}}\ket{\alpha}+\sqrt{\frac{M}{N}}\ket{\beta}.
 \end{equation}
-We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operation of turning some non-trivial Angle is hard, so we consider the operation reflecting across some axis. Define two operations here, $O$ is a reflection about $\ket{\alpha}$ and $W$ is a reflection about $\ket{\psi}$.
+We need to find some operation that makes $\ket{\psi}$ into $\ket{\beta}$. The operation of turning some non-trivial angle is hard, so we consider the operation reflecting across some axes. Define two operations here, $O$ is a reflection about $\ket{\alpha}$ and $W$ is a reflection about $\ket{\psi}$.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -502,7 +501,7 @@ We need to find some operation makes $\ket{\psi}$ into $\ket{\beta}$. The operat
     \label{fig:grover}
 \end{figure}
 
-Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in the Figure \ref{fig:grover},  operation $G=WO$ gives us a rotation of angle $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
+Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in Figure \ref{fig:grover},  operation $G=WO$ gives us a rotation of angle $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
 \begin{equation}
     G^{R}\ket{\psi}=\cos(\frac{2R+1}{2}\theta)\ket{\alpha}+\sin(\frac{2R+1}{2}\theta)\ket{\beta}\approx\ket{\beta}.
 \end{equation}
@@ -512,7 +511,7 @@ The angular error is at most $\theta/2\approx\sqrt{M/N}$.
 
 \subsection{Oracle}
 
-Let's construct the reflection about $\ket{\alpha}$, we call it oracle. We know that states in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$ can be decomposed into
+Let's construct the reflection about $\ket{\alpha}$, we call it the oracle. We know that states in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$ can be decomposed into
 \begin{equation}
     \ket{x}=\ket{\alpha}\braket{\alpha|x}+\ket{\beta}\braket{\beta|x}
 \end{equation}
@@ -567,7 +566,7 @@ So we get the construction of the Grover iteration:
 \begin{equation}
     G=WO=(2\ket{\psi}\bra{\psi}-I)U_{S}.
 \end{equation}
-After constructing each sub-operation, the circuit of the algorithm is given here\footnote{The oracle workspace are omitted here.}:
+After constructing each sub-operation, the circuit of the algorithm is given here\footnote{The oracle workspace is omitted here.}:
 \begin{equation}
     \begin{quantikz}[column sep=0.4cm]
         \lstick{$\ket{0}$} & \qwbundle{n} & \gate{H^{\otimes n}} & \gate[2]{oracle}\gategroup[wires=2,steps=4]{Grover iteration} & \gate{H^{\otimes n}} & \gate{2\ket{0}\bra{0}-I} & \gate{H^{\otimes n}} & \gate[2]{G} & \midstick[2,brackets=none]{$\cdots$} & \gate[2]{G} & \\
@@ -580,7 +579,7 @@ The ellipsis indicates that it is repeated $R$ times.
 
 \subsection{Performance}
 
-Each of the operations in the Grover iteration may be efficiently implemented on a quantum computer. So we just need to focus on the number of Grover iteration.
+Each of the operations in the Grover iteration may be efficiently implemented on a quantum computer. So we just need to focus on the number of Grover iterations.
 
 We already know, in order to rotate $\ket{\psi}$ near $\ket{\beta}$, we need to repeat the Grover iteration
 \begin{equation}
@@ -594,9 +593,9 @@ from which we obtain an elegant upper bound on the number of iterations required
 \begin{equation}
     R\leq\left\lceil\frac{\pi}{4}\sqrt{\frac{N}{M}}\right\rceil.
 \end{equation}
-That is, $R=O(\sqrt{N/M})$ Grover iterations must be performed in order to obtain a solution to the search problem with high probability, a quadratic improvement over the $O(N/M)$oracle calls required classically.
+That is, $R=O(\sqrt{N/M})$ Grover iterations must be performed to obtain a solution to the search problem with high probability, a quadratic improvement over the $O(N/M)$oracle calls required classically.
 
-If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly pick an item from the search space, and then check that it is a solution using the oracle. This approach has a success probability at least one-half, and only requires one consultation with the oracle.
+If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly pick an item from the search space, and then check that it is a solution using the oracle. This approach has a success probability of at least one-half and only requires one consultation with the oracle.
 
 
 
@@ -606,7 +605,7 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 \subsection{Main idea}
 
-Oracle is at the heart of grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state which uses $R$ queries to the oracle as
+Oracle is at the heart of Grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state that uses $R$ queries to the oracle as
 \begin{equation}
     \ket{\Psi_{x}^{R}}=\prod_{j=1}^{R}U_{j}O_{x}\ket{\psi},
 \end{equation}
@@ -614,7 +613,7 @@ where $U_{i}$ is some unitary operation and $O_{x}$ is the oracle which marks th
 \begin{equation}
     \ket{\Psi_{x}^{i,R}}=\prod_{j=i+1}^{R}U_{j}O_{x}\prod_{j=1}^{i}U_{j}I\ket{\psi},
 \end{equation}
-which use the identity for the first $i$ oracle queries and the oracle for the latter $R-i$ oracle queries. If there is no application oracle,  then the state is independent of the target element, may be denoted as
+which uses the identity for the first $i$ oracle queries and the oracle for the latter $R-i$ oracle queries. If there is no application oracle,  then the state is independent of the target element and may be denoted as
 \begin{equation}
     \ket{\Psi^{R}}=\prod_{j=1}^{R}U_{j}I\ket{\psi}.
 \end{equation}
@@ -630,7 +629,7 @@ Taking the distance $E$ as an example, if $\Psi_{x}^{R}$ satisfies the propertie
 \end{equation}
 which $\{\mathsf{\Pi}_{j}\}$ is a finite set of orthogonal projectors that sum to the identity and $p$ is the probability we want of outputting the correct element.
 
-We can calculate the number of queries $R$ by dividing $E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.},that is
+We can calculate the number of queries $R$ by dividing $E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})$ with the distance changed by oracle\footnote{Note that this is just a loose intuition, which we'll prove in the next subsection.}, that is
 \begin{equation}\label{TheNumberForIteration}
     R=\frac{E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})}{E(O_{x}\ket{\gamma},\ket{\gamma})}.
 \end{equation}
@@ -640,7 +639,7 @@ It is important to note that $\ket{\gamma}$ here is not some particular state, w
 
 \subsection{\label{DistanceByOracle}Distance the oracle changes}
 
-First, let's calculate the distance changed by oracle. Considering the distance of the state before and after $R$ oracle queries, we have
+First, let's calculate the distance changed by the oracle. Considering the distance of the state before and after $R$ oracle queries, we have
 \begin{lemma}
     The average \textcolor{red}{euclidean distance} after $R$ oracle queries is at most
     \begin{equation}
@@ -659,7 +658,7 @@ First, let's calculate the distance changed by oracle. Considering the distance 
              & \leq 2\sum_{i=1}^{R}\textcolor{red}{\frac{1}{\sqrt{N}}} = 2R\textcolor{red}{\frac{1}{\sqrt{N}}},
         \end{split}
     \end{equation*}
-    where the last inequality needs to notice that
+    where the last inequality that needs to be noticed is that
     \begin{equation}\label{Cauchy-Schwarz}
         \left(\sum_{i=1}^{N}a_{i}\right)^{2}=\sum_{i=1}^{N}a_{i}^{2}+2\sum_{i=1}^{N}\sum_{j=1}^{i-1}a_{i}a_{j}\leq N\sum_{i=1}^{N}a_{i}^{2},
     \end{equation}
@@ -700,7 +699,7 @@ According to the theorem, the distance changed by each oracle query can only add
 
 Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisfied.
 \begin{lemma}
-    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $R$ queries, given oracle $O_{y}$. Then the average euclidean distance is at least
+    Suppose that the algorithm correctly outputs $y$ with probability at least $p$ after $R$ queries, given oracle $O_{y}$. Then the average Euclidean distance is at least
     \begin{equation}
         \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{\sqrt{N}}\right).
     \end{equation}
@@ -716,7 +715,7 @@ Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisf
              & \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-2\left\|\mathsf{\Pi}_{x}\ket{\Psi^{R}}\right\|\right),
         \end{split}
     \end{equation*}
-    where the last inequality from the success probability being at least $p$. To eliminate the last term, consider a traversal of $x$
+    where the last inequality from the success probability is at least $p$. To eliminate the last term, consider a traversal of $x$
     \begin{equation*}
         \frac{1}{N}\sum_{x=1}^{N}E(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
         \geq \frac{1}{\sqrt{2}}\left(\sqrt{p}-\sqrt{1-p}+1-\frac{2}{N}\sum_{x=1}^{N}\left\|\mathsf{\Pi}_{x}\ket{\Psi^{R}}\right\|\right)
@@ -753,7 +752,7 @@ Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisf
 
 
 
-\subsection{Lower bound of grover iterations}
+\subsection{Lower bound of Grover iterations}
 
 
 
@@ -770,7 +769,7 @@ From section \ref{DistanceByOracle} and section \ref{DistanceWhenWeNeed}, we obt
         R =\frac{\arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}}{2\arcsin\frac{1}{\sqrt{N}}}.
     \end{equation}
 \end{theorem}
-In the case of euclidean distances, we conclude that Grover's algorithm is asymptotically optimal, and in the case of  angular distances, that Grover's algorithm is exactly optimal.
+In the case of Euclidean distances, we conclude that Grover's algorithm is asymptotically optimal, and in the case of angular distances, Grover's algorithm is exactly optimal.
 
 
 
@@ -780,9 +779,9 @@ In the case of euclidean distances, we conclude that Grover's algorithm is asymp
 
 \subsection{\label{subsec:LongMainIdea}Main idea}
 
-Although the grover's algorithm is already accurate enough when the number of elements is large, for instance in deciphering the DES code where $N = 256$ the deviation is only $3\times 10^{-9}$. But in problems where certainly is vital, especially when the dimension is not so big, using a searching algorithm with certainty becomes important. Let's make some improvements to the grover's algorithm.
+Although Grover's algorithm is already accurate enough when the number of elements is large, for instance in deciphering the DES code where $N = 256$ the deviation is only $3\times 10^{-9}$. But in problems where certainly is vital, especially when the dimension is not so big, using a searching algorithm with certainty becomes important. Let's make some improvements to the Grover's algorithm.
 
-In the grover's algorithm\footnote{The notation of section \ref{subsec:GroverMainIdea} is followed here.} we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, but $SU(2)$ has three degrees of freedom, so we may as well extend $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
+In the Grover's algorithm\footnote{The notation of section \ref{subsec:GroverMainIdea} is followed here.} we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, but $SU(2)$ has three degrees of freedom, so we may as well extend $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
 \begin{equation}
     \begin{split}
         I_{W} & = I+(e^{-i\phi}-1)\ket{\psi_{\perp}}\bra{\psi_{\perp}} = e^{-i\phi}(I+(e^{i\phi}-1)\ket{\psi}\bra{\psi})                   \\
@@ -790,7 +789,7 @@ In the grover's algorithm\footnote{The notation of section \ref{subsec:GroverMai
         Q     & = I_{W}I_{O} = e^{-i\phi}H^{\otimes n}(I+(e^{i\phi}-1)\ket{0}\bra{0})H^{\otimes n}(I+(e^{i\phi}-1)\ket{\beta}\bra{\beta}).
     \end{split}
 \end{equation}
-Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should have the axis of rotation at the same angle as $\ket{\psi}$ and $\ket{\beta}$. From corollary \ref{cor:CompositionOfRotation}, if the angle of $I_{O}$ is $-\phi$, the angle of $I_{W}$ has to be $\phi$. As a generalization of the grover's algorithm, it can be seen that if we set $\phi=\pi$, then $Q$ degenerates to $G$.
+Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should have the axis of rotation at the same angle as $\ket{\psi}$ and $\ket{\beta}$. From corollary \ref{cor:CompositionOfRotation}, if the angle of $I_{O}$ is $-\phi$, the angle of $I_{W}$ has to be $\phi$. As a generalization of Grover's algorithm, it can be seen that if we set $\phi=\pi$, then $Q$ degenerates to $G$.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\columnwidth]{figures/long.png}
@@ -798,7 +797,7 @@ Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should 
     \label{fig:long}
 \end{figure}
 
-As shown in the Figure \ref{fig:long}, $I_{O}$ gives us a rotation of angle $-\phi$ about axis $\vec{r}_{\alpha}=(0,0,1)^{T}$ and $I_{W}$ gives us a rotation of angle $\phi$ about axis $\vec{r}_{\psi}=(\sin\theta,0,\cos\theta)^{T}$, their produt $Q=I_{W}I_{O}$ gives us a rotation of angle
+As shown in the Figure \ref{fig:long}, $I_{O}$ gives us a rotation of angle $-\phi$ about axis $\vec{r}_{\alpha}=(0,0,1)^{T}$ and $I_{W}$ gives us a rotation of angle $\phi$ about axis $\vec{r}_{\psi}=(\sin\theta,0,\cos\theta)^{T}$, their product $Q=I_{W}I_{O}$ gives us a rotation of angle
 \begin{equation}
     \omega=4\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2})
 \end{equation}
@@ -810,13 +809,13 @@ where $k$ is the normalization factor.
 
 A naive thought is whether we can find a suitable $\phi$ such that $\ket{\psi}$ can turn to $\ket{\beta}$ exactly. The angle we need to rotate about axis $\ket{q}$ is
 \begin{equation}\label{eq:LongDeltaAngle}
-    \Delta\varphi=\frac{\braket{q_{\perp}|\beta}}{\braket{q_{\perp}|\psi}},
+    e^{i\Delta\varphi}=\frac{\braket{q_{\perp}|\beta}}{\braket{q_{\perp}|\psi}},
 \end{equation}
 we wish $j=\frac{\Delta\varphi}{\omega}$ is an integer, so that we have $Q^{j}\ket{\psi}=\ket{\beta}$.
 
 \subsection{The right angle\label{subsec:RightAngle}}
 
-In fact, use equation \ref{eq:LongDeltaAngle} to calculate the angle $\Delta\varphi$ is complicated, so we may as well calculate it with bloch vectors.
+Using equation \ref{eq:LongDeltaAngle} to calculate the angle $\Delta\varphi$ is complicated, so we may as well calculate it with Bloch vectors.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -873,7 +872,7 @@ After some boring calculations, we can get
     \Delta\varphi=2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta}{2}).
 \end{equation}
 
-After calculate each part we need, let's find the right angle $\phi$! Though section \ref{subsec:LongMainIdea}, The iterations $j=\frac{\Delta\varphi}{\omega}$ must be an integer. For equation $\Delta\varphi=j\omega$, consider both ends of the equation separately, we have
+After calculating each part we need, let's find the right angle $\phi$! Though section \ref{subsec:LongMainIdea}, The iterations $j=\frac{\Delta\varphi}{\omega}$ must be an integer. For equation $\Delta\varphi=j\omega$, consider both ends of the equation separately, we have
 \begin{equation}
     \begin{split}
         \Delta\varphi & = 2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta}{2})                            \\
@@ -890,7 +889,7 @@ notice that $\phi$ has a real solution only when $\theta/2\geq\pi/(4j+2)$, may a
     \phi=2\arcsin\left(\frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta}{2}}\right).
 \end{equation}
 
-Let's finish by some examples of $j$ and $\phi$:
+Let's finish with some examples of $j$ and $\phi$:
 \begin{table}[h!]
     \centering
     \begin{equation*}
@@ -907,7 +906,7 @@ Let's finish by some examples of $j$ and $\phi$:
     \label{tab:examples}
 \end{table}
 
-Can be seen as $N$ increases, the angle $\phi$ approaches $\pi$. At this point, the Long's algorithm is also slightly closer to Grover's algorithm.
+Can be seen as $N$ increases, the angle $\phi$ approaches $\pi$. At this point, Long's algorithm is also slightly closer to Grover's algorithm.
 
 
 
