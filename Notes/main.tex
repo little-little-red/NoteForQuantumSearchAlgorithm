@@ -13,7 +13,7 @@
 \usepackage{epstopdf}
 \usepackage{enumerate}
 \usepackage[perpage]{footmisc}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=red, linktocpage=true,breaklinks=true]{hyperref}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red,urlcolor=blue,linktocpage=true,breaklinks=true]{hyperref}
 \usepackage{mathtools}
 \usepackage{subcaption}
 \usepackage{times}
@@ -32,14 +32,27 @@
 \numberwithin{equation}{section}
 
 %-----------------------main text---------------------------
-\title{Notes on quantum search algorithm}
-\author{Zhongwei Jiang, Linfeng Zhao}
-\date{\today}
 \begin{document}
 %coverpage
-\thispagestyle{empty}
-\maketitle
-\newpage
+\begin{titlepage}
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+        \normalfont
+        \LARGE\textbf{Notes on Quantum Search Algorithm}
+
+        \bigskip
+        \large{Zhongwei Jiang, Linfeng Zhao}
+
+        \bigskip
+        {\href{https://github.com/little-little-red/NoteForQuantumSearchAlgorithm}{Project Link: https://github.com/little-little-red/NoteForQuantumSearchAlgorithm}}
+
+        \bigskip
+        \normalsize{\today}
+    \end{center}
+    \vspace*{\fill}
+    \newpage
+\end{titlepage}
 %contentspage
 \pagenumbering{Roman}
 \tableofcontents
