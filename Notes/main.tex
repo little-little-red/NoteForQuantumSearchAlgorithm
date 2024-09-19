@@ -356,7 +356,7 @@ It is hard to implement all single-qubit gates, so we consider approximating it 
 \begin{equation}
     E(U,V) = \left\| U-V \right\| \coloneqq \sup\limits_{\substack{\ket{\psi} \in \mathbb{C}^{n} \\ \left\| \ket{\psi} \right\| = 1}} \left\| (U-V)\ket{\psi} \right\|
 \end{equation}
-Where $U$ is the target unitary operator that we wish to implement, $V$ is the unitary operator that is implemented in practice, and $E(U,V)$ is the error when $V$ is implemented instead of $U$. It is natural that:
+$U$ is the target unitary operator we wish to implement, $V$ is the unitary operator implemented in practice, and $E(U,V)$ is the error when $V$ is implemented instead of $U$. It is natural that:
 \begin{theorem}
     In the approximation of $m$ gates, the error is added at most linearly:
     \begin{equation}
@@ -406,7 +406,7 @@ From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operator $
 
 \subsection{Circuit size for approximation}
 
-It makes no sense to talk about its existence without giving its size,  so let's estimate the number of gates needed for the approximation in the previous section. For convenience of stating the theorem, we say that $S$ is an $\epsilon$-net in $W$, if every point in $W$ is within a distance $\epsilon$ of some point in $S$, where $S$, $W\in SU(2)$ and $\epsilon>0$ and the distance is $D(U,V)\coloneqq\mathrm{tr}|U-V|$. And we define $\mathcal{G}_{l}$ to be the set of all words of length at most $l$.
+It makes no sense to talk about its existence without giving its size,  so let's estimate the number of gates needed for the approximation in the previous section. For convenience of stating the theorem, we say that $S$ is an $\epsilon$-net in $W$, if every point in $W$ is within a distance $\epsilon$ of some point in $S$, where $S$, $W\in SU(2)$ and $\epsilon>0$ and the distance is $D(U,V)\coloneqq\mathrm{tr}|U-V|$. And we define $\mathcal{G}_{l}$ as the set of all words of length at most $l$.
 \begin{theorem}[Solovay-Kitaev theorem]
     Let $\mathcal{G}$ be a finite set of elements in $SU(2)$ containing its own inverses, such that $\left\langle\mathcal{G}\right\rangle$ is dense in $SU(2)$. Let $\epsilon > 0$ be given. Then $\mathcal{G}_{l}$ is an $\epsilon$-net in $SU(2)$ for $l=O(\ln^{c}(1/\epsilon))$, where $c=\ln5/\ln(3/2)$.
 \end{theorem}
@@ -434,7 +434,7 @@ According to the theorem, we can know that to approximate a circuit containing $
     \end{equation}
     that is, $\mathcal{G}_{5l}$ is an $\epsilon(1)^{2}$-net for $S_{\epsilon(1)}$. Recursively, $\mathcal{G}_{5^{k}l}$ is an $\epsilon(k)^{2}$-net for $S_{\epsilon(k)}$.
 \end{proof}
-For $U\in SU(2)$ we can find $U_{0}$ make $D(U_{0},U)<\epsilon(0)^{2}<\epsilon(1)$, so we have a first order approximation $U_{0}$ of $U$.  We can go on to approximate their difference $V=UU_{0}^{\dagger}$, With the lemma, we can find $U_{1}$ make $D(U_{1},V)<\epsilon(1)^{2}<\epsilon(2)$, so we have a second order approximation $U_{1}U_{0}$ of $U$. Continue in this way, we can approximate the accuracy we want which $\epsilon(k+1)<\epsilon$.
+For $U\in SU(2)$ we can find $U_{0}$ make $D(U_{0},U)<\epsilon(0)^{2}<\epsilon(1)$, so we have a first order approximation $U_{0}$ of $U$. We can go on to approximate their difference $V=UU_{0}^{\dagger}$, With the lemma, we can find $U_{1}$ make $D(U_{1},V)<\epsilon(1)^{2}<\epsilon(2)$, so we have a second order approximation $U_{1}U_{0}$ of $U$. In this way, we can approximate the accuracy we want which $\epsilon(k+1)<\epsilon$.
 
 Although the approximation of a set of single-qubit gates is polynomial, approximating arbitrary unitary gates is hard. Considering the normalization of $n$ qubit states $\left\|\ket{\psi}\right\|=1$ gives that the state space is an unit $(2^{n+1}-1)$-dimensional unit sphere. Given the error $\epsilon$, a state approximation gives an $(2^{n+1}-2)$-dimensional sphere of radius $\epsilon$. So to cover the state space, we need about\footnote{$O$ is for upper bounds, $\Omega$ is for lower bounds and $\Theta$ is for tight bounds. }
 \begin{equation}
@@ -533,7 +533,7 @@ and we wish
 \begin{equation}
     O\ket{x}=\ket{\alpha}\braket{\alpha|x}-\ket{\beta}\braket{\beta|x}.
 \end{equation}
-We don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$, so we can not exactly construct the reflection in the whole space, but we just need it to be a reflection in the subspace spaned by $\ket{\alpha}$ and $\ket{\beta}$, may as well construct an operation that identifies each target element to flip it. To construct this, we need a special gate\footnote{Note that the mapping $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$ holds only if the controlled qubit is $\ket{-}$.}
+We don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$, so we can not exactly construct the reflection in the whole space, but we just need it to be a reflection in the subspace spanned by $\ket{\alpha}$ and $\ket{\beta}$, may as well construct an operation that identifies each target element to flip it. To construct this, we need a special gate\footnote{Note that the mapping $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$ holds only if the controlled qubit is $\ket{-}$.}
 \begin{equation}
     \begin{quantikz}
         \lstick{$\ket{x}$} & \qwbundle{n} & \gate[2][1.7cm]{U_{f}}\gateinput{$x$}\gateoutput{$x$} & \rstick{$(-1)^{f(x)}\ket{x}$} \\
@@ -788,7 +788,7 @@ In the case of Euclidean distances, we conclude that Grover's algorithm is asymp
 
 Although Grover's algorithm is already accurate enough when the number of elements is large, for instance in deciphering the DES code where $N = 256$ the deviation is only $3\times 10^{-9}$. But in problems where certainly is vital, especially when the dimension is not so big, using a searching algorithm with certainty becomes important. Let's make some improvements to the Grover's algorithm.
 
-In the Grover's algorithm\footnote{The notation of section \ref{subsec:GroverMainIdea} is followed here.} we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, we wasted the degree of freedom of their relative phase, so we may as well extend\footnote{For convenience, the oracle can be written as $(I-2\ket{\beta}\bra{\beta})$ when discussing only in the subspace spaned by $\ket{\alpha}$ and $\ket{\beta}$.} $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
+In the Grover's algorithm\footnote{The notation of section \ref{subsec:GroverMainIdea} is followed here.} we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, we wasted the degree of freedom of their relative phase, so we may as well extend\footnote{For convenience, the oracle can be written as $(I-2\ket{\beta}\bra{\beta})$ when discussing only in the subspace spanned by $\ket{\alpha}$ and $\ket{\beta}$.} $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
 \begin{equation}
     \begin{split}
         I_{W} & = I+(e^{-i\phi}-1)\ket{\psi_{\perp}}\bra{\psi_{\perp}} = e^{-i\phi}(I+(e^{i\phi}-1)\ket{\psi}\bra{\psi})                   \\
