@@ -533,7 +533,7 @@ and we wish
 \begin{equation}
     O\ket{x}=\ket{\alpha}\braket{\alpha|x}-\ket{\beta}\braket{\beta|x}.
 \end{equation}
-But we don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$. To construct this, we need a special gate\footnote{Note that the mapping $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$ holds only if the controlled qubit is $\ket{-}$.}
+We don't know the exact form of $\ket{\alpha}$ and $\ket{\beta}$, so we can not exactly construct the reflection in the whole space, but we just need it to be a reflection in the subspace spaned by $\ket{\alpha}$ and $\ket{\beta}$, may as well construct an operation that identifies each target element to flip it. To construct this, we need a special gate\footnote{Note that the mapping $\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$ holds only if the controlled qubit is $\ket{-}$.}
 \begin{equation}
     \begin{quantikz}
         \lstick{$\ket{x}$} & \qwbundle{n} & \gate[2][1.7cm]{U_{f}}\gateinput{$x$}\gateoutput{$x$} & \rstick{$(-1)^{f(x)}\ket{x}$} \\
@@ -569,14 +569,7 @@ which $\ket{\psi_{\perp}}=\sqrt{\frac{M}{N}}\ket{\alpha}-\sqrt{\frac{N-M}{N}}\ke
 \begin{equation}
     W\ket{x}=\ket{\psi}\braket{\psi|x}-\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}.
 \end{equation}
-But this time, we know $\ket{\psi}$ specifically. Operation $2\ket{\psi}\bra{\psi}-I$ is what we need which satisfies the properties:
-\begin{equation}
-    \begin{split}
-        (2\ket{\psi}\bra{\psi}-I)\ket{\psi}         & =\ket{\psi}           \\
-        (2\ket{\psi}\bra{\psi}-I)\ket{\psi_{\perp}} & =-\ket{\psi_{\perp}}.
-    \end{split}
-\end{equation}
-So we get the construction of the Grover iteration:
+But this time, we know $\ket{\psi}$ specifically, operation $2\ket{\psi}\bra{\psi}-I$ is what we need. So we get the construction of the Grover iteration:
 \begin{equation}
     G=WO=(2\ket{\psi}\bra{\psi}-I)U_{S}.
 \end{equation}
@@ -795,7 +788,7 @@ In the case of Euclidean distances, we conclude that Grover's algorithm is asymp
 
 Although Grover's algorithm is already accurate enough when the number of elements is large, for instance in deciphering the DES code where $N = 256$ the deviation is only $3\times 10^{-9}$. But in problems where certainly is vital, especially when the dimension is not so big, using a searching algorithm with certainty becomes important. Let's make some improvements to the Grover's algorithm.
 
-In the Grover's algorithm\footnote{The notation of section \ref{subsec:GroverMainIdea} is followed here.} we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, but $SU(2)$ has three degrees of freedom, so we may as well extend $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
+In the Grover's algorithm\footnote{The notation of section \ref{subsec:GroverMainIdea} is followed here.} we construct rotations in the space spanned by $\ket{\alpha}$ and $\ket{\beta}$, we wasted the degree of freedom of their relative phase, so we may as well extend\footnote{For convenience, the oracle can be written as $(I-2\ket{\beta}\bra{\beta})$ when discussing only in the subspace spaned by $\ket{\alpha}$ and $\ket{\beta}$.} $G=WO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})$ to
 \begin{equation}
     \begin{split}
         I_{W} & = I+(e^{-i\phi}-1)\ket{\psi_{\perp}}\bra{\psi_{\perp}} = e^{-i\phi}(I+(e^{i\phi}-1)\ket{\psi}\bra{\psi})                   \\
