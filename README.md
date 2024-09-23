@@ -6,7 +6,7 @@ This project contains my study notes, code examples, and related resources on qu
 
 - `BooksForMyself/` - Something not related to notes but interesting
 - `BooksForNotes/` - Reference for notes
-- `FigureCode` - Code to draw the figuress in the notes
+- `FigureCode\` - Code to draw the figuress in the notes
 - `Handbook/` - Manuals for some related tools (easy for authors to consult)
 - `Notes/` - Study notes on quantum algorithms
 - `.gitignore` - git rules
