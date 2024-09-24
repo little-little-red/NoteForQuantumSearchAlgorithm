@@ -29,8 +29,8 @@ basictrans = qt.Qobj(
     [[np.cos(theta / 2), np.sin(theta / 2)], [np.sin(theta / 2), -np.cos(theta / 2)]]
 )
 basictrans_inv = basictrans.inv()
-I_W = basictrans * qt.Qobj([[1, 0], [0, np.exp(-1j * phi)]]) * basictrans_inv
-Q = I_W * I_O
+I_D = basictrans * qt.Qobj([[1, 0], [0, np.exp(-1j * phi)]]) * basictrans_inv
+Q = I_D * I_O
 
 # shaft of rotation
 omega, axiss = Q.eigenstates()
@@ -91,7 +91,7 @@ for _ in t:
     psi_O_trans = IW_trans * psi_O
     bloch.add_states(psi_O_trans, kind="point", colors="b", alpha=0.7)
     for idx in range(0, j):
-        psis_trans = qt.Qobj(fractional_matrix_power((I_W * I_O).full(), _)) * psis[idx]
+        psis_trans = qt.Qobj(fractional_matrix_power((I_D * I_O).full(), _)) * psis[idx]
         bloch.add_states(psis_trans, kind="point", colors="r", alpha=0.7)
 
 
@@ -106,13 +106,13 @@ bloch.add_annotation(
 bloch.add_annotation(vec_psi, r"$\left|\psi\right\rangle$")
 bloch.add_annotation(vec_psi_O, r"$I_{O}\left|\psi\right\rangle$")
 bloch.add_annotation(
-    vec_psis[1], r"$I_{W}I_{O}\left|\psi\right\rangle=Q\left|\psi\right\rangle$"
+    vec_psis[1], r"$I_{D}I_{O}\left|\psi\right\rangle=Q\left|\psi\right\rangle$"
 )
 for idx in range(2, j):
     bloch.add_annotation(
         vec_psis[idx], r"$Q^{" + str(idx) + r"}\left|\psi\right\rangle$"
     )
-bloch.add_annotation(vec_axis, r"$\left|q\right\rangle$")
+bloch.add_annotation(vec_axis, r"$\left|\tau\right\rangle$")
 
 # colors
 colors = [
