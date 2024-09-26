@@ -6,7 +6,7 @@ This project contains my study notes, code examples, and related resources on qu
 
 - `BooksForMyself/` - Something not related to notes but interesting
 - `BooksForNotes/` - Reference for notes
-- `FigureCode\` - Code to draw the figuress in the notes
+- `Codes/` - Codes for drawing and calculating in notes
 - `Handbook/` - Manuals for some related tools (easy for authors to consult)
 - `Notes/` - Study notes on quantum algorithms
 - `.gitignore` - git rules
@@ -17,6 +17,9 @@ This project contains my study notes, code examples, and related resources on qu
 To run the code examples in this project, you need to install the following dependencies:
 
 - Python 3.12+
+- numpy
+- matplotlab
+- scipy
 - qutip
 
 ## Main Content
@@ -26,7 +29,8 @@ To run the code examples in this project, you need to install the following depe
 - **Quantum Circuit Model**
 - **Grover’s Algorithm**
 - **Bounds for Grover’s algorithm**
-- **Long algorithm**
+- **Long’s algorithm**
+- **Ismael's work**
 
 ## Contribution
 
