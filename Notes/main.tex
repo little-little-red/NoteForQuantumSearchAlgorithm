@@ -434,9 +434,9 @@ According to the theorem, we can know that to approximate a circuit containing $
     \end{equation}
     that is, $\mathcal{G}_{5l}$ is an $\epsilon(1)^{2}$-net for $S_{\epsilon(1)}$. Recursively, $\mathcal{G}_{5^{k}l}$ is an $\epsilon(k)^{2}$-net for $S_{\epsilon(k)}$.
 \end{proof}
-For $U\in SU(2)$ we can find $U_{0}$ make $D(U_{0},U)<\epsilon(0)^{2}<\epsilon(1)$, so we have a first order approximation $U_{0}$ of $U$. We can go on to approximate their difference $V=UU_{0}^{\dagger}$, With the lemma, we can find $U_{1}$ make $D(U_{1},V)<\epsilon(1)^{2}<\epsilon(2)$, so we have a second order approximation $U_{1}U_{0}$ of $U$. In this way, we can approximate the accuracy we want which $\epsilon(k+1)<\epsilon$.
+For $U\in SU(2)$ we can find $U_{0}$ make $D(U_{0},U)<\epsilon(0)^{2}<\epsilon(1)$, so we have a first order approximation $U_{0}$ of $U$. We can go on to approximate their difference $V=UU_{0}^{\dagger}$, With the lemma, we can find $U_{1}$ make $D(U_{1},V)<\epsilon(1)^{2}<\epsilon(2)$, so we have a second order approximation $U_{1}U_{0}$ of $U$. This way, we can approximate the accuracy we want which $\epsilon(k+1)<\epsilon$.
 
-Although the approximation of a set of single-qubit gates is polynomial, approximating arbitrary unitary gates is hard. Considering the normalization of $n$ qubit states $\left\|\ket{\psi}\right\|=1$ gives that the state space is an unit $(2^{n+1}-1)$-dimensional unit sphere. Given the error $\epsilon$, a state approximation gives an $(2^{n+1}-2)$-dimensional sphere of radius $\epsilon$. So to cover the state space, we need about\footnote{$O$ is for upper bounds, $\Omega$ is for lower bounds and $\Theta$ is for tight bounds. }
+Although approximating a set of single-qubit gates is polynomial, approximating arbitrary unitary gates is hard. Considering the normalization of $n$ qubit states $\left\|\ket{\psi}\right\|=1$ gives that the state space is an unit $(2^{n+1}-1)$-dimensional unit sphere. Given the error $\epsilon$, a state approximation gives an $(2^{n+1}-2)$-dimensional sphere of radius $\epsilon$. So to cover the state space, we need about\footnote{$O$ is for upper bounds, $\Omega$ is for lower bounds and $\Theta$ is for tight bounds. }
 \begin{equation}
     \frac{S_{2^{n+1}-1}(1)}{V_{2^{n+1}-2}(\epsilon)} = \frac{\sqrt{\pi}\Gamma(2^{n}-\frac{1}{2})(2^{n+1}-1)}{\Gamma(2^{n})\epsilon^{2^{n+1}-1}}=\Omega(\epsilon^{-2^{n+1}+1})
 \end{equation}
@@ -589,7 +589,7 @@ The ellipsis indicates that it is repeated $R$ times.
 Each of the operations in the Grover iteration may be efficiently implemented on a quantum computer. So we just need to focus on the number of Grover iterations.
 
 We already know, in order to rotate $\ket{\psi}$ near $\ket{\beta}$, we need to repeat the Grover iteration
-\begin{equation}
+\begin{equation}\label{eq:IterationsGrover}
     R=\left\lfloor\frac{2\arccos\sqrt{M/N}}{\arcsin\sqrt{M/N}}\right\rceil
 \end{equation}
 times. This is not intuitive enough, so let's sacrifice some precision to find a simpler expression. We know that $R\leq\left\lceil\pi/2\theta\right\rceil$, and if $M\leq N/2$ we have
@@ -608,7 +608,7 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 \section{Bounds for Grover's algorithm}
 
-\textit{This section is based on the paper\cite{2009Exact}.}
+\textit{This section is based on the paper\cite{2009Exact}, Here we restrict ourselves to the case $M=1$.}
 
 \subsection{Main idea}
 
@@ -780,7 +780,7 @@ In the case of Euclidean distances, we conclude that Grover's algorithm is asymp
 
 
 
-\section{Long algorithm}
+\section{Long's algorithm}
 
 \textit{This section is based on the paper\cite{Long_2001}.}
 
@@ -799,7 +799,7 @@ In the Grover's algorithm\footnote{The notation of section \ref{subsec:GroverMai
 Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should have the axis of rotation at the same angle as $\ket{\psi}$ and $\ket{\beta}$. From corollary \ref{cor:CompositionOfRotation}, if the angle of $I_{O}$ is $-\phi$, the angle of $I_{W}$ has to be $\phi$. As a generalization of Grover's algorithm, it can be seen that if we set $\phi=\pi$, then $Q$ degenerates to $G$.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\columnwidth]{figures/long.png}
+    \includegraphics[width=0.5\columnwidth]{figures/Long.png}
     \caption{}
     \label{fig:long}
 \end{figure}
@@ -891,9 +891,9 @@ so that we have
 \begin{equation}
     \sin\frac{\phi}{2} = \frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta}{2}},
 \end{equation}
-notice that $\phi$ has a real solution only when $\theta/2\geq\pi/(4j+2)$, may as well let $j=\left\lceil(\pi-\theta)/(2\theta) \right\rceil$, so we worked out the right angle $\phi$
+notice that $\phi$ has a real solution only when $\theta/2\geq\pi/(4j+2)$, may as well let $j\coloneqq\left\lceil(\pi-\theta)/(2\theta) \right\rceil$, so we worked out the right angle $\phi$
 \begin{equation}
-    \phi=2\arcsin\left(\frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta}{2}}\right).
+    \phi\coloneqq 2\arcsin\left(\frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta}{2}}\right).
 \end{equation}
 
 Let's finish with some examples of $j$ and $\phi$:
@@ -915,6 +915,43 @@ Let's finish with some examples of $j$ and $\phi$:
 
 Can be seen as $N$ increases, the angle $\phi$ approaches $\pi$. At this point, Long's algorithm is also slightly closer to Grover's algorithm.
 
+
+
+\section{Abdulrahman's work}
+
+\textit{This section is based on the paper\cite{Abdulrahman_2024}, Here we restrict ourselves to the case $M=1$.}
+
+\subsection{Main idea}
+
+From Equation \ref{eq:IterationsGrover} we can see that when $N$ is large enough, the iterations have $R\propto 1/\theta$ , so we can try to find a larger angle to reduce the number of iterations. To do this, we need a larger state space, which we might as well augment with state
+\begin{equation}
+    \ket{\overline{\psi}}\coloneqq H^{\otimes n}(\ket{0}^{\otimes n-1}\otimes\ket{1}),
+\end{equation}
+and we orthogonalize it to get the orthogonal basis $(\ket{\psi},\ket{\psi_{\perp}},\ket{\gamma})$,
+\begin{equation}
+    \ket{\gamma}\coloneqq \ket{\overline{\psi}}-\sin\frac{\omega}{2}\ket{\psi_{\perp}},
+\end{equation}
+which $\sin(\omega/2)=\braket{\psi_{\perp}|\overline{\psi}}=\sqrt{\frac{1}{N-1}}$ and $\braket{\psi|\overline{\psi}}=0$. In the same way, we have another orthogonal basis $(\ket{\psi},\ket{\tau},\ket{\overline{\psi}})$ which
+\begin{equation}
+    \ket{\tau}\coloneqq \ket{\psi_{\perp}}-\cos\frac{\omega}{2}\ket{\overline{\psi}}.
+\end{equation}
+We have three orthogonal bases in this three-dimensional space,
+\begin{equation*}
+    (\ket{\overline{\psi}},\ket{\psi},\ket{\tau})
+    \begin{pmatrix}
+        \cos\frac{\omega}{2} & 0 & -\sin\frac{\omega}{2} \\
+        0                    & 1 & 0                     \\
+        \sin\frac{\omega}{2} & 0 & \cos\frac{\omega}{2}
+    \end{pmatrix}
+    ^{T}=(\ket{\gamma},\ket{\psi},\ket{\psi_{\perp}})
+    =(\ket{\gamma},\ket{\alpha},\ket{\beta})
+    \begin{pmatrix}
+        1 & 0                    & 0                     \\
+        0 & \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\
+        0 & \sin\frac{\theta}{2} & \cos\frac{\theta}{2}
+    \end{pmatrix}
+    .
+\end{equation*}
 
 
 %-----------------------bib---------------------------
