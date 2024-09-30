@@ -2,7 +2,7 @@ clear; clc;
 %%============================Input Parameters=============================
 n                   = 10;                          % Number of qubits
 N                   = 2^n;                         % All possible combinations of states
-target              = 1;
+target              = N-1;
 MaxItr              = floor(pi/4*sqrt(N))*2;       % Max. number of iterations
 %%==========================Initialization=================================
 GSA_Amplitude       = zeros(N, MaxItr);
@@ -37,12 +37,13 @@ for k = 1:n-1
 end
 %%========================= Searching Iterations ==========================
 GSA                        = zeros(MaxItr, 2);
-CR2                        = speye(N);
+CR                         = speye(N);
+CCZ                        = speye(N);
 for Mthd = 1:2             % Comparison between the standard and modified versions
     for k = 1:MaxItr
         if k == 1
             Init_n           = Hn * Init_ket;
-            amplitude(k)     = -2*atan(1-4/N);
+            amplitude(k)     = -pi/2;
         else
             Init_n           = GSA_Amplitude(:, k-1);
             amplitude(k)     = -pi;
@@ -52,10 +53,11 @@ for Mthd = 1:2             % Comparison between the standard and modified versio
         elseif Mthd == 2
             theta(k)         = amplitude(k);
         end
-        Rt                          = [cos(theta(k)/2) -sin(theta(k)/2); sin(theta(k)/2) cos(theta(k)/2)] * Z;   % Contribution of the paper (generating new rotation-around-y-axis gate)
-        CR2(end-1:end, end-1:end)   = Rt;
-        oracle                      = CZ * Init_n;                                               % Oracle-i   
-        GSA_Amplitude(:, k)         = - Rn * CR2 * Rn_dagger * oracle;                           % Grover difussion operator- i (reflection about the mean)
+        Rt                          = [cos(theta(k)/2) -sin(theta(k)/2); sin(theta(k)/2) cos(theta(k)/2)];   % Contribution of the paper (generating new rotation-around-y-axis gate)    
+        CR(end-1:end, end-1:end)    = Rt;
+        CCZ(end-1:end, end-1:end)   = Z;
+        oracle                      = CZ;                                               % Oracle-i   
+        GSA_Amplitude(:, k)         = - Rn * CCZ * Rn_dagger * oracle*Rn * CR * Rn_dagger* Init_n;                           % Grover difussion operator- i (reflection about the mean)
     end
     GSA(:,Mthd)                     = GSA_Amplitude(end-target, :)';                                        
 end

@@ -45,36 +45,50 @@ alpha = np.array([0, 1, 0])
 gamma = np.array([1, 0, 0])
 psi = np.dot(basictrans_A, alpha)
 psi_perp = np.dot(basictrans_A, beta)
-psi_ = np.dot(basictrans_B, gamma)
-tau = np.dot(basictrans_B, psi_perp)
+psi_ = np.dot(basictrans, gamma)
+tau = np.dot(basictrans, beta)
 
 # iterational states
 psi_O = np.dot(Oracle, psi)
 psi_G = np.dot(cD, psi_O)
 
+# plane
+t = np.linspace(-1, 1, 100)
+s = np.linspace(-1, 1, 100)
+t, s = np.meshgrid(t, s)
+plane_1 = [alpha[i] * t + beta[i] * s for i in range(3)]
+plane_2 = [gamma[i] * t + psi_perp[i] * s for i in range(3)]
+
+
 # plot
 fig = plt.figure()
 ax = fig.add_subplot(111, projection="3d")
+
+# add plane
+ax.plot_surface(plane_1[0], plane_1[1], plane_1[2], alpha=0.1, color="gray")
+ax.plot_surface(plane_2[0], plane_2[1], plane_2[2], alpha=0.1, color="gray")
 
 # add states
 ax.quiver(0, 0, 0, *beta, color="k")
 ax.quiver(0, 0, 0, *alpha, color="k")
 ax.quiver(0, 0, 0, *gamma, color="k")
 ax.quiver(0, 0, 0, *psi, color="r")
-ax.quiver(0, 0, 0, *psi_perp, color="b")
+ax.quiver(0, 0, 0, *psi_perp, color="k")
 ax.quiver(0, 0, 0, *psi_, color="r")
 ax.quiver(0, 0, 0, *tau, color="r")
 
 # states labels
-offset = 1.2
-ax.text(*(offset * beta), r"$\left|\beta\right\rangle$", color="r", fontsize=15)
+offset = 1.1
+ax.text(*(offset * beta), r"$\left|\beta\right\rangle$", color="k", fontsize=15)
 ax.text(*(offset * alpha), r"$\left|\alpha\right\rangle$", color="k", fontsize=15)
 ax.text(*(offset * psi), r"$\left|\psi\right\rangle$", color="k", fontsize=15)
 ax.text(*(offset * gamma), r"$\left|\gamma\right\rangle$", color="k", fontsize=15)
 ax.text(
     *(offset * psi_perp), r"$\left|\psi_{\perp}\right\rangle$", color="k", fontsize=15
 )
-ax.text(*(offset * psi_), r"$\left|\psi^{-}\right\rangle$", color="k", fontsize=15)
+ax.text(
+    *(offset * psi_), r"$\left|\overline{\psi}\right\rangle$", color="k", fontsize=15
+)
 ax.text(*(offset * tau), r"$\left|\tau\right\rangle$", color="k", fontsize=15)
 
 
@@ -82,5 +96,5 @@ ax.text(*(offset * tau), r"$\left|\tau\right\rangle$", color="k", fontsize=15)
 ax.set_xlim([-0.7, 0.7])
 ax.set_ylim([-0.7, 0.7])
 ax.set_zlim([-0.7, 0.7])
-ax.view_init(elev=25, azim=15)
+ax.view_init(elev=20, azim=10)
 plt.show()
