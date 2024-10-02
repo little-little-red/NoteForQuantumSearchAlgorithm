@@ -982,7 +982,7 @@ After a basic understanding of this space, we can start to make some improvement
 \end{equation}
 Our objective is to maximize the probability of finding the target element, notice that
 \begin{theorem}
-    Cosidering vectors $\vec{m},\vec{n}\in\mathbb{R}^{3}$ and angle $\phi\in[0,2\pi]$, for a certainly axis defined by vector $\vec{l}$, the inner product $\vec{m}\cdot\left(\exp\left(\phi\vec{l}\cdot\vec{J}\right)\vec{n}\right)$ take the extreme only when $\det\left\lvert\left(\vec{m},\vec{n},\vec{l}\right)\right\rvert<3$, which $J_{j}$ are the three generators of Lie group $SO(3)$.
+    Cosidering vectors $\vec{m},\vec{n}\in\mathbb{R}^{3}$ and angle $\phi\in[0,2\pi]$, for a certainly axis defined by vector $\vec{l}$, the inner product $\vec{m}\cdot\left(\exp\left(\phi\vec{l}\cdot\vec{J}\right)\vec{n}\right)$ take the extreme only when $\mathrm{rank}\left(\left(\vec{m},\vec{n},\vec{l}\right)\right)<3$, which $J_{j}$ are the three generators of Lie group $SO(3)$.
 \end{theorem}
 According to this theorem, we can see that the maximum probability is achieved when the state after the rotation is in the plane spanned by $\ket{\gamma}$ and $\ket{\beta}$. So we just need angles $\phi$ such that $A(\phi)$ keeps the states after each iteration in the plane spanned by $\ket{\gamma}$ and $\ket{\beta}$, we extend the Grover iteration $G=DO$ to
 \begin{equation}
