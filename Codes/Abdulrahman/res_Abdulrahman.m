@@ -39,25 +39,32 @@ end
 GSA                        = zeros(MaxItr, 2);
 CR                         = speye(N);
 CCZ                        = speye(N);
+CF                        = speye(N);
+theta0                     = -pi/2;
+CF(end-1:end, end-1:end)  =[cos(theta0/2) -sin(theta0/2); sin(theta0/2) cos(theta0/2)];              
 for Mthd = 1:2             % Comparison between the standard and modified versions
     for k = 1:MaxItr
-        if k == 1
-            Init_n           = Hn * Init_ket;
-            amplitude(k)     = -pi/2;
-        else
-            Init_n           = GSA_Amplitude(:, k-1);
-            amplitude(k)     = -pi;
-        end
         if Mthd == 1
-            theta(k)         = 0; 
+            if k == 1
+                Init_n           = Hn * Init_ket;
+            else
+                Init_n           = GSA_Amplitude(:, k-1);
+            end
+            theta(k)             = 0; 
         elseif Mthd == 2
+             amplitude(k)     = -pi;
+             if k == 1
+                Init_n           = Rn * CF * Rn_dagger *Hn * Init_ket;
+            else
+                Init_n           = GSA_Amplitude(:, k-1);
+            end
             theta(k)         = amplitude(k);
         end
         Rt                          = [cos(theta(k)/2) -sin(theta(k)/2); sin(theta(k)/2) cos(theta(k)/2)];   % Contribution of the paper (generating new rotation-around-y-axis gate)    
         CR(end-1:end, end-1:end)    = Rt;
         CCZ(end-1:end, end-1:end)   = Z;
         oracle                      = CZ;                                               % Oracle-i   
-        GSA_Amplitude(:, k)         = - Rn * CCZ * Rn_dagger * oracle*Rn * CR * Rn_dagger* Init_n;                           % Grover difussion operator- i (reflection about the mean)
+        GSA_Amplitude(:, k)         = - Rn * CR * Rn_dagger*Rn * CCZ * Rn_dagger * oracle* Init_n;                           % Grover difussion operator- i (reflection about the mean)
     end
     GSA(:,Mthd)                     = GSA_Amplitude(end-target, :)';                                        
 end

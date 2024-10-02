@@ -356,7 +356,7 @@ It is hard to implement all single-qubit gates, so we consider approximating it 
 \begin{equation}
     E(U,V) = \left\| U-V \right\| \coloneqq \sup\limits_{\substack{\ket{\psi} \in \mathbb{C}^{n} \\ \left\| \ket{\psi} \right\| = 1}} \left\| (U-V)\ket{\psi} \right\|
 \end{equation}
-$U$ is the target unitary operator we wish to implement, $V$ is the unitary operator implemented in practice, and $E(U,V)$ is the error when $V$ is implemented instead of $U$. It is natural that:
+$U$ is the target unitary operation we wish to implement, $V$ is the unitary operation implemented in practice, and $E(U,V)$ is the error when $V$ is implemented instead of $U$. It is natural that:
 \begin{theorem}
     In the approximation of $m$ gates, the error is added at most linearly:
     \begin{equation}
@@ -392,14 +392,14 @@ Further, we have\footnote{The construction of $x_{n}$ in this part is only to pr
         = & \ |1-\exp((x_{n}\omega-\alpha)/2)|\leq\ \epsilon/2
     \end{split}
 \end{equation}
-According to the proof, we need to find the gate with the Angle that the theorem requires. Fortunately, the $THTH$ gate has the angel we need. It is a rotation of the Bloch sphere about an axis along $\vec{n} = (\cos\frac{\pi}{8},\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and through an angle $\omega$ defined by $\cos\frac{\omega}{2} = \cos^{2}\frac{\pi}{8}$, so we just let $R_{\vec{n}}(\omega) = THTH$.
+According to the proof, we must find the gate with the angle the theorem requires. Fortunately, the $THTH$ gate has the angel we need. It is a rotation of the Bloch sphere about an axis along $\vec{n} = (\cos\frac{\pi}{8},\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and through an angle $\omega$ defined by $\cos\frac{\omega}{2} = \cos^{2}\frac{\pi}{8}$, so we just let $R_{\vec{n}}(\omega) = THTH$.
 
-From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operator $U$, we still need to approximate the rotation of the other axis, but even more fortunate is that $HR_{\vec{n}}(\omega)H$ is exactly what we need, has axis $\vec{m} = (\cos\frac{\pi}{8},-\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and the angle $\omega$, like $R_{\vec{n}}(\omega)$, is an irrational multiple of $\pi$. After layers and layers of preparation, let's list the final approximation with suitable positive integers $j_{n}$ to U:
+From corollary \ref{cor:DecompositionByTwoAxis}, to construct unitary operation $U$, we still need to approximate the rotation of the other axis, but even more fortunate is that $HR_{\vec{n}}(\omega)H$ is exactly what we need, has axis $\vec{m} = (\cos\frac{\pi}{8},-\sin\frac{\pi}{8},\cos\frac{\pi}{8})$ and the angle $\omega$, like $R_{\vec{n}}(\omega)$, is an irrational multiple of $\pi$. After layers and layers of preparation, let's list the final approximation with suitable positive integers $j_{n}$ to U:
 \begin{equation}\label{FinalApproximation}
     E(U,\prod_{j=1}^{2k}R_{\vec{n}}(\omega)^{j_{n}}H) \leq k\epsilon
 \end{equation}
 \begin{theorem}
-    Given any single qubit unitary operator $U$ and any $\epsilon > 0$, it is possible to approximate $U$ to within $\epsilon$ \footnote{The difference between Equation \ref{FinalApproximation} and here by one coefficient can be solved by the setting of $\epsilon$ in the proof of Theorem \ref{AngleCoverR}, but it does not matter. }using a circuit composed of $H$ gates and $T$ gates alone.
+    Given any single qubit unitary operation $U$ and any $\epsilon > 0$, it is possible to approximate $U$ to within $\epsilon$ \footnote{The difference between Equation \ref{FinalApproximation} and here by one coefficient can be solved by the setting of $\epsilon$ in the proof of Theorem \ref{AngleCoverR}, but it does not matter. }using a circuit composed of $H$ gates and $T$ gates alone.
 \end{theorem}
 
 
@@ -489,7 +489,7 @@ which use $\ket{0}$ to refer to $\ket{0}^{\otimes n}$ for convenience. There is
     \quad\text{and}\quad
     \ket{\psi}=\sqrt{\frac{N-M}{N}}\ket{\alpha}+\sqrt{\frac{M}{N}}\ket{\beta}.
 \end{equation}
-We need to find some operation that makes $\ket{\psi}$ into $\ket{\beta}$. The operation of turning some non-trivial angle is hard, so we consider the operation reflecting across some axes. Define two operations here, $O$ is a reflection about $\ket{\alpha}$ and $D$ is a reflection about $\ket{\psi}$.
+We need to find some operation that makes $\ket{\psi}$ into $\ket{\beta}$. Turning some non-trivial angles is hard, so we consider the operation reflecting across some axes. Define two operations here, $O$ is a reflection about $\ket{\alpha}$ and $D$ is a reflection about $\ket{\psi}$.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -507,19 +507,19 @@ We need to find some operation that makes $\ket{\psi}$ into $\ket{\beta}$. The o
         \draw (1.5,0) arc[start angle=0,end angle=-15,radius=1.5];
         \draw (1,0.27) arc[start angle=15,end angle=45,radius=1];
         % 标记角度
-        \node at (1.8,0.25) {$\theta/2$};
-        \node at (1.8,-0.25) {$\theta/2$};
-        \node at (1.2,0.7) {$\theta$};
+        \node at (1.9,0.25) {$\theta_{G}/2$};
+        \node at (1.9,-0.25) {$\theta_{G}/2$};
+        \node at (1.2,0.7) {$\theta_{G}$};
     \end{tikzpicture}
     \caption{}
     \label{fig:grover}
 \end{figure}
 
-Let $\sin(\theta/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta/2$. As shown in Figure \ref{fig:grover},  operation $G=DO$ gives us a rotation of angle $\theta$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta}{2\theta}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
+Let $\sin(\theta_{G}/2)=\sqrt{M/N}$,  the angle between $\ket{\psi}$ and $\ket{\alpha}$ is $\theta_{G}/2$. As shown in Figure \ref{fig:grover},  operation $G=DO$ gives us a rotation of angle $\theta_{G}$, we call $G$ the Grover iteration. So we just need applying $R\coloneqq\left\lfloor\frac{\pi-\theta_{G}}{2\theta_{G}}\right\rceil$\footnote{The actual function about $\left\lfloor x\right\rceil$ is to denote the integer closest to the real number $x$.} times Grover iteration on $\ket{\psi}$ to approximate $\ket{\beta}$, if $M\ll N$ we have
 \begin{equation}
-    G^{R}\ket{\psi}=\cos(\frac{2R+1}{2}\theta)\ket{\alpha}+\sin(\frac{2R+1}{2}\theta)\ket{\beta}\approx\ket{\beta}.
+    G^{R}\ket{\psi}=\cos(\frac{2R+1}{2}\theta_{G})\ket{\alpha}+\sin(\frac{2R+1}{2}\theta_{G})\ket{\beta}\approx\ket{\beta}.
 \end{equation}
-The angular error is at most $\theta/2\approx\sqrt{M/N}$.
+The angular error is at most $\theta_{G}/2\approx\sqrt{M/N}$.
 
 
 
@@ -592,9 +592,9 @@ We already know, in order to rotate $\ket{\psi}$ near $\ket{\beta}$, we need to 
 \begin{equation}\label{eq:IterationsGrover}
     R=\left\lfloor\frac{2\arccos\sqrt{M/N}}{\arcsin\sqrt{M/N}}\right\rceil
 \end{equation}
-times. This is not intuitive enough, so let's sacrifice some precision to find a simpler expression. We know that $R\leq\left\lceil\pi/2\theta\right\rceil$, and if $M\leq N/2$ we have
+times. This is not intuitive enough, so let's sacrifice some precision to find a simpler expression. We know that $R\leq\left\lceil\pi/2\theta_{G}\right\rceil$, and if $M\leq N/2$ we have
 \begin{equation}
-    \frac{\theta}{2}\geq\sin\frac{\theta}{2}=\sqrt{\frac{N}{M}},
+    \frac{\theta_{G}}{2}\geq\sin\frac{\theta_{G}}{2}=\sqrt{\frac{N}{M}},
 \end{equation}
 from which we obtain an elegant upper bound on the number of iterations required,
 \begin{equation}
@@ -606,7 +606,7 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 
 
-\section{Bounds for Grover's algorithm}
+\section{Bounds for Grover's algorithm\label{sec:BoundForGrover}}
 
 \textit{This section is based on the paper\cite{2009Exact}, Here we restrict ourselves to the case $M=1$.}
 
@@ -761,8 +761,6 @@ Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisf
 
 \subsection{Lower bound of Grover iterations}
 
-
-
 From section \ref{DistanceByOracle} and section \ref{DistanceWhenWeNeed}, we obtain the two parts required for equation \ref{TheNumberForIteration} to compute the number of iterations: the upper bound of the distance changed by oracle and the lower bound of the distance when the output is we need. So we have the lower bound on the number of iterations for both versions
 \begin{theorem}
     The unordered search problem with success probability $p>0$ requires at least $R$ queries, where
@@ -804,13 +802,13 @@ Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should 
     \label{fig:long}
 \end{figure}
 
-As shown in the Figure \ref{fig:long}, $I_{O}$ gives us a rotation of angle $-\phi$ about axis $\vec{r}_{\alpha}=(0,0,1)^{T}$ and $I_{W}$ gives us a rotation of angle $\phi$ about axis $\vec{r}_{\psi}=(\sin\theta,0,\cos\theta)^{T}$, their product $Q=I_{W}I_{O}$ gives us a rotation of angle
+As shown in the Figure \ref{fig:long}, $I_{O}$ gives us a rotation of angle $-\phi$ about axis $\vec{r}_{\alpha}=(0,0,1)^{T}$ and $I_{W}$ gives us a rotation of angle $\phi$ about axis $\vec{r}_{\psi}=(\sin\theta_{G},0,\cos\theta_{G})^{T}$, their product $Q=I_{W}I_{O}$ gives us a rotation of angle
 \begin{equation}
-    \omega=4\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2})
+    \omega=4\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta_{G}}{2})
 \end{equation}
 about axis
 \begin{equation}
-    \vec{r}_{\tau}= k(\cos\frac{\phi}{2},\sin\frac{\phi}{2},\cos\frac{\phi}{2}\tan\frac{\theta}{2})^{T},
+    \vec{r}_{\tau}= k(\cos\frac{\phi}{2},\sin\frac{\phi}{2},\cos\frac{\phi}{2}\tan\frac{\theta_{G}}{2})^{T},
 \end{equation}
 where $k$ is the normalization factor.
 
@@ -819,6 +817,8 @@ A naive thought is whether we can find a suitable $\phi$ such that $\ket{\psi}$ 
     e^{i\Delta\varphi}=\frac{\braket{\tau_{\perp}|\beta}}{\braket{\tau_{\perp}|\psi}}
 \end{equation}
 where $\ket{\tau_{\perp}}=-\ket{\alpha}\braket{\beta|\tau}+\ket{\beta}\braket{\alpha|\tau}$, we wish $j=\frac{\Delta\varphi}{\omega}$ is an integer, so that we have $Q^{j}\ket{\psi}=\ket{\beta}$.
+
+
 
 \subsection{The right angle\label{subsec:RightAngle}}
 
@@ -876,24 +876,24 @@ so that we can express $\Delta\varphi$ in a simpler form
 \end{equation}
 After some boring calculations, we can get
 \begin{equation}
-    \Delta\varphi=2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta}{2}).
+    \Delta\varphi=2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta_{G}}{2}).
 \end{equation}
 
 After calculating each part we need, let's find the right angle $\phi$! Though section \ref{subsec:LongMainIdea}, The iterations $j=\frac{\Delta\varphi}{\omega}$ must be an integer. For equation $\Delta\varphi=j\omega$, consider both ends of the equation separately, we have
 \begin{equation}
     \begin{split}
-        \Delta\varphi & = 2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta}{2})                            \\
-                      & = 2\left(\frac{\pi}{2}-\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2})\right) \\
-        j\omega       & = 4j\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta}{2}),
+        \Delta\varphi & = 2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta_{G}}{2})                            \\
+                      & = 2\left(\frac{\pi}{2}-\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta_{G}}{2})\right) \\
+        j\omega       & = 4j\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta_{G}}{2}),
     \end{split}
 \end{equation}
 so that we have
 \begin{equation}
-    \sin\frac{\phi}{2} = \frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta}{2}},
+    \sin\frac{\phi}{2} = \frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta_{G}}{2}},
 \end{equation}
-notice that $\phi$ has a real solution only when $\theta/2\geq\pi/(4j+2)$, may as well let $j\coloneqq\left\lceil(\pi-\theta)/(2\theta) \right\rceil$, so we worked out the right angle $\phi$
+notice that $\phi$ has a real solution only when $\theta_{G}/2\geq\pi/(4j+2)$, may as well let $j\coloneqq\left\lceil(\pi-\theta_{G})/(2\theta_{G}) \right\rceil$, so we worked out the right angle $\phi$
 \begin{equation}
-    \phi\coloneqq 2\arcsin\left(\frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta}{2}}\right).
+    \phi\coloneqq 2\arcsin\left(\frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta_{G}}{2}}\right).
 \end{equation}
 
 Let's finish with some examples of $j$ and $\phi$:
@@ -923,17 +923,17 @@ Can be seen as $N$ increases, the angle $\phi$ approaches $\pi$. At this point, 
 
 \subsection{Main idea}
 
-From Equation \ref{eq:IterationsGrover} we can see that when $N$ is large enough, the iterations have $R\propto 1/\theta$, so we can try to find a larger angle to reduce the number of iterations. To do this, we need a larger state space, which we might as well augment with state
+From Equation \ref{eq:IterationsGrover} we can see that when $N$ is large enough, the iterations have $R\propto 1/\theta_{G}$, so we can try to find a larger angle to reduce the number of iterations. To do this, we need a larger state space, which we might as well augment with state
 \begin{equation}
     \ket{\overline{\psi}}\coloneqq H^{\otimes n}(\ket{0}^{\otimes n-1}\otimes\ket{1}),
 \end{equation}
 and we orthogonalize it to get the orthogonal basis $(\ket{\psi},\ket{\psi_{\perp}},\ket{\gamma})$,
 \begin{equation}
-    \ket{\gamma}\coloneqq \ket{\overline{\psi}}-\sin\frac{\omega}{2}\ket{\psi_{\perp}},
+    \cos\frac{\omega}{2}\ket{\gamma}\coloneqq \ket{\overline{\psi}}-\sin\frac{\omega}{2}\ket{\psi_{\perp}},
 \end{equation}
-which $\sin(\omega/2)=\braket{\psi_{\perp}|\overline{\psi}}=\sqrt{\frac{1}{N-1}}$ \footnote{Here it is assumed that the last bit of the target element is $0$.} and $\braket{\psi|\overline{\psi}}=0$. In the same way, we have another orthogonal basis $(\ket{\psi},\ket{\tau},\ket{\overline{\psi}})$ which
+which $\braket{\psi|\overline{\psi}}=0$ and $\sin(\omega/2)=\braket{\psi_{\perp}|\overline{\psi}}=\pm\sqrt{\frac{1}{N-1}}$, here the signs correspond to the $0$ and $1$ of the last bit of the search element, and we will first discuss the case where the last bit is $0$, that is, the sign is positive. In the same way, we have another orthogonal basis $(\ket{\psi},\ket{\tau},\ket{\overline{\psi}})$ which
 \begin{equation}
-    \ket{\tau}\coloneqq \ket{\psi_{\perp}}-\cos\frac{\omega}{2}\ket{\overline{\psi}}.
+    \sin\frac{\omega}{2}\ket{\tau}\coloneqq \ket{\psi_{\perp}}-\cos\frac{\omega}{2}\ket{\overline{\psi}}.
 \end{equation}
 So we have three orthogonal bases in this three-dimensional space,
 \begin{equation*}
@@ -946,9 +946,9 @@ So we have three orthogonal bases in this three-dimensional space,
     ^{T}=(\ket{\gamma},\ket{\psi},\ket{\psi_{\perp}})
     =(\ket{\gamma},\ket{\alpha},\ket{\beta})
     \begin{pmatrix}
-        1 & 0                    & 0                     \\
-        0 & \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\
-        0 & \sin\frac{\theta}{2} & \cos\frac{\theta}{2}
+        1 & 0                        & 0                         \\
+        0 & \cos\frac{\theta_{G}}{2} & -\sin\frac{\theta_{G}}{2} \\
+        0 & \sin\frac{\theta_{G}}{2} & \cos\frac{\theta_{G}}{2}
     \end{pmatrix}
     .
 \end{equation*}
@@ -972,7 +972,7 @@ So we have three orthogonal bases in this three-dimensional space,
 
 After a basic understanding of this space, we can start to make some improvements. We require a rotation that is independent of the target element, considering the rotation in the space spanned by $\ket{\psi}$ and $\ket{\overline{\psi}}$, in the sub-space $(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$ we can write this rotation as
 \begin{equation}
-    A(\phi)=H^{\otimes n}X^{\otimes n}c^{n-1}\left(R_{y}(\phi)\right)X^{\otimes n}H^{\otimes n}=
+    A(\phi)\coloneqq H^{\otimes n}X^{\otimes n}c^{n-1}\left(R_{y}(\phi)\right)X^{\otimes n}H^{\otimes n}=
     \begin{pmatrix}
         \cos\frac{\phi}{2} & -\sin\frac{\phi}{2} & 0 \\
         \sin\frac{\phi}{2} & \cos\frac{\phi}{2}  & 0 \\
@@ -982,13 +982,79 @@ After a basic understanding of this space, we can start to make some improvement
 \end{equation}
 Our objective is to maximize the probability of finding the target element, notice that
 \begin{theorem}
-    Cosidering vectors $\vec{m},\vec{n}\in\mathbb{R}^{3}$ and angle $\phi\in[0,2\pi]$, for a certainly axis defined by vector $\vec{l}$, the inner product $\vec{m}\cdot\left(\exp\left(\phi\vec{l}\cdot\vec{J}\right)\vec{n}\right)$ take the maximum only when $\det\left\lvert\left(\vec{m},\vec{n},\vec{l}\right)\right\rvert<3$ and $\vec{m}\cdot\vec{n}\geq0$.
+    Cosidering vectors $\vec{m},\vec{n}\in\mathbb{R}^{3}$ and angle $\phi\in[0,2\pi]$, for a certainly axis defined by vector $\vec{l}$, the inner product $\vec{m}\cdot\left(\exp\left(\phi\vec{l}\cdot\vec{J}\right)\vec{n}\right)$ take the extreme only when $\det\left\lvert\left(\vec{m},\vec{n},\vec{l}\right)\right\rvert<3$, which $J_{j}$ are the three generators of Lie group $SO(3)$.
 \end{theorem}
-According to this theorem, we can see that the maximum probability is achieved when the state after the rotation is in the plane spanned by $\ket{\gamma}$ and $\ket{\beta}$. So we just need angles $\phi_{j}$ such that $A(\phi_{j})$ keeps the states after each iteration in the plane spanned by $\ket{\gamma}$ and $\ket{\beta}$, we extend the Grover iteration $G=DO$ to
+According to this theorem, we can see that the maximum probability is achieved when the state after the rotation is in the plane spanned by $\ket{\gamma}$ and $\ket{\beta}$. So we just need angles $\phi$ such that $A(\phi)$ keeps the states after each iteration in the plane spanned by $\ket{\gamma}$ and $\ket{\beta}$, we extend the Grover iteration $G=DO$ to
 \begin{equation}
-    Q_{j}=GA(\phi_{j})=DOA(\phi_{j}).
+    Q=A(\phi)G=A(\phi)DO.
 \end{equation}
 
+
+
+\subsection{Keep states in the plane}
+
+For convenience, we use basis $(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$ and spherical coordinates $(x,y,z)^{T}\to(\sin\frac{\theta}{2}\sin\varphi,\sin\frac{\theta}{2}\cos\varphi,\cos\frac{\theta}{2})^{T}$ to describe this space. After some calculations, we have
+\begin{equation}
+    \ket{\beta}=(\sin\frac{\theta_{\beta}}{2}\sin\frac{\pi}{4},\sin\frac{\theta_{\beta}}{2}\cos\frac{\pi}{4},\cos\frac{\theta_{\beta}}{2})^{T},
+\end{equation}
+where $\sin(\theta_{\beta}/2)=\sqrt{2/N}$, so the space spanned by $\ket{\gamma}$ and $\ket{\beta}$ can be write as $\varphi=\pi/4$. We need to get the initial state into the plane first, so we apply $A_{0}\coloneqq A(-2(\varphi_{\beta}-\varphi_{\psi}))=A(-\pi/2)$ to $\ket{\psi}$ so that
+\begin{equation}
+    A_{0}\ket{\psi}=(\sin\frac{\pi}{4},\cos\frac{\pi}{4},0)^{T}.
+\end{equation}
+Next, let's consider the effect of the Grover iteration $G$ on the angle $\varphi$, what can be computed is that the Oracle gives us the mapping
+\begin{equation}
+    \begin{split}
+        O\colon & \frac{\theta}{2}\to\pi-\frac{\theta}{2}+\theta_{\beta} \\
+                & \varphi\to\varphi
+    \end{split}
+\end{equation}
+and the diffusion operation gives us the mapping
+\begin{equation}
+    \begin{split}
+        D\colon & \frac{\theta}{2}\to\pi-\frac{\theta}{2} \\
+                & \varphi\to-\varphi.
+    \end{split}
+\end{equation}
+Since the plane gives us the angle $\varphi=\pi/4$, we need to operate $A\coloneqq A(-2(\varphi-(-\varphi)))=A(-\pi)$ to pull back the angle $\varphi$ to $\pi/4$, so the operation $Q$ gives us the mapping
+\begin{equation}
+    \begin{split}
+        Q=AG\colon & \frac{\theta}{2}\to\frac{\theta}{2}-\theta_{\beta} \\
+                   & \varphi\to\varphi.
+    \end{split}
+\end{equation}
+Can be seen that operation $Q$ keeps the state in the plane spanned by $\ket{\gamma}$ and $\ket{\beta}$, so we visualize this plane to further observe the role of operation $Q$, with $\sqrt{1-\bra{\beta}A_{0}\ket{\psi}^{2}}\ket{\beta_{\perp}}=A_{0}\ket{\psi}-\ket{\beta}\bra{\beta}A_{0}\ket{\psi}$.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        % 绘制箭头
+        \draw[->, thick] (0,0) -- (0,3) node[anchor=south] {$\ket{\beta}$};
+        \draw[->, thick] (0,0) -- (2.1,2.1) node[anchor=west] {$QA_{0}\ket{\psi}$};
+        \draw[->, thick] (0,0) -- (2.8,0.75) node[anchor=west] {$A_{0}\ket{\psi}$};
+        \draw[->, thick] (0,0) -- (3,0) node[anchor=west] {$\ket{\beta_{\perp}}$};
+        \draw[->, gray, thick] (0,0) -- (2.8,-0.75) node[anchor=west,black] {$OA_{0}\ket{\psi}$};
+        % 绘制虚线
+        \draw[dashed] (2.8,0.75) -- (2.8,-0.75);
+        \draw[dashed] (2.1,2.1) -- (2.8,-0.75);
+        % 绘制角度标记
+        \draw (1.5,0) arc[start angle=0,end angle=15,radius=1.5];
+        \draw (1.5,0) arc[start angle=0,end angle=-15,radius=1.5];
+        \draw (1,0.27) arc[start angle=15,end angle=45,radius=1];
+        % 标记角度
+        \node at (1.9,0.25) {$\theta_{\beta}/2$};
+        \node at (1.9,-0.25) {$\theta_{\beta}/2$};
+        \node at (1.2,0.7) {$\theta_{\beta}$};
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:Abdulrahman}
+\end{figure}
+
+As shown in the Figure \ref{fig:Abdulrahman}, we can see that the operation $Q=ADO$ gives us a rotation of angle $\theta_{\beta}$, So we just need applying $R_{Q}=\left\lfloor\frac{\pi-\theta_{\beta}/2}{\theta_{\beta}}\right\rceil$ times operation $Q$ on $A_{0}\ket{\psi}$ to approximate $\ket{\beta}$, when the number of searches $N$ is large enough,
+\begin{equation}
+    Q^{R_{Q}}A_{0}\ket{\psi}=\cos(\frac{2R_{Q}+1}{2}\theta_{\beta})\ket{\beta_{\perp}}+\sin(\frac{2R_{Q}+1}{2}\theta_{_{\beta}})\ket{\beta}\approx\ket{\beta},
+\end{equation}
+we have the ratio of the number of iterations after and before refinement $R_{Q}/R\approx\theta_{G}/\theta_{\beta}\approx 1/\sqrt{2}$.
+
+It seems that this violates the lower bound on the number of iterations we computed in section \ref{sec:BoundForGrover}, but we did restrict the search element. If the last bit of the search element is $1$, what can be calculated is $A_{0}=A(\pi/2)$ and $A=A(\pi)$, such that we need to distinguish the last digit of the search element first, so we're essentially trading one bit of state space for this $\sqrt{2}$ speedup.
 
 
 %-----------------------bib---------------------------
