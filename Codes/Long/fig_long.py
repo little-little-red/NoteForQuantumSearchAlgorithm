@@ -19,7 +19,6 @@ plt.rcParams.update(
     }
 )
 
-
 # constants
 N = 8
 theta = 2 * np.arcsin(1 / np.sqrt(N))
@@ -134,8 +133,8 @@ colors = [
 for idx in range(1, j):
     colors.append("#000080")
 bloch.vector_color = colors
-bloch.vector_width = 2
-bloch.point_size = [15]
+
+bloch.figsize = [9, 9]
 
 # lines
 bloch.add_points(np.array([vec_aux_alpha, vec_psi]).T, meth="l", colors="g", alpha=0.3)

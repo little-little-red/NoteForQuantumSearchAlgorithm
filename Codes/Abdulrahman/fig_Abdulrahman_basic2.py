@@ -1,5 +1,5 @@
 """
-Ismael_algorithm_baaic.py
+Ismael_algorithm_basic2.py
 
 """
 
@@ -7,7 +7,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # LaTeX
-plt.rc("text", usetex=True)
+plt.rcParams.update(
+    {
+        "pgf.texsystem": "pdflatex",
+        "font.family": "serif",
+        "text.usetex": True,
+        "pgf.rcfonts": False,
+    }
+)
 
 # constants
 N = 6
@@ -61,7 +68,7 @@ plane_2 = [gamma[i] * t + psi_perp[i] * s for i in range(3)]
 
 
 # plot
-fig = plt.figure()
+fig = plt.figure(figsize=(10, 6))
 ax = fig.add_subplot(111, projection="3d")
 
 # add plane
@@ -71,14 +78,14 @@ ax.plot_surface(plane_2[0], plane_2[1], plane_2[2], alpha=0.1, color="gray")
 # add states
 ax.quiver(0, 0, 0, *beta, color="k")
 ax.quiver(0, 0, 0, *alpha, color="k")
-ax.quiver(0, 0, 0, *gamma, color="k")
+ax.quiver(0, 0, 0, *gamma, color="r")
 ax.quiver(0, 0, 0, *psi, color="r")
-ax.quiver(0, 0, 0, *psi_perp, color="k")
-ax.quiver(0, 0, 0, *psi_, color="r")
-ax.quiver(0, 0, 0, *tau, color="r")
+ax.quiver(0, 0, 0, *psi_perp, color="r")
+ax.quiver(0, 0, 0, *psi_, color="k")
+ax.quiver(0, 0, 0, *tau, color="k")
 
 # states labels
-offset = 1.1
+offset = 1.0
 ax.text(*(offset * beta), r"$\left|\beta\right\rangle$", color="k", fontsize=15)
 ax.text(*(offset * alpha), r"$\left|\alpha\right\rangle$", color="k", fontsize=15)
 ax.text(*(offset * psi), r"$\left|\psi\right\rangle$", color="k", fontsize=15)
@@ -98,3 +105,6 @@ ax.set_ylim([-0.7, 0.7])
 ax.set_zlim([-0.7, 0.7])
 ax.view_init(elev=20, azim=10)
 plt.show()
+
+# save
+fig.savefig("Notes/figures/basic_2.pdf", bbox_inches="tight")
