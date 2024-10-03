@@ -10,7 +10,15 @@ import qutip as qt
 from scipy.linalg import fractional_matrix_power
 
 # LaTeX
-plt.rc("text", usetex=True)
+plt.rcParams.update(
+    {
+        "pgf.texsystem": "pdflatex",
+        "font.family": "serif",
+        "text.usetex": True,
+        "pgf.rcfonts": False,
+    }
+)
+
 
 # constants
 N = 8
@@ -80,7 +88,8 @@ for _ in range(1, j):
 
 
 # State of transition
-t = np.linspace(0, 1, 15)
+dt = 15
+t = np.linspace(0, 1, dt)
 for _ in t:
     IO_trans = qt.Qobj([[1, 0], [0, np.exp(1j * phi * _)]])
     psi_trans = IO_trans * psi
@@ -125,6 +134,8 @@ colors = [
 for idx in range(1, j):
     colors.append("#000080")
 bloch.vector_color = colors
+bloch.vector_width = 2
+bloch.point_size = [15]
 
 # lines
 bloch.add_points(np.array([vec_aux_alpha, vec_psi]).T, meth="l", colors="g", alpha=0.3)
@@ -144,4 +155,6 @@ bloch.add_points(np.array([vec_beta, vec_aux_axis]).T, meth="l", colors="r", alp
 # show
 bloch.view = [-78, -4]
 bloch.show()
-plt.show()
+
+# save
+bloch.fig.savefig("Notes/figures/Long.pgf")
