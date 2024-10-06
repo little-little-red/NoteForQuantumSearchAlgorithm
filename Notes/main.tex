@@ -996,16 +996,16 @@ According to this theorem, we can see that the maximum probability is achieved w
 
 For convenience, we use basis $(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$ and spherical coordinates $(x,y,z)^{T}\to(\sin\frac{\theta}{2}\sin\varphi,\sin\frac{\theta}{2}\cos\varphi,\cos\frac{\theta}{2})^{T}$ to describe this space. After some calculations, we have
 \begin{equation}
-    \ket{\beta}=(\sin\frac{\theta_{\beta}}{2}\sin\frac{\pi}{4},\sin\frac{\theta_{\beta}}{2}\cos\frac{\pi}{4},\cos\frac{\theta_{\beta}}{2})^{T},
+    \ket{\beta}=(\sin\frac{\theta_{Q}}{2}\sin\frac{\pi}{4},\sin\frac{\theta_{Q}}{2}\cos\frac{\pi}{4},\cos\frac{\theta_{Q}}{2})^{T},
 \end{equation}
-where $\sin(\theta_{\beta}/2)=\sqrt{2/N}$, so the space spanned by $\ket{\gamma}$ and $\ket{\beta}$ can be write as $\varphi=\pi/4$. We need to get the initial state into the plane first, so we apply $A_{0}\coloneqq A(-2(\varphi_{\beta}-\varphi_{\psi}))=A(-\pi/2)$ to $\ket{\psi}$ so that
+where $\sin(\theta_{Q}/2)=\sqrt{2/N}$, so the space spanned by $\ket{\gamma}$ and $\ket{\beta}$ can be write as $\varphi=\pi/4$. We need to get the initial state into the plane first, so we apply $A_{0}\coloneqq A(-2(\varphi_{\beta}-\varphi_{\psi}))=A(-\pi/2)$ to $\ket{\psi}$ so that
 \begin{equation}
     A_{0}\ket{\psi}=(\sin\frac{\pi}{4},\cos\frac{\pi}{4},0)^{T}.
 \end{equation}
 Next, let's consider the effect of the Grover iteration $G$ on the angle $\varphi$, what can be computed is that the Oracle gives us the mapping
 \begin{equation}
     \begin{split}
-        O\colon & \frac{\theta}{2}\to\pi-\frac{\theta}{2}+\theta_{\beta} \\
+        O\colon & \frac{\theta}{2}\to\pi-\frac{\theta}{2}+\theta_{Q} \\
                 & \varphi\to\varphi
     \end{split}
 \end{equation}
@@ -1019,7 +1019,7 @@ and the diffusion operation gives us the mapping
 Since the plane gives us the angle $\varphi=\pi/4$, we need to operate $A\coloneqq A(-2(\varphi-(-\varphi)))=A(-\pi)$ to pull back the angle $\varphi$ to $\pi/4$, so the operation $Q$ gives us the mapping
 \begin{equation}
     \begin{split}
-        Q=AG\colon & \frac{\theta}{2}\to\frac{\theta}{2}-\theta_{\beta} \\
+        Q=AG\colon & \frac{\theta}{2}\to\frac{\theta}{2}-\theta_{Q} \\
                    & \varphi\to\varphi.
     \end{split}
 \end{equation}
@@ -1041,19 +1041,19 @@ Can be seen that operation $Q$ keeps the state in the plane spanned by $\ket{\ga
         \draw (1.5,0) arc[start angle=0,end angle=-15,radius=1.5];
         \draw (1,0.27) arc[start angle=15,end angle=45,radius=1];
         % 标记角度
-        \node at (1.9,0.25) {$\theta_{\beta}/2$};
-        \node at (1.9,-0.25) {$\theta_{\beta}/2$};
-        \node at (1.2,0.7) {$\theta_{\beta}$};
+        \node at (1.9,0.25) {$\theta_{Q}/2$};
+        \node at (1.9,-0.25) {$\theta_{Q}/2$};
+        \node at (1.2,0.7) {$\theta_{Q}$};
     \end{tikzpicture}
     \caption{}
     \label{fig:Abdulrahman}
 \end{figure}
 
-As shown in the Figure \ref{fig:Abdulrahman}, we can see that the operation $Q=ADO$ gives us a rotation of angle $\theta_{\beta}$, So we just need applying $R_{Q}=\left\lfloor\frac{\pi-\theta_{\beta}/2}{\theta_{\beta}}\right\rceil$ times operation $Q$ on $A_{0}\ket{\psi}$ to approximate $\ket{\beta}$, when the number of searches $N$ is large enough,
+As shown in the Figure \ref{fig:Abdulrahman}, we can see that the operation $Q=ADO$ gives us a rotation of angle $\theta_{Q}$, So we just need applying $R_{Q}=\left\lfloor\frac{\pi-\theta_{Q}/2}{\theta_{Q}}\right\rceil$ times operation $Q$ on $A_{0}\ket{\psi}$ to approximate $\ket{\beta}$, when the number of searches $N$ is large enough,
 \begin{equation}
-    Q^{R_{Q}}A_{0}\ket{\psi}=\cos(\frac{2R_{Q}+1}{2}\theta_{\beta})\ket{\beta_{\perp}}+\sin(\frac{2R_{Q}+1}{2}\theta_{_{\beta}})\ket{\beta}\approx\ket{\beta},
+    Q^{R_{Q}}A_{0}\ket{\psi}=\cos(\frac{2R_{Q}+1}{2}\theta_{Q})\ket{\beta_{\perp}}+\sin(\frac{2R_{Q}+1}{2}\theta_{_{\beta}})\ket{\beta}\approx\ket{\beta},
 \end{equation}
-we have the ratio of the number of iterations after and before refinement $R_{Q}/R\approx\theta_{G}/\theta_{\beta}\approx 1/\sqrt{2}$.
+we have the ratio of the number of iterations after and before refinement $R_{Q}/R\approx\theta_{G}/\theta_{Q}\approx 1/\sqrt{2}$.
 
 It seems that this violates the lower bound on the number of iterations we computed in section \ref{sec:BoundForGrover}, but we did restrict the search element. If the last bit of the search element is $1$, what can be calculated is $A_{0}=A(\pi/2)$ and $A=A(\pi)$, such that we need to distinguish the last digit of the search element first, so we're essentially trading one bit of state space for this $\sqrt{2}$ speedup.
 
