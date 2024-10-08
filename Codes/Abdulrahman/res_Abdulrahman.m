@@ -62,8 +62,8 @@ for Mthd = 1:2             % Comparison between the standard and modified versio
         Rt                          = [cos(theta(k)/2) -sin(theta(k)/2); sin(theta(k)/2) cos(theta(k)/2)];   % Contribution of the paper (generating new rotation-around-y-axis gate)    
         CR(end-1:end, end-1:end)    = Rt;
         CZ(end-1:end, end-1:end)    = Z;
-        oracle                      = oracle;                                               % Oracle-i   
-        GSA_Amplitude(:, k)         = - Rn * CR * Rn_dagger*Rn * CZ * Rn_dagger * oracle* Init_n;                           % Grover difussion operator- i (reflection about the mean)
+        oracle                      = oracle;                                                                % Oracle-i   
+        GSA_Amplitude(:, k)         = - Rn * CR * Rn_dagger*Rn * CZ * Rn_dagger * oracle* Init_n;            % Grover difussion operator- i (reflection about the mean)
     end
     GSA(:,Mthd)                     = GSA_Amplitude(end-target, :)';                                        
 end

@@ -5,13 +5,17 @@
 % other packages
 \usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
 \usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{tikz}
+\usepackage{braket}
+\usepackage{amssymb}
+\usetikzlibrary{quantikz2}
 
-\author{姜忠伟}
+\author{姜忠伟\and 赵临风}
 \institute{西北大学物理学院}
-\title{Abdulrahman's work}
-\subtitle{A Modified Approach to Increase the Probability of Good States}
+\title{量子搜索算法探索历程}
 \date{\today}
 \usepackage{NWU_Beamer}
+\titlegraphic{\includegraphics[width=0.4\linewidth]{pic/nwu-logo.png}}
 
 % defs
 \def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
@@ -37,43 +41,476 @@
 \begin{document}
 
 \kaishu
-\begin{frame}
-    \titlepage
-    \begin{figure}[htpb]
-        \begin{center}
-            \includegraphics[width=0.4\linewidth]{pic/nwu-logo.png}
-        \end{center}
+\maketitle
+
+\begin{frame}{目录}
+    \tableofcontents[
+        sectionstyle=show,
+        subsectionstyle=show/shaded/hide,
+        subsubsectionstyle=show/shaded/hide
+    ]
+\end{frame}
+
+
+
+\section{量子计算基础}
+
+\begin{frame}{布洛赫变换}
+    由模长为一且忽略全局相位，Bloch球面表示为我们提供了一种更直观的方式来观察量子比特，即从量子比特到三维实球体的同构:
+    \begin{equation*}\label{BlochSphereRepersentation}
+        \begin{split}
+            \mathbb{C}\mathbb{P}^{1}                                                                              & \to S^{2}                                                                            \\
+            \ket{\psi} = \cos \frac{\theta}{2}\ket{0} + \mathrm{e}^{\mathrm{i}\varphi}\sin\frac{\theta}{2}\ket{1} & \mapsto \vec{n}_{\psi}=(\cos\varphi\sin\theta,\sin\varphi\sin\theta,\cos\theta)^{T}.
+        \end{split}
+    \end{equation*}
+    这里 $\theta\in\left[0,\pi\right]$ and $\varphi\in\left[0,2\pi\right]$.
+\end{frame}
+
+\begin{frame}{SU2}
+    From Lie group elements, any single-qubit unitary can be written as a product of exponentials of Pauli matrices by a global phase:
+    \begin{equation}
+        U = e^{i\alpha}\exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right),
+    \end{equation}
+    which $\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
+    From the isomorphism \ref{BlochSphereRepersentation}, we can also induce an isomorphism of operations on two spaces:
+    \begin{equation}
+        \begin{split}
+            SU(2)/\{\pm 1\}                                             & \to SO(3)
+            \\
+            \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto \exp\left(\omega\vec{n}\cdot\vec{J}\right)
+        \end{split}
+    \end{equation}
+    which $\omega\in\left[0,\pi\right]$ and $J_{j}$ are the three generators of Lie group $SO(3)$, the former refers to single-qubit gates and the latter to transformations on the Bloch sphere. For visualization and convenience, we let $R_{\vec{n}}(\omega) \coloneqq \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right)$.
+\end{frame}
+
+\begin{frame}{}
+    \begin{equation}
+        \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+        \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
+        \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.
+    \end{equation}
+
+    \begin{equation}
+        H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad
+        S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}, \quad
+        T = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}.
+    \end{equation}
+\end{frame}
+
+
+
+\section{量子搜索算法}
+
+\begin{frame}{背景}
+    我们需要在包含$N=2^{n}$个元素的搜索空间$S=\{0,1\}^{n}$中搜索目标元素$T\subseteq S$，$T$包含$M$个元素。将输出的目标元素和非目标元素分别表示为两个态
+    \begin{equation}
+        \ket{\beta}\coloneqq\frac{1}{\sqrt{M}}\sum_{x\in T}\ket{x}
+        \quad\text{and}\quad
+        \ket{\alpha}\coloneqq\frac{1}{\sqrt{N-M}}\sum_{x\notin T}\ket{x}.
+    \end{equation}
+    考虑平凡的输入态
+    \begin{equation}
+        \ket{\psi}\coloneqq H^{\otimes n}\ket{0}
+    \end{equation}
+    这里将$\ket{0}^{\otimes n}$简写为$\ket{0}$。有性质
+    \begin{equation}
+        \braket{\alpha|\beta}=0
+        \quad\text{and}\quad
+        \ket{\psi}=\sqrt{\frac{N-M}{N}}\ket{\alpha}+\sqrt{\frac{M}{N}}\ket{\beta}.
+    \end{equation}
+\end{frame}
+
+\begin{frame}{主要思路}
+    \begin{columns}
+        \column{0.4\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}
+                % 绘制箭头
+                \draw[->, thick] (0,0) -- (0,3) node[anchor=south] {$\ket{\beta}$};
+                \draw[->, thick] (0,0) -- (2.1,2.1) node[anchor=west] {$G\ket{\psi}$};
+                \draw[->, thick] (0,0) -- (2.8,0.75) node[anchor=west] {$\ket{\psi}$};
+                \draw[->, thick] (0,0) -- (3,0) node[anchor=west] {$\ket{\alpha}$};
+                \draw[->, gray, thick] (0,0) -- (2.8,-0.75) node[anchor=west,black] {$O\ket{\psi}$};
+                % 绘制虚线
+                \draw[dashed] (2.8,0.75) -- (2.8,-0.75);
+                \draw[dashed] (2.1,2.1) -- (2.8,-0.75);
+                % 绘制角度标记
+                \draw (1.5,0) arc[start angle=0,end angle=15,radius=1.5];
+                \draw (1.5,0) arc[start angle=0,end angle=-15,radius=1.5];
+                \draw (1,0.27) arc[start angle=15,end angle=45,radius=1];
+                % 标记角度
+                \node at (1.9,0.25) {$\theta_{G}/2$};
+                \node at (1.9,-0.25) {$\theta_{G}/2$};
+                \node at (1.2,0.7) {$\theta_{G}$};
+            \end{tikzpicture}
+            \caption{Grover's算法可视化}
+            \label{fig:grover}
+        \end{figure}
+        \column{0.6\textwidth}
+        为了让初态通过不断迭代逼近目标态，我们引入两个反射操作：
+        \begin{itemize}
+            \item $O$ 是关于 $\ket{\alpha}$ 的反射；
+            \item $D$ 是关于 $\ket{\psi}$ 的反射。
+        \end{itemize}
+        Grover迭代$G=DO$给了我们一个$\theta_G$的旋转, 这里$\sin(\theta_{G}/2)=\sqrt{M/N}$.
+    \end{columns}
+\end{frame}
+
+\begin{frame}{主要思路}
+    初始态$\ket{\psi}$通过
+    \begin{equation}\label{iterations}
+        R\coloneqq\left\lfloor\frac{\pi-\theta_{G}}{2\theta_{G}}\right\rceil
+    \end{equation}
+    次迭代可以近似得到目标态$\ket{\beta}$。\\~\\
+
+    当 $M\ll N$，有
+    \begin{equation}
+        G^{R}\ket{\psi}=\cos(\frac{2R+1}{2}\theta_{G})\ket{\alpha}+\sin(\frac{2R+1}{2}\theta_{G})\ket{\beta}\approx\ket{\beta}.
+    \end{equation}
+\end{frame}
+
+\begin{frame}{具体实现}{Oracle}
+    由于$\ket{\alpha}$和$\ket{\beta}$是未确定的，我们需要构造一个操作对每个元素分别识别并反转
+    \begin{equation}
+        \begin{quantikz}
+            \lstick{$\ket{x}$} & \qwbundle{n} & \gate[2][1.7cm]{U_{f}}\gateinput{$x$}\gateoutput{$x$} & \rstick{$(-1)^{f(x)}\ket{x}$} \\
+            \lstick{$\ket{-}$} & & \gateinput{$y$}\gateoutput{$y\oplus f(x)$} & \rstick{$\ket{-}$}
+        \end{quantikz}
+    \end{equation}
+    这一操作对态的影响是$\ket{x}\xrightarrow{U_{f}}(-1)^{f(x)}\ket{x}$，据此可以构造映射
+    \begin{equation}
+        S(x)=
+        \begin{cases}
+            1 & x\in T    \\
+            0 & x\notin T
+        \end{cases}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            U_{S}\ket{\beta}  & =-\ket{\beta}  \\
+            U_{S}\ket{\alpha} & =\ket{\alpha}.
+        \end{split}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{具体实现}{Grover迭代}
+    Then, let's construct the reflection about $\ket{\psi}$. Same as the oracle, we decompose states into
+    \begin{equation}
+        \ket{x}=\ket{\psi}\braket{\psi|x}+\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}
+    \end{equation}
+    which $\ket{\psi_{\perp}}=\sqrt{\frac{M}{N}}\ket{\alpha}-\sqrt{\frac{N-M}{N}}\ket{\beta}$, and we wish
+    \begin{equation}
+        D\ket{x}=\ket{\psi}\braket{\psi|x}-\ket{\psi_{\perp}}\braket{\psi_{\perp}|x}.
+    \end{equation}
+    But this time, we know $\ket{\psi}$ specifically, operation $2\ket{\psi}\bra{\psi}-I$ is what we need. So we get the construction of the Grover iteration:
+    \begin{equation}
+        G=DO=(2\ket{\psi}\bra{\psi}-I)U_{S}.
+    \end{equation}
+\end{frame}
+
+\begin{frame}{电路实现}
+    \begin{figure}
+        \centering
+        \resizebox{\textwidth}{!}{
+            \begin{quantikz}[column sep=0.4cm]
+                \lstick{$\ket{0}$} & \qwbundle{n} & \gate{H^{\otimes n}} & \gate[2]{oracle}\gategroup[wires=2,steps=4]{Grover iteration} & \gate{H^{\otimes n}} & \gate{2\ket{0}\bra{0}-I} & \gate{H^{\otimes n}} & \gate[2]{G} & \midstick[2,brackets=none]{$\cdots$} & \gate[2]{G} & \\
+                \lstick{$\ket{1}$} & & \gate{H} & & & & & & & &
+            \end{quantikz}
+        }
+        \caption{量子搜索算法电路实现}
     \end{figure}
 \end{frame}
 
-\begin{frame}
-    \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+
+
+\section{量子搜索算法的下界}
+
+\begin{frame}{主要思路}
+    在Grover算法中，Oracle是一个很特殊的操作，考虑将一部分Oracle替换成单位操作来观察Oracle带来的影响。
+    \begin{equation}
+        \ket{\Psi_{x}^{R}}=\prod_{j=1}^{R}U_{j}O_{x}\ket{\psi}
+    \end{equation}
+    \begin{equation}
+        \ket{\Psi_{x}^{i,R}}=\prod_{j=i+1}^{R}U_{j}O_{x}\prod_{j=1}^{i}U_{j}I\ket{\psi}
+    \end{equation}
+    \begin{equation}
+        \ket{\Psi^{R}}=\prod_{j=1}^{R}U_{j}I\ket{\psi}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{}
+    考虑角度度量$A(\ket{\alpha},\ket{\beta})=\arccos\frac{\left\lvert \braket{\alpha|\beta}\right\rvert}{\left\|\ket{\alpha}\right\|\left\|\ket{\beta}\right\|}$。对我们需要的目标元素的概率有距离
+    \begin{equation*}
+        \begin{split}
+             & \quad A(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})                                                                                                                                                                        \\
+             & = \arccos\left(\left\lvert \braket{\Psi_{x}^{R}|\Psi^{R}}\right\rvert\right)                                                                                                                                      \\
+             & = \arccos\left(\bra{\Psi_{x}^{R}}({\Pi}_{x}+{\Pi}_{x}^{\perp})^{\dagger}({\Pi}_{x}+{\Pi}_{x}^{\perp})\ket{\Psi^{R}}\right)                                                                                        \\
+             & = \arccos\left(\left\|{\Pi}_{x}\ket{\Psi_{x}^{R}}\right\|\cdot\left\|{\Pi}_{x}\ket{\Psi^{R}}\right\|+\left\|{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{R}}\right\|\cdot\left\|{\Pi}_{x}^{\perp}\ket{\Psi^{R}}\right\|\right) \\
+             & = \arccos\left(\sin\phi_{x}^{R}\sin\theta_{x}^{R}+\cos\phi_{x}^{R}\cos\theta_{x}^{R}\right)                                                                                                                       \\
+             & = \phi_{x}^{R}-\theta_{x}^{R} \geq \arcsin\sqrt{p}-\theta_{x}^{R}
+        \end{split}
+    \end{equation*}
+    可以计算
+    \begin{equation*}
+        \frac{1}{N}\sum_{x=1}^{N}A(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
+        \geq \arcsin\sqrt{p}-\frac{1}{N}\sum_{x=1}^{N}\theta_{x}^{R}
+        \geq \arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{}
+    考虑$R$次迭代有距离
+    \begin{equation*}
+        \begin{split}
+             & \quad\frac{1}{N}\sum_{x=1}^{N}{A}(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})                          \\
+             & = \frac{1}{N}\sum_{x=1}^{N}{A}(\ket{\Psi_{x}^{0,R}},\ket{\Psi_{x}^{R,R}})
+            \leq \frac{1}{N}\sum_{x=1}^{N}\sum_{i=1}^{R}{A}(\ket{\Psi_{x}^{i-1,R}},\ket{\Psi_{x}^{i,R}})     \\
+             & = \frac{1}{N}\sum_{i=1}^{R}\sum_{x=1}^{N}{A}(O_{x}\ket{\Psi^{i}},\ket{\Psi^{i}})
+            = \frac{1}{N}\sum_{i=1}^{R}\sum_{x=1}^{N}{\arccos(\left\lvert\cos(2\theta_{x}^{i})\right\rvert)} \\
+             & \leq 2\sum_{i=1}^{R}{\arcsin(\frac{1}{\sqrt{N}})} = 2R{arcsin(\frac{1}{\sqrt{N}})},
+        \end{split}
+    \end{equation*}
+    可以看到Oracle带来的距离至多是线性增加的
+\end{frame}
+
+\begin{frame}{}
+    \begin{equation}
+        \frac{1}{N}\sum_{x=1}^{N}A(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\geq \arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}.
+    \end{equation}
+    \begin{equation}
+        \frac{1}{N}\sum_{x=1}^{N}{A}(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})\leq 2R{\arcsin(\frac{1}{\sqrt{N}})}.
+    \end{equation}
+    \begin{equation}
+        R \geq\frac{\arcsin\sqrt{p}-\arcsin\frac{1}{\sqrt{N}}}{2\arcsin\frac{1}{\sqrt{N}}}.
+    \end{equation}
 \end{frame}
 
 
 
-\section{Quantum Computation Basic}
+\section{龙算法}
 
-\begin{frame}
-    .
+\begin{frame}{主要思路}
+    有时我们需要更精确的达到目标态。考虑经典Grover算法中没利用的相对相位，拓展Grover迭代
+    \begin{equation}
+        G=DO=(I-2\ket{\psi_{\perp}}\bra{\psi_{\perp}})(I-2\ket{\beta}\bra{\beta})
+    \end{equation}
+    至
+    \begin{equation*}
+        \begin{split}
+            I_{D} & = I+(e^{-i\phi}-1)\ket{\psi_{\perp}}\bra{\psi_{\perp}} = e^{-i\phi}(I+(e^{i\phi}-1)\ket{\psi}\bra{\psi})                   \\
+            I_{O} & = I+(e^{i\phi}-1)\ket{\beta}\bra{\beta}                                                                                    \\
+            Q     & = I_{D}I_{O} = e^{-i\phi}H^{\otimes n}(I+(e^{i\phi}-1)\ket{0}\bra{0})H^{\otimes n}(I+(e^{i\phi}-1)\ket{\beta}\bra{\beta}).
+        \end{split}
+    \end{equation*}
 \end{frame}
 
-\section{Grover's Algorithm}
-
-\begin{frame}
-    .
+\begin{frame}{主要思路}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{figure}[h]
+            \centering
+            \resizebox{\textwidth}{!}{\input{pic/Long.pgf}}
+        \end{figure}
+        \column{0.5\textwidth}
+        \begin{equation*}
+            \omega=4\arcsin(\sin\frac{\phi}{2}\sin\frac{\theta_{G}}{2})
+        \end{equation*}
+        \begin{equation*}
+            \vec{r}_{\tau}= k(\cos\frac{\phi}{2},\sin\frac{\phi}{2},\cos\frac{\phi}{2}\tan\frac{\theta_{G}}{2})^{T}
+        \end{equation*}
+        \begin{equation*}
+            \Delta\varphi=2\arccos(\sin\frac{\phi}{2}\sin\frac{\theta_{G}}{2})
+        \end{equation*}
+    \end{columns}
 \end{frame}
 
-\section{Abdulrahman's Work}
 
-\begin{frame}
-    .
+
+\section{Abdulrahman的工作}
+
+\begin{frame}{引入}
+    从式\ref{iterations}，可以看到当$N$足够大时有
+    \begin{equation}
+        R\propto 1/\theta_{G}
+    \end{equation}
+    我们可以尝试找到更大的角度来减少迭代次数。\\~\\
+
+    我们需要一个更大的状态空间。对比$\ket{\psi}$，引入独立于目标态的态
+    \begin{equation}
+        \ket{\overline{\psi}}\coloneqq H^{\otimes n}(\ket{0}^{\otimes n-1}\otimes\ket{1})
+    \end{equation}
+    来扩充空间。
 \end{frame}
+
+\begin{frame}{主要思路}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\linewidth]{pic/basic_3.pdf}
+            \caption{正交基$(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$}
+        \end{figure}
+        \column{0.5\textwidth}
+        可以计算的是
+        \begin{equation}
+            \braket{\psi_{\perp}|\overline{\psi}}=\pm\sqrt{\frac{1}{N-1}}
+        \end{equation}
+        当且仅当目标元素的最后一位是$0$时取正，我们不妨先讨论取正这种情况。
+    \end{columns}
+\end{frame}
+
+\begin{frame}{主要思路}
+    在对扩张的空间有基本了解之后，考虑一个独立于目标元素的在$\ket{\psi}$和$\ket{\overline{\psi}}$张成的平面内的旋转，在子空间$(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$中可以写成
+    \begin{equation*}
+        A(\phi)\coloneqq H^{\otimes n}X^{\otimes n}c^{n-1}\left(R_{y}(\phi)\right)X^{\otimes n}H^{\otimes n}=
+        \begin{pmatrix}
+            \cos\frac{\phi}{2} & -\sin\frac{\phi}{2} & 0 \\
+            \sin\frac{\phi}{2} & \cos\frac{\phi}{2}  & 0 \\
+            0                  & 0                   & 1
+        \end{pmatrix}
+        .
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{主要思路}
+    我们的期望是使目标元素的概率最大。容易看出的是在旋转$A(\phi)$的作用下，态们仅在转到$\ket{\gamma}$ 和 $\ket{\beta}$ 张成的平面中时目标态的概率最大。\\~\\
+
+    所以我们拓展Grover迭代$G=DO$为
+    \begin{equation}
+        Q=A(\phi)G=A(\phi)DO,
+    \end{equation}
+    来保证每次Grover迭代后，态都回到这个平面。
+\end{frame}
+
+\begin{frame}{具体实现}
+    为了方便我们用基$(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$和球坐标$(x,y,z)^{T}\to(\sin\frac{\theta}{2}\sin\varphi,\sin\frac{\theta}{2}\cos\varphi,\cos\frac{\theta}{2})^{T}$来描述这个空间。\\~\\
+
+    可以计算的是
+    \begin{equation}
+        \ket{\beta}=(\sin\frac{\theta_{Q}}{2}\sin\frac{\pi}{4},\sin\frac{\theta_{Q}}{2}\cos\frac{\pi}{4},\cos\frac{\theta_{Q}}{2})^{T},
+    \end{equation}
+    这里$\sin(\theta_{Q}/2)=\sqrt{2/N}$，所以$\ket{\gamma}$ 和 $\ket{\beta}$ 张成的平面可以写成$\varphi=\pi/4$。
+\end{frame}
+
+\begin{frame}{具体实现}
+    我们先将输入态转进平面$\varphi=\pi/4$，我们对$\ket{\psi}$做操作
+    \begin{equation}
+        A_{0}\coloneqq A(-2(\varphi_{\beta}-\varphi_{\psi}))=A(-\pi/2)
+    \end{equation}
+    于是有
+    \begin{equation}
+        A_{0}\ket{\psi}=(\sin\frac{\pi}{4},\cos\frac{\pi}{4},0)^{T}.
+    \end{equation}
+\end{frame}
+
+\begin{frame}{具体实现}
+    接下来让我们考虑Grover迭代对$\varphi$的影响，对平面中的态操作Oracle给出映射
+    \begin{equation}
+        \begin{split}
+            O\colon & \frac{\theta}{2}\to\pi-\frac{\theta}{2}+\theta_{Q} \\
+                    & \varphi\to\varphi
+        \end{split}
+    \end{equation}
+    扩散操作$D$给出映射
+    \begin{equation}
+        \begin{split}
+            D\colon & \frac{\theta}{2}\to\pi-\frac{\theta}{2} \\
+                    & \varphi\to-\varphi.
+        \end{split}
+    \end{equation}
+    \\~\\
+
+    与$A_{0}$类似,我们用$A\coloneqq A(-2(\varphi-(-\varphi)))=A(-\pi)$来将角度拉回。
+\end{frame}
+
+\begin{frame}{具体实现}
+    所以操作$Q=AG$给出映射
+    \begin{equation}
+        \begin{split}
+            Q=AG\colon & \frac{\theta}{2}\to\frac{\theta}{2}-\theta_{Q} \\
+                       & \varphi\to\varphi.
+        \end{split}
+    \end{equation}
+    可以看到$Q$保持$\varphi$不变，我们不妨取出平面$\varphi=\pi/4$来观察$Q$对$\theta$的影响。
+\end{frame}
+
+\begin{frame}{具体实现}
+    \begin{columns}
+        \column{0.4\textwidth}
+        \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}
+                % 绘制箭头
+                \draw[->, thick] (0,0) -- (0,3) node[anchor=south] {$\ket{\beta}$};
+                \draw[->, thick] (0,0) -- (2.1,2.1) node[anchor=west] {$QA_{0}\ket{\psi}$};
+                \draw[->, thick] (0,0) -- (2.8,0.75) node[anchor=west] {$A_{0}\ket{\psi}$};
+                \draw[->, thick] (0,0) -- (3,0) node[anchor=west] {$\ket{\beta_{\perp}}$};
+                \draw[->, gray, thick] (0,0) -- (2.8,-0.75) node[anchor=west,black] {$OA_{0}\ket{\psi}$};
+                % 绘制虚线
+                \draw[dashed] (2.8,0.75) -- (2.8,-0.75);
+                \draw[dashed] (2.1,2.1) -- (2.8,-0.75);
+                % 绘制角度标记
+                \draw (1.5,0) arc[start angle=0,end angle=15,radius=1.5];
+                \draw (1.5,0) arc[start angle=0,end angle=-15,radius=1.5];
+                \draw (1,0.27) arc[start angle=15,end angle=45,radius=1];
+                % 标记角度
+                \node at (1.9,0.25) {$\theta_{Q}/2$};
+                \node at (1.9,-0.25) {$\theta_{Q}/2$};
+                \node at (1.2,0.7) {$\theta_{Q}$};
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:Abdulrahman}
+        \end{figure}
+        \column{0.6\textwidth}
+        和经典Grover类似，对$A_{0}\ket{\psi}$应用
+        \begin{equation}
+            R_{Q}=\left\lfloor\frac{\pi-\theta_{Q}/2}{\theta_{Q}}\right\rceil
+        \end{equation}
+        次操作$Q$,有
+        \begin{equation*}
+            \begin{split}
+                Q^{R_{Q}}A_{0}\ket{\psi}= & \cos(\frac{2R_{Q}+1}{2}\theta_{Q})\ket{\beta_{\perp}}             \\
+                                          & +\sin(\frac{2R_{Q}+1}{2}\theta_{Q})\ket{\beta}\approx\ket{\beta}.
+            \end{split}
+        \end{equation*}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{性能}
+    可以看到与经典的迭代次数的比
+    \begin{equation}
+        R_{Q}/R\approx\theta_{G}/\theta_{Q}\approx 1/\sqrt{2}
+    \end{equation}
+    这似乎违反了我们曾算过的下界。\\~\\
+
+    可以计算的是，如果目标元素的最后一位是1，有$A_{0}=A(\pi/2)$和$A=A(\pi)$，所以必须要先辨别结果的最后一位，我们才能有效的迭代，这就是加速的来源。
+\end{frame}
+
+\begin{frame}{结果}
+    \begin{figure}[htbp]
+        \centering
+        \begin{minipage}[t]{0.48\textwidth}
+            \centering
+            \includegraphics[scale=0.37]{pic/normal.png}
+            \caption{目标态0结尾}
+        \end{minipage}
+        \begin{minipage}[t]{0.48\textwidth}
+            \centering
+            \includegraphics[scale=0.37]{pic/unnormal.png}
+            \caption{目标态1结尾}
+        \end{minipage}
+    \end{figure}
+\end{frame}
+
+\section*{结语}
 
 \begin{frame}
     \begin{center}
         {\Huge\calligra Best Wishes!}
     \end{center}
 \end{frame}
+
+
 
 \end{document}
