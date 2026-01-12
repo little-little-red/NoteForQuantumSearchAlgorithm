@@ -96,7 +96,7 @@ which $\vec{n}$ is the coordinates of the rotation axis on the Bloch sphere.
 From the isomorphism \ref{BlochSphereRepersentation}, we can also induce an isomorphism of operations on two spaces:
 \begin{equation}
     \begin{split}
-        SU(2)/\{\pm 1\}                                             & \to SO(3)
+        SU(2)/\mathbb{Z}_{2}                                        & \to SO(3)
         \\
         \exp\left(-i\frac{\omega}{2}\vec{n}\cdot\vec{\sigma}\right) & \mapsto \exp\left(\omega\vec{n}\cdot\vec{J}\right)
     \end{split}
@@ -607,11 +607,11 @@ If $M>N/2$, the quantum search algorithm is not necessary. We can just randomly 
 
 
 
-\section{Bounds for Grover's algorithm\label{sec:BoundForGrover}}
+\chapter{Bounds for Grover's algorithm\label{sec:BoundForGrover}}
 
-\textit{This section is based on the paper\cite{2009Exact}, Here we restrict ourselves to the case $M=1$.}
+\textit{This chapter is based on the paper\cite{2009Exact}.}
 
-\subsection{Main idea}
+\section{Main idea}
 
 Oracle is at the heart of Grover's algorithm, so let's focus on the oracle and ignore the other operations, we write the state that uses $R$ queries to the oracle as
 \begin{equation}
@@ -625,10 +625,12 @@ which uses the identity for the first $i$ oracle queries and the oracle for the 
 \begin{equation}
     \ket{\Psi^{R}}=\prod_{j=1}^{R}U_{j}I\ket{\psi}.
 \end{equation}
-So that we can find the distance changed by oracle, here we use two kinds of metric, euclidean distance and angular distance:
+So that we can find the distance changed by oracle, here we use two kinds of metric, euclidean distance
 \begin{equation}
     E(\ket{\alpha},\ket{\beta})=\left\|\ket{\alpha}-\ket{\beta}\right\|
-    \quad\text{and}\quad
+\end{equation}
+and angular distance
+\begin{equation}
     A(\ket{\alpha},\ket{\beta})=\arccos\frac{\left\lvert \braket{\alpha|\beta}\right\rvert}{\left\|\ket{\alpha}\right\|\left\|\ket{\beta}\right\|}.
 \end{equation}
 Taking the distance $E$ as an example, if $\Psi_{x}^{R}$ satisfies the properties the output should have
@@ -645,7 +647,7 @@ It is important to note that $\ket{\gamma}$ here is not some particular state, w
 
 
 
-\subsection{\label{DistanceByOracle}Distance the oracle changes}
+\section{\label{DistanceByOracle}Distance the oracle changes}
 
 First, let's calculate the distance changed by the oracle. Considering the distance of the state before and after $R$ oracle queries, we have
 \begin{lemma}
@@ -703,7 +705,7 @@ According to the theorem, the distance changed by each oracle query can only add
 
 
 
-\subsection{\label{DistanceWhenWeNeed}Distance when the output is we need}
+\section{\label{DistanceWhenWeNeed}Distance when the output is we need}
 
 Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisfied.
 \begin{lemma}
@@ -742,7 +744,6 @@ Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisf
     \begin{equation*}
         \begin{split}
             A(\ket{\Psi_{x}^{R}},\ket{\Psi^{R}})
-             & = \arccos\left(\left\lvert \braket{\Psi_{x}^{R}|\Psi^{R}}\right\rvert\right)                                                                                                                                                                  \\
              & = \arccos\left(\bra{\Psi_{x}^{R}}(\mathsf{\Pi}_{x}+\mathsf{\Pi}_{x}^{\perp})^{\dagger}(\mathsf{\Pi}_{x}+\mathsf{\Pi}_{x}^{\perp})\ket{\Psi^{R}}\right)                                                                                        \\
              & = \arccos\left(\left\|\mathsf{\Pi}_{x}\ket{\Psi_{x}^{R}}\right\|\cdot\left\|\mathsf{\Pi}_{x}\ket{\Psi^{R}}\right\|+\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi_{x}^{R}}\right\|\cdot\left\|\mathsf{\Pi}_{x}^{\perp}\ket{\Psi^{R}}\right\|\right) \\
              & = \arccos\left(\sin\phi_{x}^{R}\sin\theta_{x}^{R}+\cos\phi_{x}^{R}\cos\theta_{x}^{R}\right)                                                                                                                                                   \\
@@ -760,7 +761,8 @@ Then, let's calculate the distance when equation \ref{TheOutputWeWant} is satisf
 
 
 
-\subsection{Lower bound of Grover iterations}
+
+\section{Lower bound of Grover iterations}
 
 From section \ref{DistanceByOracle} and section \ref{DistanceWhenWeNeed}, we obtain the two parts required for equation \ref{TheNumberForIteration} to compute the number of iterations: the upper bound of the distance changed by oracle and the lower bound of the distance when the output is we need. So we have the lower bound on the number of iterations for both versions
 \begin{theorem}
@@ -779,11 +781,11 @@ In the case of Euclidean distances, we conclude that Grover's algorithm is asymp
 
 
 
-\section{Long's algorithm}
+\chapter{Long's algorithm}
 
 \textit{This section is based on the paper\cite{Long_2001}.}
 
-\subsection{\label{subsec:LongMainIdea}Main idea}
+\section{\label{subsec:LongMainIdea}Main idea}
 
 Although Grover's algorithm is already accurate enough when the number of elements is large, for instance in deciphering the DES code where $N = 256$ the deviation is only $3\times 10^{-9}$. But in problems where certainly is vital, especially when the dimension is not so big, using a searching algorithm with certainty becomes important. Let's make some improvements to the Grover's algorithm.
 
@@ -798,7 +800,7 @@ In the Grover's algorithm\footnote{The notation of section \ref{subsec:GroverMai
 Intuitively, if we want $Q$ to make $\ket{\psi}$ go to $\ket{\beta}$, we should have the axis of rotation at the same angle as $\ket{\psi}$ and $\ket{\beta}$. From corollary \ref{cor:CompositionOfRotation}, if the angle of $I_{O}$ is $-\phi$, the angle of $I_{W}$ has to be $\phi$. As a generalization of Grover's algorithm, it can be seen that if we set $\phi=\pi$, then $Q$ degenerates to $G$.
 \begin{figure}[h]
     \centering
-    \resizebox{0.5\textwidth}{!}{\input{figures/Long.pgf}}
+    \resizebox{0.45\textwidth}{!}{\input{figures/Long.pgf}}
     \caption{}
     \label{fig:long}
 \end{figure}
@@ -821,7 +823,7 @@ where $\ket{\tau_{\perp}}=-\ket{\alpha}\braket{\beta|\tau}+\ket{\beta}\braket{\a
 
 
 
-\subsection{The right angle\label{subsec:RightAngle}}
+\section{The right angle\label{subsec:RightAngle}}
 
 Using equation \ref{eq:LongDeltaAngle} to calculate the angle $\Delta\varphi$ is complicated, so we may as well calculate it with Bloch vectors.
 \begin{figure}[h]
@@ -897,32 +899,15 @@ notice that $\phi$ has a real solution only when $\theta_{G}/2\geq\pi/(4j+2)$, m
     \phi\coloneqq 2\arcsin\left(\frac{\sin\left(\frac{\pi}{4j+2}\right)}{\sin\frac{\theta_{G}}{2}}\right).
 \end{equation}
 
-Let's finish with some examples of $j$ and $\phi$:
-\begin{table}[h!]
-    \centering
-    \begin{equation*}
-        \begin{array}{ccccccccccc}
-            \toprule
-            N        & 2   & 4 & 8        & 100      & 1000     & 10^{4}   & 10^{6}  & 10^{8}   & 10^{10}  & 2^{56} \\
-            \midrule
-            j        & 1   & 1 & 2        & 3        & 8        & 25       & 79      & 785      & 7854     & 78540  \\
-            \phi/\pi & 0.5 & 1 & 0.677007 & 0.698709 & 0.748018 & 0.854022 & 0.90089 & 0.989752 & 0.992688 & 0.9973 \\
-            \bottomrule
-        \end{array}
-    \end{equation*}
-    \caption{}
-    \label{tab:examples}
-\end{table}
-
-Can be seen as $N$ increases, the angle $\phi$ approaches $\pi$. At this point, Long's algorithm is also slightly closer to Grover's algorithm.
+It can be caculated that, as $N$ increases, the angle $\phi$ approaches $\pi$. At this point, Long's algorithm is also slightly closer to Grover's algorithm.
 
 
 
-\section{Abdulrahman's work}
+\chapter{Abdulrahman's work}
 
 \textit{This section is based on the paper\cite{Abdulrahman_2024}, Here we restrict ourselves to the case $M=1$.}
 
-\subsection{Main idea}
+\section{Main idea}
 
 From Equation \ref{eq:IterationsGrover} we can see that when $N$ is large enough, the iterations have $R\propto 1/\theta_{G}$, so we can try to find a larger angle to reduce the number of iterations. To do this, we need a larger state space, which we might as well augment with state
 \begin{equation}
@@ -953,23 +938,7 @@ So we have three orthogonal bases in this three-dimensional space,
     \end{pmatrix}
     .
 \end{equation*}
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}[b]{0.33\columnwidth}
-        \includegraphics[width=\columnwidth]{figures/basic_3.pdf}
-        \caption{orthogonal basis $(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.33\columnwidth}
-        \includegraphics[width=\columnwidth]{figures/basic_2.pdf}
-        \caption{orthogonal basis $(\ket{\gamma},\ket{\psi},\ket{\psi_{\perp}})$}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.33\columnwidth}
-        \includegraphics[width=\columnwidth]{figures/basic_1.pdf}
-        \caption{orthogonal basis $(\ket{\gamma},\ket{\alpha},\ket{\beta})$}
-    \end{subfigure}
-    \caption{Three orthogonal bases}
-    \label{fig:basics}
-\end{figure}
+
 
 After a basic understanding of this space, we can start to make some improvements. We require a rotation that is independent of the target element, considering the rotation in the space spanned by $\ket{\psi}$ and $\ket{\overline{\psi}}$, in the sub-space $(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$ we can write this rotation as
 \begin{equation}
@@ -992,7 +961,7 @@ According to this theorem, we can see that the maximum probability is achieved w
 
 
 
-\subsection{Keep states in the plane}
+\section{Keep states in the plane}
 
 For convenience, we use basis $(\ket{\overline{\psi}},\ket{\psi},\ket{\tau})$ and spherical coordinates $(x,y,z)^{T}\to(\sin\frac{\theta}{2}\sin\varphi,\sin\frac{\theta}{2}\cos\varphi,\cos\frac{\theta}{2})^{T}$ to describe this space. After some calculations, we have
 \begin{equation}

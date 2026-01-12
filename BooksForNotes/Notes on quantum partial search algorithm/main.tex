@@ -1,0 +1,607 @@
+\documentclass[a4paper,10pt]{article}
+
+
+\usepackage[bottom=20mm,top=20mm,left=20mm,right=20mm]{geometry}
+
+%-----------------------package---------------------------
+%\input{Qcircuit}
+
+\usepackage{verbatim}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red, linktocpage=true,breaklinks=true]{hyperref} 
+\usepackage{amsmath,amsthm,amsfonts,amssymb,graphics,graphicx,epsfig,color,times,braket,tikz,enumerate,bm,subcaption}
+\usepackage{epstopdf}
+\usepackage{enumerate}
+\hypersetup{linktocpage = true}
+\usepackage{cancel}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{siunitx}
+\usepackage{makecell}
+\usepackage[symbol]{footmisc}
+\allowdisplaybreaks[3]
+\usepackage{titlesec}
+\renewcommand{\arraystretch}{1.5}
+\usepackage{qcircuit,tikz}
+
+\titleformat{\section}
+  {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
+
+\renewcommand\baselinestretch{1.1}
+
+%--------------my conventions---------------------
+
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\en}{\end{equation}}
+\newcommand{\eqa}{\begin{eqnarray}}
+\newcommand{\ena}{\end{eqnarray}}
+\newcommand{\tr}{\mathrm{Tr}}
+\newcommand{\pr}{\mathrm{Pr}}
+\newcommand{\E}{\mathrm{E}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{conjecture}{Conjecture}
+
+%--------------------------------------------------
+
+\numberwithin{equation}{section}
+
+
+\begin{document}
+
+
+%\begin{flushright}
+%	{ Weekly report:  \today}
+%\end{flushright}
+
+\setlength{\unitlength}{1mm}
+
+%\thispagestyle{empty}
+
+%\vspace*{0.1cm}
+
+	
+	\begin{center}
+		{\large{\bf Notes on quantum partial search algorithm}}\\[7mm]
+		\small{Kun Zhang}\\[3mm]
+		
+		\small{\today}\\[3mm]
+		
+	\end{center}
+
+    \vspace{2mm}
+	
+	\begin{center}\parbox{13cm}{
+			
+			\centerline{\small  \bf Abstract}\vspace{2mm}
+			
+			The project aims to explore the efficiency of quantum partial search algorithm.
+			}
+		
+	\end{center}
+	%%
+	\vspace{.2cm}
+	 
+	 
+\section{Grover's algorithm}
+
+Suppose that there are $N=2^n$ items in the database, which can be represented by $n$ qubits. Suppose that there is only one solution denoted as $t$, satisfying
+\begin{equation}
+    f(x) = \begin{cases}
+      1 & \text{if $x=t$;}\\
+      0 & \text{if $x\neq t$.}
+    \end{cases} 
+\end{equation}
+Grover's algorithm is realized by the oracle operator 
+\begin{equation}
+\label{eq:O_t}
+    O_t = 1\!\!1-2|t\rangle\langle t|,
+\end{equation}
+and the diffusion operator 
+\begin{equation}
+\label{eq:D_n}
+    D_n = 1\!\!1 - 2|s_n\rangle\langle s_n|,
+\end{equation}
+with the uniform distribution state $|s_n\rangle$ given by
+\begin{equation}
+\label{eq:s_n}
+    |s_n\rangle = \frac{1}{\sqrt N}\sum_{j=0}^{N-1}|j\rangle.
+\end{equation}
+Here $j$ is in the binary form $j\in\{0,1\}^n$. 
+
+The initial state of Grover's algorithm is $|s_n\rangle$. The items $|j\rangle$ can be divided into two groups: target state $|t\rangle$ and the rest non-target states, where the latter can be normalized as
+\begin{equation}
+    |t^\perp\rangle = \frac{1}{\sqrt {N-1}}\sum_{j\neq t}|j\rangle.
+\end{equation}
+Therefore, the initial state $|s_n\rangle$ in Eq. (\ref{eq:s_n}) can rewritten as
+\begin{equation}
+\label{eq:sn_basis}
+    |s_n\rangle = \sin\theta_1|t\rangle +  \cos\theta_1|t^\perp\rangle.
+\end{equation}
+with the angle 
+\begin{equation}
+    \sin\theta_1 = \frac{1}{\sqrt N}.
+\end{equation} 
+In the new basis $\{|t\rangle,|t^\perp\rangle\}$, the oracle $O_t$ in Eq. (\ref{eq:O_t}) can be rewritten as 
+\begin{equation}
+    O_t = \begin{pmatrix}
+        -1 & 0 \\
+        0 & 1 \\
+    \end{pmatrix}.
+\end{equation}
+The diffusion operator $D_n$ can be rewritten as
+\begin{equation}
+    D_n = \begin{pmatrix}
+        \cos 2\theta_1 & -\sin 2\theta_1  \\
+        -\sin 2\theta_1 & -\cos 2\theta_1 \\
+    \end{pmatrix}.
+\end{equation}
+Then we define the Grover operator as
+\begin{equation}
+\label{eq:G_n}
+    G_n = -D_nO_t = \begin{pmatrix}
+        \cos 2\theta_1 & \sin 2\theta_1  \\
+        -\sin 2\theta_1 & \cos 2\theta_1 \\
+    \end{pmatrix}.
+\end{equation}
+The power in $k$ of Grover operator is
+\begin{equation}
+    G_n^k = \begin{pmatrix}
+        \cos(2k\theta_1) & \sin(2k\theta_1)  \\
+        -\sin(2k\theta_1) & \cos(2k\theta_1) \\
+    \end{pmatrix}.
+\end{equation}
+Acting on the initial state $|s_n\rangle$ in Eq. (\ref{eq:s_n}) gives
+\begin{equation}
+\label{eq:G_k_s_n}
+    G_n^k|s_n\rangle = \sin((2k+1)\theta_1)|t\rangle + \cos((2k+1)\theta_1)|t^\perp\rangle.
+\end{equation}
+The probability of finding the target stat $|t\rangle$ is
+\begin{equation}
+\label{eq:pr_k}
+    \pr(k) = \sin^2((2k+1)\theta_1).
+\end{equation}
+If we want to find the target state with high probability, then we want the amplitude of $|t\rangle$ close to 1. Therefore, we want the optimal $k$ to be
+\begin{equation}
+    (2k_\text{opt}+1)\theta_1 \rightarrow \frac \pi 2,
+\end{equation}
+which gives
+\begin{equation}
+    k_\text{opt} \rightarrow \frac{\pi}{4\theta_1} - \frac  1 2.
+\end{equation}
+Since $k_\text{opt}$ must be an integer number, we take the value
+\begin{equation}
+    k_\text{opt} = \left\lfloor \frac{\pi}{4\theta_1} - \frac  1 2\right\rceil.
+\end{equation}
+Here $\lfloor a \rceil$ denotes the closest integer of $a$. For example $\lfloor \pi \rceil = 3$. If $N$ is large, we can approximate $\theta$ as
+\begin{equation}
+    \theta_1 = \arcsin\left(\frac{1}{\sqrt N}\right) \approx \frac{1}{\sqrt N}.
+\end{equation}
+Therefore the optimal iteration number $k_\text{opt}$ is
+\begin{equation}
+    k_\text{opt} = \left\lfloor \frac{\pi\sqrt N}{4} - \frac  1 2\right\rceil.
+\end{equation}
+It suggests a quadratic speedup compared to the classical search algorithm. 
+
+
+\section{Quantum partial search algorithm}
+
+\subsection{Local diffusion operator}
+
+The diffusion operator $D_n$ defined in Eq. (\ref{eq:D_n}) is acting on all the $n$ qubits. We can renormalize the diffusion operator as 
+\begin{equation}
+    D_{n,m} = 1\!\!1_{2^{n-m}}\otimes (1\!\!1_{2^{m}} - 2|s_m\rangle\langle s_m|).
+\end{equation}
+So the operator $D_{n,m}$ is only acting on $m$ qubits which is $m\leq n$. We call it the local diffusion operator. Correspondingly, we can define the Grover operator with the local diffusion operator, namely
+\begin{equation}
+\label{eq:G_m}
+    G_{n,m} = -D_{n,m}O_t.
+\end{equation}
+For simplicity, we omit the subscription $n$ when there is no ambiguous
+\begin{equation}
+    G_m \equiv G_{n,m}.
+\end{equation}
+
+
+The local diffusion operator $D_m$ naturally divides the target state $|t\rangle$ as 
+\begin{equation}
+    |t\rangle = |t_1\rangle\otimes |t_2\rangle,
+\end{equation}
+where $|t_1\rangle$ is $n-m$ qubits and $|t_2\rangle$ is $m$ qubits. Here $|t_1\rangle$ can be viewed as the block index of $|t\rangle$. The total number of blocks denoted as $K$ is
+\begin{equation}
+    K = 2^{n-m}.
+\end{equation}
+The total number of items in each block is
+\begin{equation}
+    b = 2^m.
+\end{equation}
+Note that we have 
+\begin{equation}
+    N = bK.
+\end{equation}
+
+
+\subsection{\texorpdfstring{$O(3)$}{Lg} representation}
+
+Define the new basis
+\begin{align}
+    & |ntt\rangle = \frac{1}{\sqrt{2^m-1}}\sum_{j\neq t_2}|t_1\rangle\otimes |j\rangle, \\
+    & |u\rangle = \frac{1}{\sqrt{2^n-2^m}}\left(\sqrt{2^n}|s_n\rangle - |t\rangle - \sqrt{2^m-1}|ntt\rangle\right).
+\end{align}
+We can see that the state $|ntt\rangle$ is the uniform distribution of states which have the string $t_1$. The state $|u\rangle$ is the uniform distribution of the rest states. Similar as $|s_n\rangle$ in Eq. (\ref{eq:sn_basis}), we have
+\begin{equation}
+    |t_1\rangle\otimes |s_m\rangle = \frac{1}{\sqrt{2^m}}|t_1\rangle \otimes |t_2\rangle + \sqrt{\frac{2^{m-1}}{2^m}} |ntt\rangle.
+\end{equation}
+Define the angle
+\begin{equation}
+    \sin\theta_2 = \frac{1}{\sqrt{2^m}},
+\end{equation}
+Therefore, we have
+\begin{equation}
+    |t_1\rangle\otimes |s_m\rangle = \sin\theta_2|t\rangle + \cos\theta_2 |ntt\rangle.
+\end{equation}
+
+
+In the new basis $\{|t\rangle,|ntt\rangle,|u\rangle\}$, the initial state $|s_n\rangle$ in Eq. (\ref{eq:s_n}) can be rewritten as
+\begin{equation}
+    |s_n\rangle = \frac{1}{\sqrt{2^n}}|t\rangle + \sqrt{\frac{2^m-1}{2^n}}|ntt\rangle + \sqrt{\frac{2^n-2^m}{2^n}}|u\rangle.
+\end{equation}
+Define the angle
+\begin{equation}
+    \sin\gamma = \frac{1}{\sqrt{2^{n-m}}}.
+\end{equation}
+Therefore, we have
+\begin{equation}
+    |s_n\rangle = \sin\gamma\sin\theta_2|t\rangle+\sin\gamma\cos\theta_2|ntt\rangle + \cos\gamma |u\rangle.
+\end{equation}
+Moreover, in the new basis $\{|t\rangle,|ntt\rangle,|u\rangle\}$, the global diffusion operator is
+\begin{equation}
+    D_n = -\begin{pmatrix}
+        2\sin^2\gamma\sin^2\theta_2 - 1 & 2\sin^2\gamma\sin\theta_2\cos\theta_2 & 2\sin\gamma\cos\gamma\sin\theta_2 \\
+        2\sin^2\gamma\sin\theta_2\cos\theta_2 & 2\sin^2\gamma\cos^2\theta_2 - 1 & 2\sin\gamma\cos\gamma\cos\theta_2 \\
+        2\sin\gamma\cos\gamma\sin\theta_2 & 2\sin\gamma\cos\gamma\cos\theta_2 & 2\cos^2\gamma - 1 \\
+        \end{pmatrix}.
+\end{equation}
+Therefore, the global Grover operator $G_n$ in Eq. (\ref{eq:G_n}) has the form
+\begin{equation}
+    G_n = \begin{pmatrix}
+        1- 2\sin^2\gamma\sin^2\theta_2 & 2\sin^2\gamma\sin\theta_2\cos\theta_2 & 2\sin\gamma\cos\gamma\sin\theta_2 \\
+        -2\sin^2\gamma\sin\theta_2\cos\theta_2 & 2\sin^2\gamma\cos^2\theta_2 - 1 & 2\sin\gamma\cos\gamma\cos\theta_2 \\
+        -2\sin\gamma\cos\gamma\sin\theta_2 & 2\sin\gamma\cos\gamma\cos\theta_2 & 2\cos^2\gamma - 1 \\
+        \end{pmatrix}.
+\end{equation}
+The local Grover operator $G_m$ in Eq. (\ref{eq:G_m}) performs the search in the space spanned by $\{|t\rangle,|ntt\rangle\}$. Therefore, it has the form
+\begin{equation}
+    G_m = \begin{pmatrix}
+        \cos2\theta_2 & \sin2\theta_2 & 0 \\
+        -\sin2\theta_2 & \cos2\theta_2 & 0 \\
+        0 & 0 & 1 \\
+    \end{pmatrix}.
+\end{equation}
+Here $G_n$ is element of $O(3)$; $G_m$ is element of $SO(3)$. 
+
+The $k$ iterations of $G_m$ is
+\begin{equation}
+    G^k_m = \begin{pmatrix}
+        \cos(2k\theta_2) & \sin(2k\theta_2) & 0 \\
+        -\sin(2k\theta_2) & \cos(2k\theta_2) & 0 \\
+        0 & 0 & 1 \\
+    \end{pmatrix}.
+\end{equation}
+The $k$ iteration of $G_n$ is complicated. However, we can consider the large block limit $b\rightarrow\infty$ ($\theta_2\rightarrow 0$). Then we have \cite{korepin2006group}
+\begin{equation}
+    G_n^k = \begin{pmatrix}
+        \cos(2k\theta_1) & \sin(2k\theta_1)\sin\gamma & \sin(2k\theta_1)\cos\gamma \\
+        -\sin(2k\theta_1)\sin\gamma & (-1)^k\cos^2\gamma+\cos(2k\theta_1)\sin^2\gamma & \sin\gamma\cos\gamma((-1)^{k+1}+\cos(2k\theta_1)) \\
+        -\sin(2k\theta_1)\cos\gamma & \sin\gamma\cos\gamma((-1)^{k+1}+\cos(2k\theta_1)) & (-1)^k\sin^2\gamma + \cos(2k\theta_1)\cos^2\gamma \\
+    \end{pmatrix}.
+\end{equation}
+We can check that the $G_n^k$ with the large block limit is still a valid orthogonal matrix, namely
+\begin{equation}
+    {G_n^k}^TG_n^k = G_n^k{G_n^k}^T = 1\!\!1.
+\end{equation}
+Therefore, its inverse is
+\begin{equation}
+    {G_n^k}^{-1} = {G_n^k}^T = \begin{pmatrix}
+        \cos(2k\theta_1) & -\sin(2k\theta_1)\sin\gamma & -\sin(2k\theta_1)\cos\gamma \\
+        \sin(2k\theta_1)\sin\gamma & (-1)^k\cos^2\gamma+\cos(2k\theta_1)\sin^2\gamma & \sin\gamma\cos\gamma((-1)^{k+1}+\cos(2k\theta_1)) \\
+        \sin(2k\theta_1)\cos\gamma & \sin\gamma\cos\gamma((-1)^{k+1}+\cos(2k\theta_1)) & (-1)^k\sin^2\gamma + \cos(2k\theta_1)\cos^2\gamma \\
+    \end{pmatrix}.
+\end{equation}
+
+\subsection{GRK partial search algorithm}
+
+The quantum partial search algorithm aims to find the block index of the target state. Therefore, the amplitude of $|u\rangle$ must vanish. The Grover-Radhakrishnan-Korepin partial search use the operator $G_nG^{k_2}_mG_n^{k_1}$ \cite{GR05,Korepin05,KG06}. The number of iterations $k_1$ and $k_2$ must satisfy
+\begin{equation}
+\label{eq:u_vanish}
+    \langle u|G_nG^{k_2}_mG_n^{k_1}|s_n\rangle = 0.
+\end{equation}
+Suppose the scaling
+\begin{equation}
+    k_1 = \frac \pi 4\sqrt N-\eta\sqrt b,\qquad k_2 = \alpha\sqrt b.
+\end{equation}
+In the large block limit, the constrain of Eq. (\ref{eq:u_vanish}) becomes \cite{Korepin05}
+\begin{equation}
+\label{eq:eta_alpha_constrain}
+    \tan\left(\frac{2\eta}{\sqrt K}\right) = \frac{2\sqrt K\sin 2\alpha}{K-4\sin^2\alpha}.
+\end{equation}
+The total number of oracle operators is
+\begin{equation}
+    k_\text{tot} = \frac \pi 4\sqrt N-\eta\sqrt b + \alpha\sqrt b = \frac \pi 4\sqrt N - (\eta-\alpha)\sqrt b.
+\end{equation}
+We want to maximum $(\eta-\alpha)$ with the constrain (\ref{eq:eta_alpha_constrain}). The optimal value $\eta$ and $\alpha$ can be numerically solved. Note that different $K$ gives different optimal $\eta$ and $\alpha$. 
+
+\subsection{Other operators}
+
+There are no solid arguments that the GRK algorithm (using $G_nG^{k_2}_mG_n^{k_1}$ with the optimal $k_1$ and $k_2$) is optimal. In other words, other operators may find a partial solution with fewer oracle operators. In \cite{korepin2006quest}, the following operators have been studied. 
+\begin{itemize}
+    \item The local-global operator $G^{k_2}_nG^{k_1}_m$. It can find the partial solution faster than Grover's algorithm, but it is slower than GRK algorithm. 
+
+    \item The global-local-global operator $G^{k_3}_nG^{k_2}_mG^{k_1}_n$. The GRK operator $G_nG^{k_2}_mG_n^{k_1}$ is a special case of the global-local-global operator with $k_3=1$. The optimization gives the GRK algorithm. 
+
+    \item The global-local-global-local operator $G_nG^{k_3}_mG^{k_2}_nG^{k_1}_m$. The iteration number of the last global operator is set as 1. The optimization shows that $k=1$ gives the fastest algorithm, which is the GRK algorithm. 
+\end{itemize}
+
+\subsection{Conjecture}
+
+The unsolved problem is whether the GRK algorithm is the optimal quantum partial search algorithm. We have the following conjecture \cite{korepin2006group}
+
+\begin{conjecture}
+    Start from an arbitrary vector $|\phi\rangle$ in the three-dimensional space with the basis $\{|t\rangle,|ntt\rangle,|u\rangle\}$. If the sequence of local-global-local operations can find the target block
+    \begin{equation}
+        \langle u|G_n^{k_4}G_m^{k_3}G_n^{k_2}G_m^{k_1}|\phi\rangle = 0,
+    \end{equation}
+    then there exists a global-local-global sequence such that 
+    \begin{equation}
+        \langle u|G_n^{\tilde k_3}G_m^{\tilde k_2}G_n^{\tilde k_1}|\phi\rangle = 0,
+    \end{equation}
+    and it finds the target block faster, i.e.,
+    \begin{equation}
+        \tilde k_3 + \tilde k_2 + \tilde k_1 \leq k_1+k_2+k_3+k_4.
+    \end{equation}
+\end{conjecture}
+
+Suppose that we have a partial search algorithm, given by
+\begin{equation}
+    \langle u|G_n^{k_n}G_m^{k_{n-1}}G_n^{k_{n-2}}\cdots G_m^{k_2}G^{k_1}_n|s_n\rangle = 0.
+\end{equation}
+If the conjecture holds, we can derive a search operator (by applying the conjecture many times), given by
+\begin{equation}
+    \langle u|G_n^{\tilde k_3}G_m^{\tilde k_2}G_n^{\tilde k_1}|s_n\rangle = 0,
+\end{equation}
+which finds the target block faster. From \cite{korepin2006quest}, we know that the GRK algorithm is the fastest in all the global-local-global operators. Then we prove that GRK is the optimal partial search algorithm. Note that the conjecture is only a sufficient condition to prove the optimum of GRK algorithm. If the conjecture is not true, it does not mean that the GRK algorithm is not optimal. But if the GRK is not optimal, then the conjecture is not valid. 
+
+\section{Numerical quests}
+
+GRK algorithm is designed to find the target block with the success probability 1 (in the large database limit). However, it is unknown the highest success probability of finding the target block given the iteration number $k$. In other words, we aim to find the optimal search operator with $k$ oracle operators. 
+
+When $n=8$, namely $N=2^8$, Grover's algorithm requires $k_{opt}=12$ oracle operators. The success probability is around $99.9947\%$. 
+
+
+\begin{table}[t]
+    \caption{Success probabilities of quantum partial search algorithm without local diffusion operators.}
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c|c}
+    \hline\hline
+         \multicolumn{2}{c|}{$m$} & 2 & 3 & 4 & 5 & 6 & 7 \\\hline 
+         $k_\text{tot} = 2$ & Pr (\%) & 10.5289 & 11.9491 & 14.7894 & 20.4701 & 31.8315 & 54.5544 \\\hline
+         $k_\text{tot} = 3$ & Pr (\%) & 18.9371 & 20.2238 & 22.7972 & 27.9441 & 38.2378 & 58.8252 \\\hline
+         $k_\text{tot} = 4$ & Pr (\%) & 29.3158 & 30.4377 & 32.6817 & 37.1696 & 46.1453 & 64.0968 \\\hline
+         $k_\text{tot} = 5$ & Pr (\%) & 41.0188 & 41.9550 & 43.8274 & 47.5722 & 55.0619 & 70.0413 \\\hline
+         $k_\text{tot} = 6$ & Pr (\%) & 53.3175 & 54.0585 & 55.5405 & 58.5045 & 64.4324 & 76.2883 \\\hline
+         $k_\text{tot} = 7$ & Pr (\%) & 65.4463 & 65.9948 & 67.0918 & 69.2856 & 73.6734 & 82.4489 \\\hline
+         $k_\text{tot} = 8$ & Pr (\%) & 76.6502 & 77.0208 & 77.7620 & 79.2446 & 82.2097 & 88.1398 \\\hline
+         $k_\text{tot} = 9$ & Pr (\%) & 86.2315 & 86.4501 & 86.8872 & 87.7613 & 89.5097 & 93.0065 \\\hline
+         $k_\text{tot} = 10$ & Pr (\%) & 93.5938 & 93.6955 & 93.8989 & 94.3056 & 95.1191 & 96.7461 \\\hline
+         $k_\text{tot} = 11$ & Pr (\%) & 98.2788 & 98.3061 & 98.3608 & 98.4701 & 98.6886 & 99.1257 \\
+    \hline\hline
+    \end{tabular}
+    \label{tab:Grover_n=8}
+\end{table}
+
+
+\begin{table}[t]
+    \caption{Optimal operators and success probabilities of quantum partial search algorithm with $n=8$.}
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c|c}
+    \hline\hline
+         \multicolumn{2}{c|}{$m$} & 2 & 3 & 4 & 5 & 6 & 7 \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 2$} & Operator & $G_8G_2$ & $G_8G_3$ & $G_8G_4$ & $G_8G_5$ & $G_8G_6$ & $G_8G_7$ \\
+         & Pr (\%) & 10.5747 & 13.4310 & 16.9145 & 22.7749 & 33.9446 & 56.0089 \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 3$} & Operator & $G_8G_2G_8$ & $G_8G_3G_8$ & $G_8G^2_4$ & $G_8G^2_5$ & $G_8G^2_6$ & $G_8G^2_7$ \\
+         & Pr (\%) & 19.0236 & 23.0100 & 27.0968 & 33.6418 & 43.8606 & 62.8228 \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 4$} & Operator & $G_8G_2G^2_8$ & $G_8G_3G^2_8$ & $G_8G^2_4G_8$ & $G_8G^3_5$ & $G_8G^3_6$ & $G_8G^3_7$ \\
+         & Pr (\%) & 29.4353 & 34.2693 & 38.7202 & 45.7859 & 55.6425 & 71.1470 \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 5$} & Operator & $G_8G_2G^3_8$ & $G_8G_3G^3_8$ & $G_8G_4^2G^2_8$ & $G_8G_5^3G_8$ & $G_8G_6^4$ & $G_8G_7^4$ \\
+         & Pr (\%) & 41.1617 & 46.5081 & 51.0612 & 58.2046 & 67.7145 & 79.9491 \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 6$} & Operator & $G_8G_2G^4_8$ & $G_8G_3G^4_8$ & $G_8G_4^2G^3_8$ & $G_8G_5^3G^2_8$ & $G_8G_6^4G_8$ & $G_8G_7^5$ \\
+         & Pr (\%) & 53.4727 & 58.9644 & 63.3514 & 70.1245 & 78.7004 & 88.1374 \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 7$} & Operator & $G_8G_2G^5_8$ & $G_8G_3G^5_8$ & $G_8G^2_4G^4_8$ & $G_8G^3_5G^3_8$ & $G_8G^4_6G^2_8$ & $G_8G_7^6$ \\
+         & Pr (\%) & 65.6019 & 70.8626 & 74.8257 & 80.8038 & 87.9164 & 94.6963 \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 8$} & Operator & $G_8G_2G^6_8$ & $G_8G_3G^6_8$ & $G_8G^2_4G^5_8$ & $G_8G^3_5G^4_8$ & $G_8G^4_6G^3_8$ & $G_8G^7_7$ \\
+         & Pr (\%) & 76.7941 & 81.4622 & 84.7698 & 89.5775 & 94.7887 & 98.8124 \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 9$} & Operator & $G_8G_2G^7_8$ & $G_8G_3G^7_8$ & $G_8G_4^2G^6_8$ & $G_8G_5^3G^5_8$ & $G_8G_6^4G^4_8$ & \textcolor{red}{$G_8G^6_7G_8G_7$} \\
+         & Pr (\%) & 86.3525 & 90.1031 & 92.5645 & 95.8994 & 98.8894 & \textcolor{red}{99.9998} \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 10$} & Operator & $G_8G_2G^8_8$ & $G_8G_3G^8_8$ & $G_8G_4^2G^7_8$ & $G_8G_5^3G^6_8$ & \textcolor{red}{$G_8G_6^4G^3_8G_6^2$} & \textcolor{red}{$G_8G_7^3(G_8G_7)^2$} \\
+         & Pr (\%) & 93.6822 & 96.2474 & 97.7247 & 99.3760 & \textcolor{red}{99.9999} & \textcolor{red}{99.9999} \\\hline 
+         \multirow{2}{*}{$k_\text{tot} = 11$} & Operator & $G_8G_2G^9_8$ & $G_8G_3G^9_8$ & $G_8G_4^2G^8_8$ & \textcolor{red}{$G_8G_5(G^2_8G_5)^2G_8G^2_5$} & \textcolor{red}{$G_8G_6G_8^4(G_6G_8)^2G_8$} & \textcolor{red}{$G_7G_8G_7^3(G_8G_7)^3$} \\
+         & Pr (\%) & 98.3268 & 99.5126 & 99.9290 & \textcolor{red}{99.9999} & \textcolor{red}{99.9999} & \textcolor{red}{99.9999} \\
+    \hline\hline
+    \end{tabular}
+    \label{tab:n=8}
+\end{table}
+
+
+\section{Bounds on the success probability}
+
+\subsection{Partial search without local diffusion operator}
+
+\begin{theorem}
+    Given $k$ iterations of the global Grover's operator, the success probability of finding the target block $t_1$ is
+    \begin{equation}
+        \pr\left(G_n^k,x=t_1\right) = \sin^2((2k+1)\theta_1)+\frac{b-1}{N-1}\cos^2((2k+1)\theta_1).
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    The normalized non-target state $|t^\perp\rangle$ can be rewritten as
+    \begin{equation}
+        |t^\perp\rangle = \frac{\sin\gamma\cos\theta_2}{\cos\theta_1}|ntt\rangle + \frac{\cos\gamma}{\cos\theta_1}|u\rangle.
+    \end{equation}
+    Therefore, Eq. (\ref{eq:G_k_s_n}) can be rewritten as
+    \begin{equation}
+        G_n^k|s_n\rangle = \sin((2k+1)\theta_1)|t\rangle + \cos((2k+1)\theta_1)\frac{\sin\gamma\cos\theta_2}{\cos\theta_1}|ntt\rangle + \cos((2k+1)\theta_1)\frac{\cos\gamma}{\cos\theta_1}|u\rangle.
+    \end{equation}
+    Then the success probability of finding $t_1$ is given by
+    \begin{equation}
+        \pr\left(G_n^k,x=t_1\right) = 1- \left|\langle u|G_n^k|s_n\rangle\right|^2 = 1 -  \cos^2((2k+1)\theta_1)\frac{\cos^2\gamma}{\cos^2\theta_1}.
+    \end{equation}
+    Note that
+    \begin{equation}
+        \cos\gamma = \sqrt{\frac{K-1}{K}},\qquad \cos\theta_1 = \sqrt{\frac{N-1}{N}}.
+    \end{equation}
+    Therefore, the success probability can be rewritten as
+    \begin{align}
+        \pr\left(G_n^k,x=t_1\right) = & 1 - \cos^2((2k+1)\theta_1)\frac{K-1}{K}\frac{N}{N-1} \nonumber \\
+        = & 1 - \frac{N-b}{N-1}\cos^2((2k+1)\theta_1) \nonumber \\
+        = & 1 - \left(1-\frac{b-1}{N-1}\right)\cos^2((2k+1)\theta_1) \nonumber \\
+        = & \sin^2((2k+1)\theta_1) + \frac{b-1}{N-1}\cos^2((2k+1)\theta_1).
+    \end{align}
+    Note that $N=bK$.
+\end{proof}
+
+\begin{corollary}
+Given $k$ iterations of the global Grover's operator, the success probability of finding the target block is higher than finding the full solution. The success probability difference is
+\begin{equation}
+    \Delta\pr = \pr\left(G_n^k,x=t_1\right) - \pr\left(G_n^k,x=t\right) = \frac{b-1}{N-1}\cos^2((2k+1)\theta_1),
+\end{equation}
+which scales $\mathcal O(b/N)$.
+\end{corollary}
+
+
+\subsection{Partial search with local diffusion operator}
+
+The numerical tests show that the operator $G_1G^{k_2}_2G_1^{k_1}$ always gives the highest success probabilities given a fixed number of total oracle operators. See Table. \ref{tab:n=8}. 
+
+Consider the large block limit, namely $b\rightarrow \infty$ and $\theta_2\rightarrow 0$. The initial state is
+\begin{equation}
+    |s_n\rangle = (0,\sin\gamma,\cos\gamma)^T + \mathcal O\left(\frac{1}{\sqrt b}\right),
+\end{equation}
+in the basis $\{|n\rangle,|ntt\rangle,|u\rangle\}$. First, acting $G_1^{k_1}$ on the initial state gives
+\begin{equation}
+    G_1^{k_1}|s_n\rangle = \begin{pmatrix}
+        \sin(2k_1\theta_1) \\
+        \sin\gamma\sin(2k_1\theta_1) \\
+        \cos\gamma\cos(2k_1\theta_1) \\
+    \end{pmatrix} + \mathcal O\left(\frac{1}{\sqrt b}\right).
+\end{equation}
+Next, the $G_2^{k_2}$ operator gives
+\begin{equation}
+    G_2^{k_2}G_1^{k_1}|s_n\rangle = \begin{pmatrix}
+        \sin(2k_1\theta_1)\cos(2k_2\theta_2) + \sin\gamma\cos(2k_1\theta_1)\sin(2k_2\theta_2) \\
+        -\sin(2k_1\theta_1)\sin(2k_2\theta_2) + \sin\gamma\cos(2k_1\theta_1)\cos(2k_2\theta_2) \\
+        \cos\gamma\cos(2k_1\theta_1) \\
+    \end{pmatrix} + \mathcal O\left(\frac{1}{\sqrt b}\right).
+\end{equation}
+In the large block limit, the global diffusion operator has the form
+\begin{equation}
+    D_n = 2|s_n\rangle\langle s_n| - 1\!\!1 = \begin{pmatrix}
+        -1 & 0 & 0 \\
+        0 & -\cos(2\gamma) & \sin(2\gamma) \\
+        0 & \sin(2\gamma) & \cos(2\gamma) \\
+    \end{pmatrix} + \mathcal O\left(\frac{1}{\sqrt b}\right).
+\end{equation}
+We can omit the oracle operator in the last iteration since we only consider the leading order of $1/\sqrt b$ or $1/\sqrt N$. Finally, we have
+\begin{multline}
+     \langle u|D_nG_2^{k_2}G_1^{k_1}|s_n\rangle \\
+     = -\sin(2\gamma)\sin(2k_1\theta_1)\sin(2k_2\theta_2) + \sin(2\gamma)\sin\gamma\cos(2k_1\theta_1)\cos(2k_2\theta_2) + \cos\gamma\cos(2\gamma)\cos(2k_1\theta_1) + \mathcal O\left(\frac{1}{\sqrt b}\right).
+\end{multline}
+
+\subsubsection{Large block number limit}
+
+We consider the large block number limit, namely $K\rightarrow\infty$ or $\gamma\rightarrow 0$. In the first order of $\gamma$, we have
+\begin{equation}
+    \langle u|D_nG_2^{k_2}G_1^{k_1}|s_n\rangle = -2\gamma \sin(2k_1\theta_1)\sin(2k_2\theta_2) + \cos(2k_1\theta_1) + \mathcal O\left(\gamma^2\right) + \mathcal O\left(\frac{1}{\sqrt b}\right).
+\end{equation}
+Suppose that the total number of iterations is fixed, given by
+\begin{equation}
+    (k_1+k_2)\theta_1 = \alpha.
+\end{equation}
+Here $\alpha$ is a fixed number. Furthermore, suppose that
+\begin{equation}
+    k_2\theta_2 = \beta,
+\end{equation}
+which gives 
+\begin{equation}
+    k_1\theta_1 = \alpha - k_2\theta_1 = \alpha - \frac{\beta\theta_1}{\theta_2} = \alpha - \frac{\beta}{\sqrt K} = \alpha - \beta\gamma.
+\end{equation}
+In the first order of $\gamma$, we have
+\begin{align}
+    \langle u|D_nG_2^{k_2}G_1^{k_1}|s_n\rangle = & -2\gamma \sin(2\alpha-2\beta\gamma)\sin(2\beta) + \cos(2\alpha-2\beta\gamma) + \mathcal O\left(\gamma^2\right) + \mathcal O\left(\frac{1}{\sqrt b}\right) \nonumber \\
+    = & -2\gamma\sin(2\alpha)\sin(2\beta) + \cos(2\alpha) + 2\beta\gamma\sin(2\alpha) + \mathcal O\left(\gamma^2\right) + \mathcal O\left(\frac{1}{\sqrt b}\right) \nonumber \\
+    = & \cos(2\alpha) + 2\sin(2\alpha)\gamma(\beta - \sin(2\beta)) + \mathcal O\left(\gamma^2\right) + \mathcal O\left(\frac{1}{\sqrt b}\right).
+\end{align}
+Define the function
+\begin{equation}
+    f(\beta) = \beta - \sin(2\beta),
+\end{equation}
+which takes the minimum at $\beta = \pi/6$. And the minimal value is 
+\begin{equation}
+    f\left(\frac{\pi}{6}\right) = \frac{\pi}{6} - \frac{\sqrt 3}{2} \approx -0.342427.
+\end{equation}
+Denote the minimal value as
+\begin{equation}
+    \varepsilon = -2f\left(\frac{\pi}{6}\right).
+\end{equation}
+Then we know that the success probability of finding the target block has the bound
+\begin{align}
+    \pr(D_nG_2^{k_2}G_1^{k_1},x=t_1) = & 1- \left|\langle u|D_nG_2^{k_2}G_1^{k_1}|s_n\rangle\right|^2 \nonumber \\
+    \leq & 1- |(\cos(2\alpha)-\sin(2\alpha)\gamma\varepsilon)^2|+ \mathcal O\left(\gamma^2\right) + \mathcal O\left(\frac{1}{\sqrt b}\right) \nonumber \\
+    = & \sin^2(2\alpha) + \sin(4\alpha)\varepsilon\gamma + \mathcal O\left(\gamma^2\right) + \mathcal O\left(\frac{1}{\sqrt b}\right).
+\end{align}
+In conclusion, we have the following theorem
+\begin{theorem}
+    Given $k = \alpha\sqrt N$ oracle operators, the success probability of finding the target block has the upper bound
+    \begin{equation}
+        \pr(x=t_1)\leq \sin^2(2\alpha) + \sin(4\alpha)\varepsilon\gamma + \mathcal O\left(\gamma^2\right),
+    \end{equation}
+    with the constant $\varepsilon = \sqrt 3 - \pi/3 \approx 0.68485$.
+\end{theorem}
+
+\begin{corollary}
+    Given $k = \alpha\sqrt N$ oracle operators, the success probability difference between finding the full solution and the target block has the upper bound
+    \begin{equation}
+        \pr(x=t_1) - \pr(x=t) \leq \sin(4\alpha)\varepsilon\gamma + \mathcal O\left(\gamma^2\right),
+    \end{equation}
+    with the constant $\varepsilon = \sqrt 3 - \pi/3 \approx 0.68485$. The probability difference scales $\mathcal O(1/\sqrt K)$.
+\end{corollary}
+
+\section{Bounds on the minimal expected number of oracles}
+
+\subsection{Partial search without local diffusion operator}
+
+Given $k+1/2 = \alpha/\theta_1$ iterations of Grover operator, the success probability of finding the full solution is given by Eq. (\ref{eq:pr_k}), namely
+\begin{equation}
+    \pr(x=t) = \sin^2(2\alpha).
+\end{equation}
+The expected number of oracles is
+\begin{equation}
+    \E(G_1^k) = \frac{\alpha}{\theta_1\sin^2(2\alpha)} + \mathcal O\left(\frac 1 N\right).
+\end{equation}
+The minimal point in the leading order is given by
+\begin{equation}
+    \frac{d\E(G_1^k)}{d\alpha} = \frac{\sin(2\alpha) - 4\alpha\cos(2\alpha)}{\theta_1\sin^3(2\alpha)} = 0,
+\end{equation}
+which gives
+\begin{equation}
+    4\alpha_\text{min} = \tan(2\alpha_\text{min}).
+\end{equation}
+The approximate numerical solution is 
+\begin{equation}
+    \alpha_\text{min}\approx 0.582781,\qquad \sin^2(2\alpha_\text{min})\approx 0.844579,\qquad \frac{\alpha_\text{min}}{\sin^2(2\alpha_\text{min})}\approx 0.690025.
+\end{equation}
+
+\bibliographystyle{plain}
+\bibliography{ref}
+
+\end{document}

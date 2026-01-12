@@ -107,4 +107,4 @@ ax.view_init(elev=20, azim=10)
 plt.show()
 
 # save
-fig.savefig("Notes/figures/basic_3.pdf", bbox_inches="tight")
+# fig.savefig("Notes/figures/basic_3.pdf", bbox_inches="tight")
